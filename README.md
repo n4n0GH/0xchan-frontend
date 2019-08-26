@@ -23,6 +23,7 @@ The interface is made with VueJS, so you should also check out their documentati
 - [ ] Release interface on Github
 - [ ] Create pagination for board view
 - [ ] Make single thread view work with arbitrary data
+	-> requires JSON for demo data
 - [ ] Create link around images to open them
 - [ ] Create vote page and subpages
 - [ ] Create 'new thread' input
@@ -51,6 +52,7 @@ The interface is made with VueJS, so you should also check out their documentati
 - [ ] Add reporting function
 
 ## DONE
+- [x] Streamlined bool operations in vuex states
 - [x] Add card-footer to Post.vue to display (you) button and links to posts replying to this post
 - [x] Lazyload images to reduce requests fired
 - [x] Reduce space taken up by hidden threads
