@@ -1,0 +1,56 @@
+// Pseudo-Code to showcase how the data should be
+// structured inside the contract and on the
+// individual IPFS hash resolves
+
+// In contract
+// Boards
+{
+	"ticker": "biz",					// chosen by creator of board
+	"punchline": "shitcoins and stocks",// same
+	"postcounter": 0,					// always 0, incrementing with each post
+	"nsfw": false,						// if true, a badge is added on the navbar
+}
+// Thread + Posts
+{
+	"board": "biz",						// board
+	"thread": "1234567890",				// thread ID
+	"post": "Qm~",						// IPFS hash for OP (single post)
+	"replies": [						// IPFS hash for each reply (single post)
+		"Qm~",
+		"Qm~",
+		"...",
+	],
+	"hidden": [							// community voted to hide these
+		{
+			"id": "1234556789",
+			"hash": "Qm~"
+		},
+		{
+			"id": "1234556788",
+			"hash": "Qm~"
+		},
+	],
+}
+
+// Single Post, example on https://ipfs.io/ipfs/Qmb2uspMc5iTHXYLcYDKov3nP6hwTb7C69QEWwwu4A7Jfd
+{
+	"id": "1234567890",					// incrementing integer, last number stored in contract
+	"thread": "1234567890",				// define thread to merge this into
+	"stamp": {							// auto set by system, UTC
+		"time": "13:33:37",				// HH:MM:SS
+		"date":	"10/01/2019",			// MM:DD:YYYY
+	},
+	"file": {							// optional			
+		"originalName": "bar.png",		// original upload name
+		"size": "1280x760",				// dimensions of image
+		"src": "Qm~",					// IPFS hash to file
+		"thumb": "Qm~",					// IPFS hash to thumbnail
+	},
+	"replyTo": [						// optional
+		"1234567889", 
+		"1234567888",
+	],
+	"name": "Anonymous",				// auto set to Anonymous if no other name was chosen
+	"subject": "foo",					// defined by user
+	"text": "lorem ipsum dolor sit",	// defined by user 				
+}

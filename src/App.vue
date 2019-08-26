@@ -1,31 +1,33 @@
 <template>
-  <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
-    <router-view/>
-  </div>
+	<div class="row m-0">
+		<div class="col-2 pl-0" style="position:fixed; height:100%;">
+			<nav-bar/>
+		</div>
+		<div class="col-10 ml-auto">
+			<router-view/>
+		</div>
+	</div>
 </template>
 
-<style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
-#nav {
-  padding: 30px;
-}
+<script>
+	
+	import NavBar from './views/NavBar.vue'
 
-#nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
-
-#nav a.router-link-exact-active {
-  color: #42b983;
-}
-</style>
+	export default {
+		components: {
+			NavBar
+		},
+		mounted(){
+			var style = [
+				'background: linear-gradient(#009245, #006837)',
+				'color: white',
+				'display: block',
+				'line-height: 40px',
+				'text-align: center',
+				'font-weight: bold'
+			].join(';');
+		/* eslint-disable-next-line */
+		console.log('%c fuck censorship lmfao ', style);
+		}
+	}
+</script>
