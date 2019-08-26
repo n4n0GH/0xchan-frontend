@@ -20,7 +20,7 @@
 		},
 		methods: {
 			...mapActions([
-				'setGrab'
+				'setBool'
 			])
 		},
 		computed: {

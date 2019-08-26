@@ -1,5 +1,8 @@
 <template>
 	<div class="row m-0">
+		<transition name="fade" mode="out-in">
+			<modal v-if="getModal"/>
+		</transition>
 		<div class="col-2 pl-0" style="position:fixed; height:100%;">
 			<nav-bar/>
 		</div>
@@ -12,10 +15,23 @@
 <script>
 	
 	import NavBar from './views/NavBar.vue'
+	import Modal from './components/modals/Modal.vue'
+	import {mapGetters, mapActions} from 'vuex'
 
 	export default {
 		components: {
-			NavBar
+			NavBar,
+			Modal
+		},
+		methods: {
+			...mapActions([
+
+			])
+		},
+		computed: {
+			...mapGetters([
+				'getModal'
+			])
 		},
 		mounted(){
 			var style = [

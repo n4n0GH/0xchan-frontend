@@ -26,10 +26,10 @@
 	export default {
 		methods: {
 			login(){
-				this.setLogin()
+				this.setBool('mutLogin')
 			},
 			...mapActions([
-				'setLogin'
+				'setBool'
 			])
 		},
 		computed: {

@@ -11,7 +11,8 @@ export default new Vuex.Store({
   state: {
     login: false,
     hiddenThreads: [],
-    grabFiles: false
+    grabFiles: false,
+    useModal: false
   },
   getters: {
     getLogin: state => {
@@ -22,6 +23,9 @@ export default new Vuex.Store({
     },
     getGrab: state => {
       return state.grabFiles
+    },
+    getModal: state => {
+      return state.useModal
     }
   },
   mutations: {
@@ -38,17 +42,15 @@ export default new Vuex.Store({
     },
     mutGrab: state => {
       state.grabFiles = !state.grabFiles
-    }
+    },
+
   },
   actions: {
-    setLogin: context => {
-      context.commit('mutLogin')
+    setBool: (context, payload) => {
+      context.commit(payload)
     },
     setHidden: (context, payload) => {
       context.commit('mutHidden', payload)
     },
-    setGrab: context => {
-      context.commit('mutGrab')
-    }
   }
 })
