@@ -36,7 +36,7 @@ The interface is made with VueJS, so you should also check out their documentati
 - [ ] Introduce web3
 - [ ] Bug testing smart contract (testnet)
 - [ ] Har(j)berger Tax minigame for the banner component (credit to Troopy)
-- [ ] Report and (you) button float right pls
+- [ ] Report button float right pls
 - [ ] Add parser for certain user inputs (like [code] blocks)
 - [ ] Add parser to detect >>number in a user post and turn that into a link to the post
 - [ ] Write documentation
