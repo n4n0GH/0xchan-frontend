@@ -39,6 +39,7 @@ body {
 .text-chan {
 	color: #800;
 	text-shadow: #FFF0E3 1px 1px 0, #FFDAB9 -1px -1px 0;
+	font-family: 'Roboto';
 }
 .text-chan-brand {
 	font-size: 3rem;
@@ -72,6 +73,13 @@ body {
 /* clicky things */
 .btn {
 	border-radius: 2px;
+}
+.btn a {
+	color: #800;
+}
+.btn:hover a {
+	color: white;
+	text-decoration: none;
 }
 .btn-outline-chan {
 	border-color: #009245;

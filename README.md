@@ -22,8 +22,6 @@ The interface is made with VueJS, so you should also check out their documentati
 - [ ] Host interface on IPFS
 - [ ] Release interface on Github
 - [ ] Create pagination for board view
-- [ ] Make single thread view work with arbitrary data
-	-> requires JSON for demo data
 - [ ] Create link around images to open them
 - [ ] Create vote page and subpages
 - [ ] Create 'new thread' input
@@ -36,22 +34,26 @@ The interface is made with VueJS, so you should also check out their documentati
 - [ ] Introduce web3
 - [ ] Bug testing smart contract (testnet)
 - [ ] Har(j)berger Tax minigame for the banner component (credit to Troopy)
-- [ ] Report button float right pls
 - [ ] Add parser for certain user inputs (like [code] blocks)
 - [ ] Add parser to detect >>number in a user post and turn that into a link to the post
 - [ ] Write documentation
 - [ ] Add user settings
 - [ ] Make vue-router wait for all content to be loaded before switching views
 	-> might require to create single components for all content
-- [ ] Include punchline in Board.vue
 - [ ] Include "ANN" function in smart contract (ANNs stored on IPFS, Qm~ stored on chain)
-- [ ] Include Fontawesome local
+- [ ] Include Fontawesome locally
 - [ ] Create modal functionality
 - [ ] Add user setting to disable the loading of images (default: false)
 - [ ] Integrate Walletconnect to enable shitposting on the PC, but paying with your phone
+	-> autodetect whether or not metamask is installed and present Walletconnect login as alternative automatically
 - [ ] Add reporting function
+- [ ] CSS Switcher for users (settings)
 
 ## DONE
+- [x] Make newest posts on index link to their thread and board
+- [x] Report button float right pls
+- [x] Include punchline in Board.vue
+- [x] Make single thread view work with arbitrary data
 - [x] Streamlined bool operations in vuex states
 - [x] Add card-footer to Post.vue to display (you) button and links to posts replying to this post
 - [x] Lazyload images to reduce requests fired

@@ -2,9 +2,8 @@
 	<div class="container-fluid" style="height:100%;">
 		<div class="row">
 			<div class="col text-center pt-2">
-				<router-link :to="{name: 'index'}" class="text-chan text-chan-brand">
+				<router-link :to="{name: 'index'}">
 					<img src="../assets/icon.png" style="width:3rem;" alt="">
-					0xchan
 				</router-link>
 			</div>
 		</div>
@@ -24,9 +23,9 @@
 		<div class="row">
 			<div class="col text-center">
 				<p class="small">that's all :(</p>
+				<settings />
 			</div>
 		</div>
-		<settings />
 	</div>
 </template>
 

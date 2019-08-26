@@ -2,13 +2,14 @@
 	<div class="container-fluid">
 		
 		<div class="row">
-			<div class="col text-center">
+			<div class="col-12 text-center">
 				<banner />
-				<p class="display-4 font-weight-bold text-chan">/{{board}}/</p>
-				
+				<p v-for="line in tag" class="lead font-weight-bold text-chan mb-2" :key="line.punchline">/{{line.ticker}}/ - {{line.punchline}}</p>
+				<button class="btn btn-outline-chan" v-if="!thread">New Thread</button>
 			</div>
 			
 		</div>
+		<hr>
 		<router-view v-if="thread" />
 		<div class="row" v-if="!thread">
 			<div class="col-12 thread-preview" v-for="(post, index) in posts" :key="'thread-'+index" :style="getHidden.includes(board+post.thread)?'height:2.2rem;':''">
@@ -30,6 +31,13 @@
 							<template #postNumber>
 								No. {{post.thread}}
 							</template>
+							<template #openThread>
+								<button style="line-height: 1rem;" class="mt-n1 mr-2 p-0 px-1 btn btn-outline-chan-red text-mono">
+								<router-link :to="{name: 'thread', params: {'number': '123'}}">
+								V
+								</router-link>
+								</button>
+							</template>
 							<template #fileMeta>
 								{{post.file.originalName}}
 							</template>
@@ -42,6 +50,12 @@
 								</blockquote>
 							</template>
 						</post>
+						<div class="row">
+							<p class="text-mono small mb-1 ml-4">&gt;&gt;123 posts and 23 images omitted [
+							<router-link :to="{name: 'thread', params: {'number': '123'}}">
+							view thread</router-link>
+							]</p>
+						</div>
 						<post v-for="reply in post.replies" :key="reply.id" class="reply-container ml-5 col-auto" :id="reply.id">
 							<template #postSubject>
 								{{reply.subject}}
@@ -59,7 +73,7 @@
 								{{reply.file.originalName}}
 							</template>
 							<template #fileThumb v-if="reply.file.src != 'undefined'">
-									<img v-lazy="reply.file.src" style="width:70%; max-height:128px; object-fit: cover;" alt="">
+									<img v-lazy="reply.file.src" style="width:100%; max-height:128px; object-fit: cover;" alt="">
 							</template>
 							<template #postText>
 								<blockquote class="mb-0">
@@ -126,6 +140,9 @@
 			},
 			posts() {
 				return Threads.filter(a => a.board == this.board)
+			},
+			tag() {
+				return Boards.filter(a => a.ticker == this.board)
 			}
 		}
 	}

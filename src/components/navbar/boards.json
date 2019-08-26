@@ -1,24 +1,22 @@
-{
-	"boards": [
-		{
-			"ticker": "biz",
-			"punchline": "shitcoins and stocks"
-		},
-		{
-			"ticker": "o",
-			"punchline": "automotion"
-		},
-		{
-			"ticker": "p",
-			"punchline": "potatography"
-		},
-		{
-			"ticker": "g",
-			"punchline": "thinkpads and chinkshit"
-		},
-		{
-			"ticker": "v",
-			"punchline": "vidya gaems"
-		}
-	]
-}
+[
+	{
+		"ticker": "biz",
+		"punchline": "shitcoins and stocks"
+	},
+	{
+		"ticker": "o",
+		"punchline": "automotion"
+	},
+	{
+		"ticker": "p",
+		"punchline": "potatography"
+	},
+	{
+		"ticker": "g",
+		"punchline": "thinkpads and chinkshit"
+	},
+	{
+		"ticker": "v",
+		"punchline": "vidya gaems"
+	}
+]

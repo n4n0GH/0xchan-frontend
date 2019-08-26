@@ -3,7 +3,7 @@
 		<div class="card card-chan mb-2">
 			<div class="card-header bg-chan p-0 border-0">
 				<div class="row">
-					<div class="col-auto pl-4 py-1">
+					<div class="col pl-4 py-1">
 						<p class="mb-0 font-chan-red">
 							<span class="post-subject font-weight-bold">
 								<slot name="postSubject" />
@@ -13,7 +13,12 @@
 							</span>
 							- <slot name="postStamp" />
 							| <slot name="postNumber" />
-							<button style="line-height: 1rem;" class="p-0 px-1 btn btn-outline-chan-red text-mono">R</button>
+							<slot name="openThread" />
+						</p>
+					</div>
+					<div class="col-auto mr-2">
+						<p class="mb-0 font-chan-red">
+							<button style="line-height: 1rem;" class="mt-1 p-0 px-1 btn btn-outline-chan-red text-mono">R</button>
 						</p>
 					</div>
 				</div>
@@ -21,9 +26,11 @@
 			<div class="card-body bg-chan-light p-1">
 				<!-- @dev maybe split this into a card so text can flow around it -->
 				<div class="row">
-					<div class="col-4 pr-0" v-if="picRelated">
+					<div class="col-xl-auto col-lg-4 col-3 pr-0" v-if="picRelated">
+						<p class="small mb-0 text-mono text-overflow">
+							File: <slot name="fileMeta" />
+						</p>
 						<p class="small mb-0 text-mono">
-							File: <slot name="fileMeta" /><br>
 							(11.11 MB, 1920&times;1080)
 						</p>
 						<slot name="fileThumb" />
@@ -35,9 +42,9 @@
 			</div>
 			<div class="card-footer bg-chan-light border-0 p-1">
 				<div class="row">
-					<div class="col px-0">
-						<p class="small text-mono mb-0">
-							<slot name="allThoseYous" /> <!-- @dev pass single replies as &gt;&gt;number -->
+					<div class="col pr-0">
+						<p class="small text-mono mb-0" v-if="hasReplies">
+							Replies: <slot name="allThoseYous" /> <!-- @dev pass single replies as &gt;&gt;number -->
 						</p>
 					</div>
 					<div class="col-auto">
@@ -54,6 +61,9 @@
 		computed: {
 			picRelated(){
 				return !!this.$slots.fileMeta
+			},
+			hasReplies(){
+				return !!this.$slots.replyCounter
 			}
 		}
 	}

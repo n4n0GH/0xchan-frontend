@@ -20,6 +20,7 @@ export default new Router({
 			children: [
 				{
 					path: 'thread/:number', // grab thread identifier
+					name: 'thread',
 					component: () => import(/* webpackChunkName: "thread" */ './views/Thread.vue')
 				}
 			]
