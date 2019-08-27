@@ -1,9 +1,15 @@
 <template>
-	<div>
+	<div class="row">
 
-		<div class="col-12 thread-preview" v-for="(post, index) in posts" :key="'thread-'+index">
-		[<router-link :to="{name: 'index'}">Home</router-link>] 
-		[<router-link :to="{name: 'board', params: {ticker: board}}">Return</router-link>]
+		<div class="col-12 thread-view" v-for="(post, index) in posts" :key="'thread-'+index">
+			<div class="row text-mono">
+				<div class="col-6">
+					[<router-link :to="{name: 'board', params: {ticker: board}}">return</router-link>]	
+				</div>
+				<div class="col-6 text-right">
+					[<router-link :to="{name: 'index'}">home</router-link>] 
+				</div>
+			</div>
 				<div class="row mt-2">
 					<div class="col" :id="'thread-'+post.thread">
 						<post class="op-container col-12 pl-0" :id="post.thread">
@@ -23,7 +29,9 @@
 								{{post.file.originalName}}
 							</template>
 							<template #fileThumb>
-								<img v-lazy="post.file.src" style="width:100%; max-height:256px; object-fit: cover;" alt="">
+								<div v-lazy-container="{selector: 'img'}">
+									<img :data-src="post.file.src" :data-loading="loading" style="max-width:100%; max-height:256px; object-fit: cover;" alt="">
+								</div>
 							</template>
 							<template #postText>
 								<blockquote class="mb-0">
@@ -48,7 +56,9 @@
 								{{reply.file.originalName}}
 							</template>
 							<template #fileThumb v-if="reply.file.src != 'undefined'">
-									<img v-lazy="reply.file.src" style="width:100%; max-height:128px; object-fit: cover;" alt="">
+								<div v-lazy-container="{selector: 'img'}">
+									<img :data-src="reply.file.src" :data-loading="loading" style="max-width:100%; max-height:128px; object-fit: cover;" alt="">
+								</div>
 							</template>
 							<template #postText>
 								<blockquote class="mb-0">
@@ -58,13 +68,14 @@
 						</post>
 					</div>
 				</div>
-				<hr>
+				<p class="w-100 text-center text-mono">EOF</p>
 			</div>
 	</div>
 </template>
 
 <script>
 /* eslint-disable */
+	import Loading from '../assets/loading.gif'
 	import Thread from '../components/board/thread.json'
 	import Post from '../components/board/Post.vue'
 
@@ -86,6 +97,9 @@
 			posts() {
 				//return Thread.filter(a => a.board == this.board)
 				return Thread.filter(a => a.board == 'biz') //static for demo
+			},
+			loading() {
+				return Loading
 			}
 		}
 	}

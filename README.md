@@ -48,8 +48,13 @@ The interface is made with VueJS, so you should also check out their documentati
 	-> autodetect whether or not metamask is installed and present Walletconnect login as alternative automatically
 - [ ] Add reporting function
 - [ ] CSS Switcher for users (settings)
+- [ ] Make sure boardlist in navbar overflows properly
+- [ ] Sort Boardlist by single, double and tripple chars, then by alphabet for each
 
 ## DONE
+- [x] I hate browsers and their fucking ooh look at me I'm so special I interpret things differently!
+- [x] Fixed issue were newest posts produced links that you could not use "return" button from
+- [x] Boardlist sorts automatically by alphabet
 - [x] Make newest posts on index link to their thread and board
 - [x] Report button float right pls
 - [x] Include punchline in Board.vue

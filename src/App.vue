@@ -1,12 +1,14 @@
 <template>
-	<div class="row m-0">
-		<transition name="fade" mode="out-in">
-		</transition>
-		<div class="col-2 pl-0" style="position:fixed; height:100%;">
-			<nav-bar/>
+	<div class="d-flex m-0 container-fluid">
+		<div class="row vh-100">
+			<div class="col-2 position-fixed w-100 overflow-auto">
+				<nav-bar/>
+			</div>
 		</div>
-		<div class="col-10 ml-auto">
-			<router-view/>
+		<div class="row w-100 ml-4 justify-content-end">
+			<div class="col-10">
+				<router-view/>
+			</div>
 		</div>
 	</div>
 </template>

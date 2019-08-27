@@ -1,5 +1,5 @@
 <template>
-	<div class="col">
+	<div class="col-12">
 		<div class="row bg-chan">
 			<div class="col text-center">
 				<h4 class="text-chan">

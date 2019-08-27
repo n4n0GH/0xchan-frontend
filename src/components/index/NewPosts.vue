@@ -6,7 +6,7 @@
 			</div>
 		</div>
 		<div class="row pb-2" v-for="(post, index) in sortedItems()" :key="index+1" :class="{'bg-chan': index % 2 !== 0}">
-			<router-link tag="div" class="col-8" :to="{name: 'thread', params: {'number': '123'}}"><a>{{post.content}}</a></router-link>
+			<router-link tag="div" class="col-8" :to="{path: '/board/'+post.board+'/thread/'+'123'}"><a>{{post.content}}</a></router-link>
 			
 			<router-link tag="div" class="col text-center" :to="{name: 'board', params: {'ticker': post.board}}"><a>/{{post.board}}/</a></router-link>
 			<div class="col text-right">{{post.replies}} replies</div>

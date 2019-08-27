@@ -1,17 +1,17 @@
 <template>
 	<div class="container-fluid">
-		<div class="row pt-2 mt-4">
-			<div class="col text-center">
+		<div class="row justify-content-end pt-2 mt-4">
+			<div class="col-12 text-center">
 				<img src="../assets/icon.png" style="width: 8rem;" alt="">
 				<p class="display-3 font-weight-bold text-chan">
 					0xchan
 				</p>
 			</div>
 		</div>
-		<div class="row">
+		<div class="row justify-content-end">
 			<disclaimer />
 		</div>
-		<div class="row">
+		<div class="row justify-content-end">
 			<div class="col">
 				<new-posts />
 			</div>
