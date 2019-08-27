@@ -19,39 +19,41 @@ Afterwards use any browser you want (although a connected Ethereum wallet is nee
 The interface is made with VueJS, so you should also check out their documentation as well if you want to change things in this codebase.
 
 ## TODO
-- [ ] Host interface on IPFS
-- [ ] Release interface on Github
-- [ ] Create pagination for board view
+- [ ] Re-Scrape content deep to get full threads and be able to simulate the JSON parsing properly in it's entirety before Sergey eats all the big macs
+- [ ] Include Fontawesome locally
 - [ ] Create link around images to open them
-- [ ] Create vote page and subpages
+- [ ] Create pagination for board view
+- [ ] Sort Boardlist by single, double and tripple chars, then by alphabet for each
 - [ ] Create 'new thread' input
 - [ ] Create 'reply' input
 - [ ] Have 'reply' input open up on clicking either the (you) button or the post number (imitate functionality of 4chan)
-- [ ] DEVELOPERS DEVELOPERS DEVELOPERS
 - [ ] Make 'reply' a z-index 9999999 floating and draggable element
-- [ ] Deploy smart contract (testnet)
-- [ ] Deploy smart contract (mainnet)
-- [ ] Introduce web3
-- [ ] Bug testing smart contract (testnet)
-- [ ] Har(j)berger Tax minigame for the banner component (credit to Troopy)
-- [ ] Add parser for certain user inputs (like [code] blocks)
-- [ ] Add parser to detect >>number in a user post and turn that into a link to the post
-- [ ] Write documentation
-- [ ] Add user settings
+- [ ] Create vote page and subpages
+- [ ] DEVELOPERS DEVELOPERS DEVELOPERS
+- [ ] Add user setting to disable the loading of images (default: false)
+- [ ] CSS Switcher for users (settings)
 - [ ] Make vue-router wait for all content to be loaded before switching views
 	-> might require to create single components for all content
 - [ ] Include "ANN" function in smart contract (ANNs stored on IPFS, Qm~ stored on chain)
-- [ ] Include Fontawesome locally
+- [ ] Add parser for certain user inputs (like [code] blocks)
+- [ ] Add parser to detect >>number in a user post and turn that into a link to the post
 - [ ] Create modal functionality
-- [ ] Add user setting to disable the loading of images (default: false)
+- [ ] Add reporting function
 - [ ] Integrate Walletconnect to enable shitposting on the PC, but paying with your phone
 	-> autodetect whether or not metamask is installed and present Walletconnect login as alternative automatically
-- [ ] Add reporting function
-- [ ] CSS Switcher for users (settings)
-- [ ] Make sure boardlist in navbar overflows properly
-- [ ] Sort Boardlist by single, double and tripple chars, then by alphabet for each
+- [ ] Deploy smart contract (testnet)
+- [ ] Bug testing smart contract (testnet)
+- [ ] Deploy smart contract (mainnet)
+- [ ] Introduce web3
+- [ ] Har(j)berger Tax minigame for the banner component (credit to Troopy)
+- [ ] Write documentation
+- [ ] Release interface on Github
+- [ ] Host interface on IPFS
 
 ## DONE
+- [x] Found spot to place settings and new board buttons
+- [x] Banners now random
+- [x] Make sure boardlist in navbar overflows properly
 - [x] I hate browsers and their fucking ooh look at me I'm so special I interpret things differently!
 - [x] Fixed issue were newest posts produced links that you could not use "return" button from
 - [x] Boardlist sorts automatically by alphabet

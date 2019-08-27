@@ -1,6 +1,6 @@
 <template>
 	<div class="container-fluid">
-		
+		<settings />
 		<div class="row">
 			<div class="col-12 text-center">
 				<banner />
@@ -100,6 +100,7 @@
 
 <script>
 /* eslint-disable */
+	import Settings from '../components/Settings.vue'
 	import Loading from '../assets/loading.gif'
 	import Threads from '../components/board/threads.json'
 	import Boards from '../components/navbar/boards.json'
@@ -114,7 +115,8 @@
 			Banner,
 			NewThread,
 			Post,
-			PostExpand
+			PostExpand,
+			Settings
 		},
 		data() {
 			return {

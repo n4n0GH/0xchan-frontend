@@ -1,29 +1,29 @@
 <template>
 	<div class="row pt-2 mt-4 mb-4">
 		<div class="col text-center">
-			<img :src="banner" alt="">
+			<img :src="require(`@/assets/banners/${randomBanner()}.gif`)" alt="">
 		</div>
 	</div>
 </template>
 
 <script>
-	import Banner1 from '../../assets/banners/1.gif'
 
 	export default {
 		data(){
 			return{
-			
+				imageList: 4 // @dev holy shit is this a retarded way of having random banners jesus christ what the fuck don't you dare forget to update this if you include more banners lmao
 			}	
 		},
 		methods: {
 			randomBanner() {
-				return this.imageList[Math.floor(Math.random()*this.imageList.length)]
+				return Math.floor(Math.random()*this.imageList)
 			}
 		},
 		computed: {
-			banner(){
-				return Banner1
-			}
+
+		},
+		mounted(){
+
 		}
 	}
 </script>

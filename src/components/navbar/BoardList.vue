@@ -10,6 +10,7 @@
 				<li class="p-1 pb-2 text-center">
 					<hr>
 					<span class="small">that's all :(</span>
+					<button class="mt-2 btn btn-outline-chan btn-block">create new board</button>
 				</li>
 			</ul>
 			<ul class="list-unstyled list-chan d-block d-xl-none">
@@ -22,6 +23,7 @@
 				<li class="p-1 pb-2 text-center">
 					<hr>
 					<span class="small">that's all :(</span>
+					<button class="mt-2 btn btn-outline-chan btn-block">new</button>
 				</li>
 			</ul>
 	</div>

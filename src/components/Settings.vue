@@ -1,8 +1,6 @@
 <template>
-	<div class="col px-0 fixed-bottom">
-		<button class="btn btn-block btn-outline-chan-red text-mono p-0 px-1" @click="openSettings = !openSettings">
-			Settings
-		</button>			
+	<div class="w-100 text-right text-mono">
+		[<a href="javascript:void()" @click="openSettings = !openSettings">settings</a>]			
 	</div>
 </template>
 
