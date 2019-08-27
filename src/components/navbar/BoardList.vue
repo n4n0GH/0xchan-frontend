@@ -1,26 +1,34 @@
 <template>
 	<div class="col mt-2">
-		<hr>
-		<ul class="list-unstyled list-chan d-none d-xl-block">
-			<li v-for="(board, index) in ticker" :key="index+1" class="text-center">
-				<router-link :to="{name: 'board', params: {'ticker': ticker[index]}}" class="p-1 pb-2">
-					/{{ticker[index]}}/ - {{punchline[index]}}
-				</router-link>
-			</li>
-		</ul>
-		<ul class="list-unstyled list-chan d-block d-xl-none">
-			<li v-for="(board, index) in ticker" :key="index+1" class="text-center">
-				<router-link :to="{name: 'board', params: {'ticker': ticker[index]}}" class="p-1 pb-2">
-					/{{ticker[index]}}/
-				</router-link>
-			</li>
-		</ul>
-		<hr>
+			<ul class="list-unstyled list-chan d-none d-xl-block">
+				<hr>
+				<li v-for="(board, index) in boardList" :key="board.ticker+index">
+					<router-link :to="{name: 'board', params: {'ticker': board.ticker}}" class="p-1 pb-2">
+						/{{board.ticker}}/ - {{board.punchline}}
+					</router-link>
+				</li>
+				<li class="p-1 pb-2 text-center">
+					<hr>
+					<span class="small">that's all :(</span>
+				</li>
+			</ul>
+			<ul class="list-unstyled list-chan d-block d-xl-none">
+				<hr>
+				<li v-for="(board, index) in boardList" :key="board.ticker+index" class="text-center">
+					<router-link :to="{name: 'board', params: {'ticker': board.ticker}}" class="p-1 pb-2">
+						/{{board.ticker}}/
+					</router-link>
+				</li>
+				<li class="p-1 pb-2 text-center">
+					<hr>
+					<span class="small">that's all :(</span>
+				</li>
+			</ul>
 	</div>
 </template>
 
 <script>
-	import boards from './boards.json' // contract simulation of board list storage
+	import Boards from './boards.json' // contract simulation of board list storage
 
 	export default {
 		data(){
@@ -28,15 +36,8 @@
 			}
 		},
 		computed: {
-			ticker() {
-				return boards.map((item) => {
-					return item.ticker
-				})
-			},
-			punchline() {
-				return boards.map((item) => {
-					return item.punchline
-				})
+			boardList() {
+				return Boards.sort((a, b) => a.ticker.localeCompare(b.ticker))
 			}
 		}
 	}

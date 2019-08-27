@@ -10,6 +10,9 @@ body {
 .bg-chan {
 	background-color: #fde2cb;
 }
+.bg-chan-regular {
+	background-color: #FFF0E3;
+}
 .bg-chan-light {
 	background-color: #fff7eb;
 }

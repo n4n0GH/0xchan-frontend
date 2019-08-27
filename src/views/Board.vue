@@ -6,12 +6,13 @@
 				<banner />
 				<p v-for="line in tag" class="lead font-weight-bold text-chan mb-2" :key="line.punchline">/{{line.ticker}}/ - {{line.punchline}}</p>
 				<button class="btn btn-outline-chan" v-if="!thread">New Thread</button>
+				<button class="btn btn-outline-chan" v-if="thread">New Reply</button>
+				<hr>
 			</div>
-			
 		</div>
-		<hr>
 		<router-view v-if="thread" />
 		<div class="row" v-if="!thread">
+			<p v-if="posts==''" class="text-center text-chan w-100 text-mono">no posts yet, do something about it!</p>
 			<div class="col-12 thread-preview" v-for="(post, index) in posts" :key="'thread-'+index" :style="getHidden.includes(board+post.thread)?'height:2.2rem;':''">
 				<div class="row">
 					<div class="col-auto p-0">
@@ -42,7 +43,9 @@
 								{{post.file.originalName}}
 							</template>
 							<template #fileThumb>
-								<img v-lazy="post.file.src" style="width:100%; max-height:256px; object-fit: cover;" alt="">
+								<div v-lazy-container="{selector: 'img'}">
+									<img :data-src="post.file.src" :data-loading="loading" style="max-width:100%; max-height:256px; object-fit: cover;" alt="">
+								</div>
 							</template>
 							<template #postText>
 								<blockquote class="mb-0">
@@ -73,7 +76,9 @@
 								{{reply.file.originalName}}
 							</template>
 							<template #fileThumb v-if="reply.file.src != 'undefined'">
-									<img v-lazy="reply.file.src" style="width:100%; max-height:128px; object-fit: cover;" alt="">
+								<div v-lazy-container="{selector: 'img'}">
+									<img :data-src="reply.file.src" :data-loading="loading" style="max-width:100%; max-height:128px; object-fit: cover;" alt="">
+								</div>
 							</template>
 							<template #postText>
 								<blockquote class="mb-0">
@@ -95,6 +100,7 @@
 
 <script>
 /* eslint-disable */
+	import Loading from '../assets/loading.gif'
 	import Threads from '../components/board/threads.json'
 	import Boards from '../components/navbar/boards.json'
 	import Banner from '../components/board/Banner.vue'
@@ -143,6 +149,9 @@
 			},
 			tag() {
 				return Boards.filter(a => a.ticker == this.board)
+			},
+			loading() {
+				return Loading
 			}
 		}
 	}
