@@ -34,7 +34,7 @@
 							</template>
 							<template #openThread>
 								<button style="line-height: 1rem;" class="mt-n1 mr-2 p-0 px-1 btn btn-outline-chan-red text-mono">
-								<router-link :to="{name: 'thread', params: {'number': '123'}}">
+								<router-link :to="{name: 'thread', params: {'number': post.thread}}">
 								V
 								</router-link>
 								</button>
@@ -54,8 +54,8 @@
 							</template>
 						</post>
 						<div class="row">
-							<p class="text-mono small mb-1 ml-4">&gt;&gt;123 posts and 23 images omitted [
-							<router-link :to="{name: 'thread', params: {'number': '123'}}">
+							<p class="text-mono small mb-1 ml-4">&gt;&gt; {{post.replies.length}} posts <span v-if="omittedImages(post)>0">and {{omittedImages(post)}} {{omittedImages(post)&gt;1?'images':'image'}}</span> omitted [
+							<router-link :to="{name: 'thread', params: {'number': post.thread}}">
 							view thread</router-link>
 							]</p>
 						</div>
@@ -134,7 +134,13 @@
 				else {
 					this.hiddenThreads.push(thread)
 				}
-			}
+			},
+			omittedPosts(thread){
+
+			},
+			omittedImages(thread) {
+				return thread.replies.filter(a => a.file.originalName != "").length
+			},
 		},
 		computed: {
 			...mapGetters([

@@ -69,6 +69,14 @@
 					</div>
 				</div>
 				<p class="w-100 text-center text-mono">EOF</p>
+				<div class="row text-mono">
+				<div class="col-6">
+					[<router-link :to="{name: 'board', params: {ticker: board}}">return</router-link>]	
+				</div>
+				<div class="col-6 text-right">
+					[<router-link :to="{name: 'index'}">home</router-link>] 
+				</div>
+			</div>
 			</div>
 	</div>
 </template>
@@ -77,6 +85,7 @@
 /* eslint-disable */
 	import Loading from '../assets/loading.gif'
 	import Thread from '../components/board/thread.json'
+	import Threads from '../components/board/threads.json'
 	import Post from '../components/board/Post.vue'
 
 	export default {
@@ -94,9 +103,11 @@
 			board() {
 				return this.$route.params.ticker
 			},
+			preSelect() {
+				return Threads.filter(a => a.board == this.board)
+			},
 			posts() {
-				//return Thread.filter(a => a.board == this.board)
-				return Thread.filter(a => a.board == 'biz') //static for demo
+				return this.preSelect.filter(a => a.thread == this.thread)
 			},
 			loading() {
 				return Loading

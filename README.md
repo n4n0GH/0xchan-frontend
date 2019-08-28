@@ -20,7 +20,6 @@ The interface is made with VueJS, so you should also check out their documentati
 
 ## TODO
 - [ ] Re-Scrape content deep to get full threads and be able to simulate the JSON parsing properly in it's entirety before Sergey eats all the big macs
-- [ ] Include Fontawesome locally
 - [ ] Create link around images to open them
 - [ ] Create pagination for board view
 - [ ] Sort Boardlist by single, double and tripple chars, then by alphabet for each
@@ -39,18 +38,19 @@ The interface is made with VueJS, so you should also check out their documentati
 - [ ] Add parser to detect >>number in a user post and turn that into a link to the post
 - [ ] Create modal functionality
 - [ ] Add reporting function
-- [ ] Integrate Walletconnect to enable shitposting on the PC, but paying with your phone
-	-> autodetect whether or not metamask is installed and present Walletconnect login as alternative automatically
+- [ ] Introduce web3
+- [ ] Release interface on Github
 - [ ] Deploy smart contract (testnet)
 - [ ] Bug testing smart contract (testnet)
 - [ ] Deploy smart contract (mainnet)
-- [ ] Introduce web3
 - [ ] Har(j)berger Tax minigame for the banner component (credit to Troopy)
 - [ ] Write documentation
-- [ ] Release interface on Github
+- [ ] Integrate Walletconnect to enable shitposting on the PC, but paying with your phone
+	-> autodetect whether or not metamask is installed and present Walletconnect login as alternative automatically
 - [ ] Host interface on IPFS
 
 ## DONE
+- [x] Include Fontawesome locally
 - [x] Found spot to place settings and new board buttons
 - [x] Banners now random
 - [x] Make sure boardlist in navbar overflows properly

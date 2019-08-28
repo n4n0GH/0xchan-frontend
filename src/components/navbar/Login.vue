@@ -1,7 +1,7 @@
 <template>
 	<div class="mt-4">
 		<transition name="fade" mode="out-in">
-			<button class="btn btn-block btn-outline-chan" @click="login()" v-if="!getLogin">Login</button>
+			<button class="btn btn-block btn-outline-chan" @click="login()" v-if="!getLogin"><i class="fab fa-ethereum"></i> Login</button>
 			<div class="card card-chan bg-chan" v-if="getLogin">
 				<div class="row">
 					<div class="col-3 pr-0 d-none d-xl-block">
