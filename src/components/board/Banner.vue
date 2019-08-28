@@ -18,11 +18,6 @@
 			randomBanner() {
 				return Math.floor(Math.random()*this.imageList)
 			}
-		},
-		computed: {
-
-		},
-		mounted(){
 
 		}
 	}

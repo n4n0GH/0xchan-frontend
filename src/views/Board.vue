@@ -2,7 +2,7 @@
 	<div class="container-fluid">
 		<div class="row">
 			<div class="col-12 text-center">
-				<banner />
+				<banner :key="componentKey"/>
 				<p v-for="line in tag" class="lead font-weight-bold text-chan mb-2" :key="line.punchline">/{{line.ticker}}/ - {{line.punchline}}</p>
 				<button class="btn btn-outline-chan" v-if="!thread"><i class="far fa-plus"></i> New Thread</button>
 				<button class="btn btn-outline-chan" v-if="thread"><i class="far fa-plus"></i> New Reply</button>
@@ -121,7 +121,8 @@
 		},
 		data() {
 			return {
-				hiddenThreads: []
+				hiddenThreads: [],
+				componentKey: 0
 			}
 		},
 		methods: {
@@ -141,7 +142,7 @@
 			},
 			omittedImages(thread) {
 				return thread.replies.filter(a => a.file.originalName != "").length
-			},
+			}
 		},
 		computed: {
 			...mapGetters([
@@ -162,6 +163,9 @@
 			loading() {
 				return Loading
 			}
+		},
+		updated(){
+			this.componentKey = Math.floor(Math.random()*10)
 		}
 	}
 </script>
