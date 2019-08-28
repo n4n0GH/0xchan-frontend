@@ -15,6 +15,7 @@
 </template>
 
 <script>
+	import {mapGetters} from 'vuex'
 	import Settings from './components/Settings.vue'
 	import NavBar from './views/NavBar.vue'
 
@@ -22,6 +23,26 @@
 		components: {
 			NavBar,
 			Settings
+		},
+		computed: {
+			...mapGetters([
+				'getTheme'
+			]),
+			cssLink(){
+				return this.getTheme
+			}
+		},
+		methods: {
+		},
+		head: {
+			link(){
+				return [
+					{
+						rel: 'stylesheet', 
+						href: require(`@/assets/css/${this.cssLink}.css`)
+					}
+				]
+			}
 		},
 		mounted(){
 			var style = [
@@ -35,5 +56,9 @@
 		/* eslint-disable-next-line */
 		console.log('%c fuck censorship lmfao ', style);
 		}
-	}
+	};
 </script>
+
+<style>
+
+</style>

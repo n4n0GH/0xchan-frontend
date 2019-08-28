@@ -4,11 +4,14 @@ import router from './router'
 import store from './store'	// just used for demo purposes to pass login state dummies and shit
 // import NProgress from 'vue-nprogress'
 import VueLazyload from 'vue-lazyload'
+import VueHead from 'vue-head'
+
 import '@fortawesome/fontawesome-pro/css/all.min.css'
 import '@fortawesome/fontawesome-pro/js/all.min.js'
 
 
 Vue.use(VueLazyload)
+Vue.use(VueHead)
 
 Vue.config.productionTip = false
 

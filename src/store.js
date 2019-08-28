@@ -12,7 +12,10 @@ export default new Vuex.Store({
     login: false,
     hiddenThreads: [],
     grabFiles: false,
-    useModal: false
+    useModal: false,
+    autoSwitch: true,
+    theme: 'YotsubaB',
+    disclaimer: true
   },
   getters: {
     getLogin: state => {
@@ -26,6 +29,15 @@ export default new Vuex.Store({
     },
     getModal: state => {
       return state.useModal
+    },
+    getAutoSwitch: state => {
+      return state.autoSwitch
+    },
+    getTheme: state => {
+      return state.theme
+    },
+    getDisclaimer: state => {
+      return state.disclaimer
     }
   },
   mutations: {
@@ -43,14 +55,25 @@ export default new Vuex.Store({
     mutGrab: state => {
       state.grabFiles = !state.grabFiles
     },
-
+    mutAuto: state => {
+      state.autoSwitch = !state.autoSwitch
+    },
+    mutTheme: (state, payload) => {
+      state.theme = payload
+    },
+    mutDisclaimer: state => {
+      state.disclaimer = !state.disclaimer
+    }
   },
   actions: {
     setBool: (context, payload) => {
-      context.commit(payload)
+        context.commit(payload)
     },
     setHidden: (context, payload) => {
       context.commit('mutHidden', payload)
     },
+    setTheme: (context, payload) => {
+      context.commit('mutTheme', payload)
+    }
   }
 })

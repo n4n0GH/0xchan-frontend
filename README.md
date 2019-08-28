@@ -49,6 +49,7 @@ The interface is made with VueJS, so you should also check out their documentati
 - [ ] Host interface on IPFS
 
 ## DONE
+- [x] Add possibility for future themes to be added to the interface, selectable in the settings menu
 - [x] Add user setting to disable the loading of images (default: false)
 - [x] Create link around images to open them
 - [x] Include Fontawesome locally

@@ -7,111 +7,6 @@ body {
 .chan-disabled {
 	opacity: 0.5;
 }
-.bg-chan {
-	background-color: #fde2cb;
-}
-.bg-chan-regular {
-	background-color: #FFF0E3;
-}
-.bg-chan-light {
-	background-color: #fff7eb;
-}
-.bg-chan-red {
-	background-color: #800;
-}
-.font-chan-red, a.quotelink {
-	color: #800;
-}
-.font-chan-imply, .quote {
-	color: #5baa42;
-}
-.font-chan-ok {
-	color: #009245;
-}
-.font-chan-normal {
-	color: #212529;
-}
-.border-chan-light {
-	border-color: #fff7eb;
-}
-.border-chan-red {
-	border-color: #800!important;
-}
-
-/* typo related */
-.text-chan {
-	color: #800;
-	text-shadow: #FFF0E3 1px 1px 0, #FFDAB9 -1px -1px 0;
-	font-family: 'Roboto';
-}
-.text-chan-brand {
-	font-size: 3rem;
-	line-height: 3rem;	
-}
-.text-chan-brand:hover {
-	color: #800;
-	text-decoration: none;
-}
-.text-mono {
-	font-family: 'Overpass Mono', monospace;
-}
-.text-overflow {
-	overflow: hidden;
-	word-wrap: normal;
-	text-overflow: ellipsis;
-}
-.list-chan a {
-	color: #212529;
-	display: block;
-}
-.list-chan a:hover {
-	text-decoration: none;
-	color: #800;
-}
-.list-chan a.router-link-active {
-	background-color: #800;
-	color: white;
-}
-
-/* clicky things */
-.btn {
-	border-radius: 2px;
-}
-.btn a {
-	color: #800;
-}
-.btn:hover a {
-	color: white;
-	text-decoration: none;
-}
-.btn-outline-chan {
-	border-color: #009245;
-	color: #009245!important;
-	background-color: rgba(0,0,0,0);
-}
-.btn-outline-chan:hover {
-	background-color: #009245;
-	color: white!important;
-}
-.btn-outline-chan-red {
-	border-color: #800;
-	color: #800!important;
-	background-color: transparent;
-}
-.btn-outline-chan-red:hover {
-	background-color: #800;
-	color: white!important;
-}
-.btn-chan {
-	color: white;
-	background-color: #009245;
-}
-.btn-chan:hover {
-	background-color: #006837;
-}
-a.btn-chan:hover {
-	color:white;
-}
 
 /* cardy things */
 .card-chan {
@@ -121,6 +16,12 @@ a.btn-chan:hover {
 }
 .avatar {
 	max-width: 100%;
+}
+.card-header:first-child {
+	border-radius: 0!important;
+}
+.card-footer:last-child {
+	border-radius: 0!important;
 }
 
 /* posty things */
