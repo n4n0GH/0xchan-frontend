@@ -68,6 +68,8 @@
 									<select class="form-control" v-model="themeSelect">
 										<option>Yotsuba</option>
 										<option>YotsubaB</option>
+										<option disabled>&raquo;DIY</option>
+										<option>Custom</option>
 									</select>
 							</p>
 							<p>

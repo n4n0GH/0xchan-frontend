@@ -3,6 +3,11 @@ body {
 	background-color: #FFF0E3;
 }
 
+/* fonty things */
+.font-roboto {
+	font-family: 'Roboto';
+}
+
 /* general color stuff */
 .chan-disabled {
 	opacity: 0.5;

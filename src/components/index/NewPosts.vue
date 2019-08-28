@@ -2,7 +2,7 @@
 	<div class="col pl-0">
 		<div class="row bg-chan">
 			<div class="col text-center">
-				<h4 class="text-chan">Newest Posts</h4>
+				<h4 class="font-chan-red font-roboto">Newest Posts</h4>
 			</div>
 		</div>
 		<div class="row pb-2" v-for="(post, index) in sortedItems()" :key="index+1" :class="{'bg-chan': index % 2 !== 0}">

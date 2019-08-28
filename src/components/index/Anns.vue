@@ -2,7 +2,7 @@
 	<div class="col pr-0">
 		<div class="row bg-chan">
 			<div class="col text-center">
-				<h4 class="text-chan">
+				<h4 class="font-chan-red font-roboto">
 					ANN
 				</h4>
 			</div>

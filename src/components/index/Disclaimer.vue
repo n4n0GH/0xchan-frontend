@@ -2,7 +2,7 @@
 	<div class="col-12">
 		<div class="row bg-chan" v-if="getDisclaimer">
 			<div class="col text-center">
-				<h4 class="text-chan">
+				<h4 class="font-chan-red font-roboto">
 					Disclaimer
 				</h4>
 			</div>
