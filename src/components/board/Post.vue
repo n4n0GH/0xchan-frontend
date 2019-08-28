@@ -39,7 +39,7 @@
 						<slot name="postText" />
 					</div>
 				</div>
-				<div class="row mt-2" v-if="!getGrab">
+				<div class="row mt-2" v-if="picRelated && !getGrab">
 					<div class="col">
 						<p class="small mb-0 text-mono">
 							File omitted: <slot name="fileMeta" /> (11.11 MB, 1920&times;1080)
