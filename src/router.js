@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import Index from './views/Index.vue'
+import Settings from './views/Settings.vue'
 
 Vue.use(Router)
 
@@ -24,6 +25,11 @@ export default new Router({
 					component: () => import(/* webpackChunkName: "thread" */ './views/Thread.vue')
 				}
 			]
+		},
+		{
+			path: '/settings',
+			name: 'settings',
+			component: Settings
 		}
 	],
 	scrollBehavior (to, from, savedPosition) {

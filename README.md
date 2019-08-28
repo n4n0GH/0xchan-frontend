@@ -19,6 +19,7 @@ Afterwards use any browser you want (although a connected Ethereum wallet is nee
 The interface is made with VueJS, so you should also check out their documentation as well if you want to change things in this codebase.
 
 ## TODO
+- [ ] Change CSS based on NSFW on (Yotsuba B) or off (Yotsuba)
 - [ ] Re-Scrape content deep to get full threads and be able to simulate the JSON parsing properly in it's entirety before Sergey eats all the big macs
 - [ ] Create pagination for board view
 - [ ] Sort Boardlist by single, double and tripple chars, then by alphabet for each
@@ -28,7 +29,6 @@ The interface is made with VueJS, so you should also check out their documentati
 - [ ] Make 'reply' a z-index 9999999 floating and draggable element
 - [ ] Create vote page and subpages
 - [ ] DEVELOPERS DEVELOPERS DEVELOPERS
-- [ ] Add user setting to disable the loading of images (default: false)
 - [ ] CSS Switcher for users (settings)
 - [ ] Make vue-router wait for all content to be loaded before switching views
 	-> might require to create single components for all content
@@ -49,6 +49,7 @@ The interface is made with VueJS, so you should also check out their documentati
 - [ ] Host interface on IPFS
 
 ## DONE
+- [x] Add user setting to disable the loading of images (default: false)
 - [x] Create link around images to open them
 - [x] Include Fontawesome locally
 - [x] Found spot to place settings and new board buttons

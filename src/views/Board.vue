@@ -1,12 +1,11 @@
 <template>
 	<div class="container-fluid">
-		<settings />
 		<div class="row">
 			<div class="col-12 text-center">
 				<banner />
 				<p v-for="line in tag" class="lead font-weight-bold text-chan mb-2" :key="line.punchline">/{{line.ticker}}/ - {{line.punchline}}</p>
-				<button class="btn btn-outline-chan" v-if="!thread">New Thread</button>
-				<button class="btn btn-outline-chan" v-if="thread">New Reply</button>
+				<button class="btn btn-outline-chan" v-if="!thread"><i class="far fa-plus"></i> New Thread</button>
+				<button class="btn btn-outline-chan" v-if="thread"><i class="far fa-plus"></i> New Reply</button>
 				<hr>
 			</div>
 		</div>
@@ -54,7 +53,11 @@
 							</template>
 						</post>
 						<div class="row">
-							<p class="text-mono small mb-1 ml-4">&gt;&gt; {{post.replies.length}} posts <span v-if="omittedImages(post)>0">and {{omittedImages(post)}} {{omittedImages(post)&gt;1?'images':'image'}}</span> omitted [
+							<p class="text-mono small mb-1 ml-4" v-if="post.replies.length > 0">&gt;&gt; {{post.replies.length}} posts <span v-if="omittedImages(post)>0">and {{omittedImages(post)}} {{omittedImages(post)&gt;1?'images':'image'}}</span> omitted [
+							<router-link :to="{name: 'thread', params: {'number': post.thread}}">
+							view thread</router-link>
+							]</p>
+							<p class="text-mono small mb-1 ml-4" v-else>&gt;&gt; No replies yet [
 							<router-link :to="{name: 'thread', params: {'number': post.thread}}">
 							view thread</router-link>
 							]</p>
@@ -100,7 +103,6 @@
 
 <script>
 /* eslint-disable */
-	import Settings from '../components/Settings.vue'
 	import Loading from '../assets/loading.gif'
 	import Threads from '../components/board/threads.json'
 	import Boards from '../components/navbar/boards.json'
@@ -115,8 +117,7 @@
 			Banner,
 			NewThread,
 			Post,
-			PostExpand,
-			Settings
+			PostExpand
 		},
 		data() {
 			return {

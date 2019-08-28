@@ -1,12 +1,13 @@
 <template>
 	<div class="d-flex m-0 container-fluid">
 		<div class="row vh-100">
-			<div class="col-2 position-fixed w-100 overflow-auto">
+			<div class="col-2 px-0 position-fixed w-100 overflow-auto">
 				<nav-bar/>
 			</div>
 		</div>
 		<div class="row w-100 ml-4 justify-content-end">
 			<div class="col-10">
+				<settings />
 				<router-view/>
 			</div>
 		</div>
@@ -14,11 +15,13 @@
 </template>
 
 <script>
+	import Settings from './components/Settings.vue'
 	import NavBar from './views/NavBar.vue'
 
 	export default {
 		components: {
-			NavBar
+			NavBar,
+			Settings
 		},
 		mounted(){
 			var style = [

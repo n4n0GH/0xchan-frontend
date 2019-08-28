@@ -1,5 +1,5 @@
 <template>
-	<div class="col mt-2">
+	<div class="col px-0 mt-2">
 			<ul class="list-unstyled list-chan d-none d-xl-block">
 				<hr>
 				<li v-for="(board, index) in boardList" :key="board.ticker+index">
@@ -10,7 +10,7 @@
 				<li class="p-1 pb-2 text-center">
 					<hr>
 					<span class="small">that's all :(</span>
-					<button class="mt-2 btn btn-outline-chan btn-block">create new board</button>
+					<button class="mt-2 btn btn-outline-chan btn-block"><i class="far fa-plus"></i> New Board</button>
 				</li>
 			</ul>
 			<ul class="list-unstyled list-chan d-block d-xl-none">
@@ -23,7 +23,7 @@
 				<li class="p-1 pb-2 text-center">
 					<hr>
 					<span class="small">that's all :(</span>
-					<button class="mt-2 btn btn-outline-chan btn-block">new</button>
+					<button class="mt-2 btn btn-outline-chan btn-block"><i class="far fa-plus"></i> Board</button>
 				</li>
 			</ul>
 	</div>
