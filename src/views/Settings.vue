@@ -27,7 +27,7 @@
 						<div class="col-2">
 							<button 
 							class="p-0 px-1 w-100 btn btn-outline-chan-red text-mono"
-							@click="setBool('mutGrab')">is: {{getGrab?'off':'on'}}</button>
+							@click="switcheroo()">is: {{getGrab?'off':'on'}}</button>
 						</div>
 					</div>
 					<div class="row">
@@ -108,6 +108,18 @@
 			saveTheme(){
 				this.setTheme(this.themeSelect)
 				location.reload()
+			},
+			switcheroo(){
+				this.setBool('mutGrab')
+				if(this.getAutoSwitch){
+					if(this.getGrab){
+						this.setTheme('Yotsuba')
+					}
+					else{
+						this.setTheme('YotsubaB')
+					}
+					location.reload()
+				}
 			}
 		},
 		computed: {

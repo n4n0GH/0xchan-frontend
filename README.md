@@ -19,7 +19,6 @@ Afterwards use any browser you want (although a connected Ethereum wallet is nee
 The interface is made with VueJS, so you should also check out their documentation as well if you want to change things in this codebase.
 
 ## TODO
-- [ ] Change CSS based on NSFW on (Yotsuba B) or off (Yotsuba)
 - [ ] Re-Scrape content deep to get full threads and be able to simulate the JSON parsing properly in it's entirety before Sergey eats all the big macs
 - [ ] Create pagination for board view
 - [ ] Sort Boardlist by single, double and tripple chars, then by alphabet for each
@@ -49,6 +48,7 @@ The interface is made with VueJS, so you should also check out their documentati
 - [ ] Host interface on IPFS
 
 ## DONE
+- [x] Change CSS based on NSFW on (Yotsuba B) or off (Yotsuba)
 - [x] Add possibility for future themes to be added to the interface, selectable in the settings menu
 - [x] Add user setting to disable the loading of images (default: false)
 - [x] Create link around images to open them
