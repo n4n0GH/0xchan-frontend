@@ -19,11 +19,12 @@ Afterwards use any browser you want (although a connected Ethereum wallet is nee
 The interface is made with VueJS, so you should also check out their documentation as well if you want to change things in this codebase.
 
 ## TODO
-- [ ] Re-Scrape content deep to get full threads and be able to simulate the JSON parsing properly in it's entirety before Sergey eats all the big macs
-- [ ] Create pagination for board view
-- [ ] Sort Boardlist by single, double and tripple chars, then by alphabet for each
 - [ ] Create 'new thread' input
 - [ ] Create 'reply' input
+- [ ] Re-Scrape content deep to get full threads and be able to simulate the JSON parsing properly in it's entirety before Sergey eats all the big macs
+- [ ] Create pagination for board view
+- [ ] Create catalog view for each board
+- [ ] Sort Boardlist by single, double and tripple chars, then by alphabet for each
 - [ ] Have 'reply' input open up on clicking either the (you) button or the post number (imitate functionality of 4chan)
 - [ ] Make 'reply' a z-index 9999999 floating and draggable element
 - [ ] Create vote page and subpages
@@ -34,6 +35,7 @@ The interface is made with VueJS, so you should also check out their documentati
 - [ ] Include "ANN" function in smart contract (ANNs stored on IPFS, Qm~ stored on chain)
 - [ ] Add parser for certain user inputs (like [code] blocks)
 - [ ] Add parser to detect >>number in a user post and turn that into a link to the post
+- [ ] Create limited cache in vuex to store images/text temporarily and prevent double downloads
 - [ ] Create modal functionality
 - [ ] Add reporting function
 - [ ] Introduce web3
