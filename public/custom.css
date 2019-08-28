@@ -19,10 +19,10 @@ body {
 .bg-chan-red {
 	background-color: #800;
 }
-.font-chan-red {
+.font-chan-red, a.quotelink {
 	color: #800;
 }
-.font-chan-imply {
+.font-chan-imply, .quote {
 	color: #5baa42;
 }
 .font-chan-ok {

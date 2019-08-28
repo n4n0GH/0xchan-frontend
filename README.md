@@ -20,7 +20,6 @@ The interface is made with VueJS, so you should also check out their documentati
 
 ## TODO
 - [ ] Re-Scrape content deep to get full threads and be able to simulate the JSON parsing properly in it's entirety before Sergey eats all the big macs
-- [ ] Create link around images to open them
 - [ ] Create pagination for board view
 - [ ] Sort Boardlist by single, double and tripple chars, then by alphabet for each
 - [ ] Create 'new thread' input
@@ -50,6 +49,7 @@ The interface is made with VueJS, so you should also check out their documentati
 - [ ] Host interface on IPFS
 
 ## DONE
+- [x] Create link around images to open them
 - [x] Include Fontawesome locally
 - [x] Found spot to place settings and new board buttons
 - [x] Banners now random

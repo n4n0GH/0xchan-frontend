@@ -13,7 +13,7 @@
 		<router-view v-if="thread" />
 		<div class="row" v-if="!thread">
 			<p v-if="posts==''" class="text-center text-chan w-100 text-mono">no posts yet, do something about it!</p>
-			<div class="col-12 thread-preview" v-for="(post, index) in posts" :key="'thread-'+index" :style="getHidden.includes(board+post.thread)?'height:2.2rem;':''">
+			<div class="col-12 thread-preview" v-for="(post, index) in posts" :key="'thread-'+index" :style="getHidden.includes(board+post.thread)?'height:2.2rem;':''" :id="'p'+post.thread">
 				<div class="row">
 					<div class="col-auto p-0">
 						<button style="line-height: 1rem;" class="mt-2 p-0 px-1 btn btn-outline-chan-red text-mono" @click="setHidden(board+post.thread)">{{getHidden.includes(board+post.thread)?'+':'-'}}</button>
@@ -43,12 +43,12 @@
 								{{post.file.originalName}}
 							</template>
 							<template #fileThumb>
-								<div v-lazy-container="{selector: 'img'}">
+								<a :href="post.file.src" v-lazy-container="{selector: 'img'}">
 									<img :data-src="post.file.src" :data-loading="loading" style="max-width:100%; max-height:256px; object-fit: cover;" alt="">
-								</div>
+								</a>
 							</template>
 							<template #postText>
-								<blockquote class="mb-0">
+								<blockquote class="mb-0" v-html="post.text">
 									{{post.text}}
 								</blockquote>
 							</template>
@@ -76,12 +76,12 @@
 								{{reply.file.originalName}}
 							</template>
 							<template #fileThumb v-if="reply.file.src != 'undefined'">
-								<div v-lazy-container="{selector: 'img'}">
+								<a :href="reply.file.src" v-lazy-container="{selector: 'img'}">
 									<img :data-src="reply.file.src" :data-loading="loading" style="max-width:100%; max-height:128px; object-fit: cover;" alt="">
-								</div>
+								</a>
 							</template>
 							<template #postText>
-								<blockquote class="mb-0">
+								<blockquote class="mb-0" v-html="reply.text">
 									{{reply.text}}
 								</blockquote>
 							</template>

@@ -9,7 +9,7 @@
 			<router-link tag="div" class="col-8" :to="{path: '/board/'+post.board+'/thread/'+post.thread}"><a>{{post.content}}</a></router-link>
 			
 			<router-link tag="div" class="col text-center" :to="{name: 'board', params: {'ticker': post.board}}"><a>/{{post.board}}/</a></router-link>
-			<div class="col text-right">{{post.replies}} {{post.replies&lt;2?'reply':'replies'}}</div>
+			<div class="col text-right">{{post.replies}} {{post.replies==1?'reply':'replies'}}</div>
 		</div>
 		<div class="row">
 		</div>
