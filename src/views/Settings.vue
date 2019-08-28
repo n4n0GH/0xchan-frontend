@@ -60,18 +60,19 @@
 					<div class="row" v-if="!getAutoSwitch">
 						<div class="col">
 							<p class="mb-0 lead">Theme Selector</p>
-							<div class="form-group">
-								<select class="form-control" v-model="themeSelect">
-									<option>Yotsuba</option>
-									<option>YotsubaB</option>
-								</select>
-							</div>		
-
+							<p class="small font-chan-normal mb-0">Choose your favorite theme to use for 0xchan. Want your theme featured here? Contact us on Discord!</p>
+							<p class="small font-chan-normal mb-0">Alternatively you could clone the Git repository, add your style and run it on your own machine.</p>
 						</div>
 						<div class="col-2">
-							<button 
-							class="p-0 w-100 px-1 btn btn-outline-chan-red text-mono"
-							@click="saveTheme()">use this</button>
+							<p class="mb-0 form-group">
+									<select class="form-control" v-model="themeSelect">
+										<option>Yotsuba</option>
+										<option>YotsubaB</option>
+									</select>
+							</p>
+							<p>
+								<button class="p-0 w-100 px-1 btn btn-outline-chan-red text-mono" @click="saveTheme()">use this</button>
+							</p>
 						</div>
 					</div>
 					</transition>
