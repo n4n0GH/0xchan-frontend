@@ -23,7 +23,6 @@ The interface is made with VueJS, so you should also check out their documentati
 - [ ] Create catalog view for each board
 - [ ] Live update for custom style in settings
 - [ ] Modify new thread input to also function as reply input
-- [ ] Cache IPFS returns (media + text) to minimize load times and prevent double-fetching
 - [ ] Sort Boardlist by single, double and tripple chars, then by alphabet for each
 - [ ] Have 'reply' input open up on clicking either the (you) button or the post number (imitate functionality of 4chan)
 - [ ] Make 'reply' a z-index 9999999 floating and draggable element
@@ -51,6 +50,7 @@ The interface is made with VueJS, so you should also check out their documentati
 - [ ] Host interface on IPFS
 
 ## DONE
+- [x] Cache IPFS returns (media + text) to minimize load times and prevent double-fetching
 - [x] Re-Scrape content deep to get full threads and be able to simulate the JSON parsing properly in it's entirety before Sergey eats all the big macs
 - [x] Add "force anonymous" setting -> will render all names as "Anonymous"
 - [x] Create 'new thread' input
