@@ -52,7 +52,7 @@
 							</template>
 						</post>
 						<div class="row">
-							<p class="text-mono small mb-1 ml-4" v-if="post.replies.length > 0">&gt;&gt; {{post.replies.length}} posts <span v-if="omittedImages(post)>0">and {{omittedImages(post)}} {{omittedImages(post)&gt;1?'images':'image'}}</span> omitted [
+							<p class="text-mono small mb-1 ml-4" v-if="post.replies.length > 0">&gt;&gt; {{post.replies.length-5}} posts <span v-if="omittedImages(post)>0">and {{omittedImages(post)}} {{omittedImages(post)&gt;1?'images':'image'}}</span> omitted [
 							<router-link :to="{name: 'thread', params: {'number': post.thread}}">
 							view thread</router-link>
 							]</p>
@@ -61,7 +61,7 @@
 							view thread</router-link>
 							]</p>
 						</div>
-						<post v-for="reply in post.replies" :key="reply.id" class="reply-container ml-5 col-auto" :id="reply.id">
+						<post v-for="reply in post.replies.slice(-5)" :key="reply.id" class="reply-container ml-5 col-auto" :id="reply.id">
 							<template #postSubject>
 								{{reply.subject}}
 							</template>
