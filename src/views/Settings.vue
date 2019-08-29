@@ -36,7 +36,7 @@
 							<p class="small font-chan-normal">Reset settings to factory default. Refreshes page to take effect. WARNING: DELETES YOUR CUSTOM STYLES!</p>
 						</div>
 						<div class="col-2">
-							<button class="p-0 w-100 px-1 btn btn-outline-chan-red text-mono" @click="clearState()">clear()</button>
+							<button class="p-0 w-100 px-1 btn btn-outline-danger text-mono" @click="clearState()">clear()</button>
 						</div>
 					</div>
 					<hr>

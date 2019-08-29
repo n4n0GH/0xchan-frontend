@@ -26,17 +26,19 @@
 			<div class="card-body bg-chan-light p-1">
 				<!-- @dev maybe split this into a card so text can flow around it -->
 				<div class="row">
-					<div class="col-xl-auto col-lg-4 col-3 pr-0" v-if="picRelated && getGrab">
-						<p class="small mb-0 text-mono text-overflow">
-							File: <slot name="fileMeta" />
-						</p>
-						<p class="small mb-0 text-mono">
-							(11.11 MB, 1920&times;1080)
-						</p>
-						<slot name="fileThumb" />
-					</div>
-					<div class="col font-chan-normal">
-						<slot name="postText" />
+					<div class="col-12">
+						<div class="float-left mr-3 w-auto" style="max-width:30%;" v-if="picRelated && getGrab">
+							<p class="small mb-0 text-mono text-overflow">
+								File: <slot name="fileMeta" />
+							</p>
+							<p class="small mb-0 text-mono">
+								(11.11 MB, 1920&times;1080)
+							</p>
+							<slot name="fileThumb" />
+						</div>
+						<div class="font-chan-normal">
+							<slot name="postText" />
+						</div>
 					</div>
 				</div>
 				<div class="row mt-2" v-if="picRelated && !getGrab">
