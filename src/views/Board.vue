@@ -97,14 +97,14 @@
 				<hr v-if="!getHidden.includes(board+post.thread)">
 			</div>
 		</div>
-		{{threads}}
 	</div>
 </template>
 
 <script>
 /* eslint-disable */
-	import Axios from 'axios'
+	//import Axios from 'axios'
 	import Loading from '../assets/loading.gif'
+	import Threads from '../components/board/threads.json' //disable for axios testing
 	import Boards from '../components/navbar/boards.json'
 	import Banner from '../components/board/Banner.vue'
 	import NewThread from '../components/board/NewThread.vue'
@@ -159,8 +159,9 @@
 			thread() {
 				return this.$route.params.number
 			},
-			posts() {
-				return this.threads.filter(a => a.board == this.board)
+			posts() { //switch returns if using axios or nah
+				//return this.threads.filter(a => a.board == this.board)
+				return Threads.filter(a => a.board == this.board)
 			},
 			tag() {
 				return Boards.filter(a => a.ticker == this.board)
@@ -171,10 +172,10 @@
 		},
 		updated(){
 			this.componentKey = Math.floor(Math.random()*10)
-		},
-		mounted(){
+		}/*,
+		mounted(){		//disable for dev
 			Axios.get("https://ipfs.globalupload.io/QmTBxkQmp5dEqSspHELZRqUrWt5Neb62MGxg7opAcedpvE")
 				.then(response => {this.threads = response.data})
-		}
+		}*/
 	}
 </script>
