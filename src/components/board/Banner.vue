@@ -11,7 +11,7 @@
 	export default {
 		data(){
 			return{
-				imageList: 4 // @dev holy shit is this a retarded way of having random banners jesus christ what the fuck don't you dare forget to update this if you include more banners lmao
+				imageList: 6 // @dev holy shit is this a retarded way of having random banners jesus christ what the fuck don't you dare forget to update this if you include more banners lmao
 			}	
 		},
 		methods: {

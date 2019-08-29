@@ -24,6 +24,7 @@ The interface is made with VueJS, so you should also check out their documentati
 - [ ] Re-Scrape content deep to get full threads and be able to simulate the JSON parsing properly in it's entirety before Sergey eats all the big macs
 - [ ] Create pagination for board view
 - [ ] Create catalog view for each board
+- [ ] Cache IPFS returns to minimize load times and prevent double-fetching
 - [ ] Sort Boardlist by single, double and tripple chars, then by alphabet for each
 - [ ] Have 'reply' input open up on clicking either the (you) button or the post number (imitate functionality of 4chan)
 - [ ] Make 'reply' a z-index 9999999 floating and draggable element
