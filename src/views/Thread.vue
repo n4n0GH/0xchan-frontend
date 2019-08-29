@@ -5,9 +5,10 @@
 			<div class="row text-mono">
 				<div class="col-6">
 					[<router-link :to="{name: 'board', params: {ticker: board}}">return</router-link>]	
+					[<router-link :to="{name: 'index'}">home</router-link>] 
 				</div>
 				<div class="col-6 text-right">
-					[<router-link :to="{name: 'index'}">home</router-link>] 
+					({{post.replies.length+1}})
 				</div>
 			</div>
 				<div class="row mt-2">
