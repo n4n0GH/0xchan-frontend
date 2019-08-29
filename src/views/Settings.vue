@@ -33,7 +33,7 @@
 					<div class="row">
 						<div class="col">
 							<p class="mb-0 lead">Clear States</p>
-							<p class="small font-chan-normal">Reset your browser's local storage used by vuex to save settings. Refreshes page to take effect.</p>
+							<p class="small font-chan-normal">Reset settings to factory default. Refreshes page to take effect. WARNING: DELETES YOUR CUSTOM STYLES!</p>
 						</div>
 						<div class="col-2">
 							<button class="p-0 w-100 px-1 btn btn-outline-chan-red text-mono" @click="clearState()">clear()</button>
@@ -82,22 +82,17 @@
 					<transition name="fade" mode="out-in">
 					<div v-if="themeSelect=='Custom'">
 						<div class="row">
-							<div class="col">
-								<p class="mb-0 lead">Custom CSS</p>
+							<div class="col-7">
+								<p class="mb-0 lead">Custom Styles</p>
 								<p class="mb-0 small font-chan-normal">Check out the documentation [insert link here] to find out about class-names.</p>
-							</div>
-						</div>
-						<div class="row">
-							<div class="col-7 form-group">
 								<textarea name="customCss" rows="4" class="w-100" placeholder="Paste your CSS here" v-model="custom"></textarea>
-								<button class="btn btn-inline-block btn-outline-chan mt-2 mr-1" @click="saveFile()">
-									Save CSS to file
-								</button>
-								<button class="btn btn-inline-block btn-outline-chan mt-2 ml-1" @click="updateCustom()">
-									Use CSS in 0xchan
+								<button class="btn btn-block btn-outline-chan mt-2" @click="updateCustom()">
+									Update Styles
 								</button>
 							</div>
 							<div class="col-5">
+								<p class="mb-0 lead">Preview</p>
+								<p class="mb-0 small font-chan-normal">Update styles to see changes.</p>
 								<mini-preview />
 							</div>
 						</div>
