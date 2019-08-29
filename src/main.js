@@ -10,7 +10,9 @@ import '@fortawesome/fontawesome-pro/css/all.min.css'
 import '@fortawesome/fontawesome-pro/js/all.min.js'
 
 
-Vue.use(VueLazyload)
+Vue.use(VueLazyload, {
+	attempt: 3
+})
 Vue.use(VueHead)
 
 Vue.config.productionTip = false

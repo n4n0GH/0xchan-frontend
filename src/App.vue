@@ -8,7 +8,9 @@
 		<div class="row w-100 ml-4 justify-content-end">
 			<div class="col-10">
 				<settings />
-				<router-view/>
+				<keep-alive>
+					<router-view/>
+				</keep-alive>
 			</div>
 		</div>
 	</div>
