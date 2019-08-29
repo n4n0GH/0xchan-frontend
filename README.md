@@ -19,8 +19,8 @@ Afterwards use any browser you want (although a connected Ethereum wallet is nee
 The interface is made with VueJS, so you should also check out their documentation as well if you want to change things in this codebase.
 
 ## TODO
-- [ ] Create 'new thread' input
 - [ ] Create 'reply' input
+- [ ] Add "force anonymous" setting -> will render all names as "Anonymous"
 - [ ] Re-Scrape content deep to get full threads and be able to simulate the JSON parsing properly in it's entirety before Sergey eats all the big macs
 - [ ] Create pagination for board view
 - [ ] Create catalog view for each board
@@ -30,6 +30,7 @@ The interface is made with VueJS, so you should also check out their documentati
 - [ ] Make 'reply' a z-index 9999999 floating and draggable element
 - [ ] Create vote page and subpages
 - [ ] DEVELOPERS DEVELOPERS DEVELOPERS
+- [ ] Add reverse image lookup
 - [ ] Make vue-router wait for all content to be loaded before switching views
 	-> might require to create single components for all content
 - [ ] Include "ANN" function in smart contract (ANNs stored on IPFS, Qm~ stored on chain)
@@ -51,6 +52,7 @@ The interface is made with VueJS, so you should also check out their documentati
 - [ ] Host interface on IPFS
 
 ## DONE
+- [x] Create 'new thread' input
 - [x] Create 'custom' css input -> store in vuex, place with vue-head (see App.vue)
 - [x] Change CSS based on NSFW on (Yotsuba B) or off (Yotsuba)
 - [x] Add possibility for future themes to be added to the interface, selectable in the settings menu

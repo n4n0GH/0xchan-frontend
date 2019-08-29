@@ -4,8 +4,9 @@
 			<div class="col-12 text-center">
 				<banner :key="componentKey"/>
 				<p v-for="line in tag" class="lead font-weight-bold text-chan mb-2" :key="line.punchline">/{{line.ticker}}/ - {{line.punchline}}</p>
-				<button class="btn btn-outline-chan" v-if="!thread"><i class="far fa-plus"></i> New Thread</button>
-				<button class="btn btn-outline-chan" v-if="thread"><i class="far fa-plus"></i> New Reply</button>
+				<new-template v-if="openNew"/> <!-- supply slots in case of reply instead of new thread -->
+				<button class="btn btn-outline-chan" v-if="!openNew" @click="openNew = !openNew"><i class="far fa-plus"></i> {{!thread?'New Thread':'New Reply'}}</button>
+			
 				<hr>
 			</div>
 		</div>
@@ -110,6 +111,7 @@
 	import NewThread from '../components/board/NewThread.vue'
 	import Post from '../components/board/Post.vue'
 	import PostExpand from '../components/board/PostExpand.vue'
+	import NewTemplate from '../components/board/NewTemplate.vue'
 	import {mapGetters, mapActions} from 'vuex'
 
 	export default {
@@ -117,12 +119,14 @@
 			Banner,
 			NewThread,
 			Post,
-			PostExpand
+			PostExpand,
+			NewTemplate
 		},
 		data() {
 			return {
 				hiddenThreads: [],
-				componentKey: 0
+				componentKey: 0,
+				openNew: false
 			}
 		},
 		methods: {
