@@ -33,11 +33,9 @@
 								No. {{post.thread}}
 							</template>
 							<template #openThread>
-								<button style="line-height: 1rem;" class="mt-n1 mr-2 p-0 px-1 btn btn-outline-chan-red text-mono">
-								<router-link :to="{name: 'thread', params: {'number': post.thread}}">
+								<router-link tag="button" :to="{name: 'thread', params: {'number': post.thread}}" style="line-height: 1rem;" class="mt-n1 mr-2 p-0 px-1 btn btn-outline-chan-red text-mono">
 								V
 								</router-link>
-								</button>
 							</template>
 							<template #fileMeta>
 								{{post.file.originalName}}

@@ -19,7 +19,7 @@ Afterwards use any browser you want (although a connected Ethereum wallet is nee
 The interface is made with VueJS, so you should also check out their documentation as well if you want to change things in this codebase.
 
 ## TODO
-- [ ] Create 'reply' input
+- [ ] Modify new thread input to also function as reply input
 - [ ] Add "force anonymous" setting -> will render all names as "Anonymous"
 - [ ] Re-Scrape content deep to get full threads and be able to simulate the JSON parsing properly in it's entirety before Sergey eats all the big macs
 - [ ] Create pagination for board view

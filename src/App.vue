@@ -64,7 +64,7 @@
 				'font-weight: bold'
 			].join(';');
 		/* eslint-disable-next-line */
-		console.log('%c fuck censorship lmfao ', style);
+		console.log('%c fuck de popo lmao ', style);
 		}
 	};
 </script>
