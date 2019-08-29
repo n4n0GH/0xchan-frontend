@@ -24,7 +24,7 @@
 								{{post.subject}}
 							</template>
 							<template #postName>
-								{{post.name}}
+								{{getForceAnon?'Anonymous':post.name}}
 							</template>
 							<template #postStamp>
 								{{post.timestamp}}
@@ -66,7 +66,7 @@
 								{{reply.subject}}
 							</template>
 							<template #postName>
-								{{reply.name}}
+								{{getForceAnon?'Anonymous':reply.name}}
 							</template>
 							<template #postStamp>
 								{{reply.timestamp}}
@@ -148,7 +148,8 @@
 		},
 		computed: {
 			...mapGetters([
-				'getHidden'
+				'getHidden',
+				'getForceAnon'
 			]),
 			board() {
 				return this.$route.params.ticker

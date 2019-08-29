@@ -12,11 +12,11 @@ export default new Vuex.Store({
     login: false,
     hiddenThreads: [],
     grabFiles: false,
-    useModal: false,
     autoSwitch: true,
     theme: 'YotsubaB',
     disclaimer: true,
-    customCSS: ''
+    customCSS: '',
+    forceAnon: false
   },
   getters: {
     getLogin: state => {
@@ -27,9 +27,6 @@ export default new Vuex.Store({
     },
     getGrab: state => {
       return state.grabFiles
-    },
-    getModal: state => {
-      return state.useModal
     },
     getAutoSwitch: state => {
       return state.autoSwitch
@@ -42,6 +39,9 @@ export default new Vuex.Store({
     },
     getDisclaimer: state => {
       return state.disclaimer
+    },
+    getForceAnon: state => {
+      return state.forceAnon
     }
   },
   mutations: {
@@ -70,6 +70,9 @@ export default new Vuex.Store({
     },
     mutCss: (state, payload) => {
       state.customCSS = payload
+    },
+    mutAnon: state => {
+      state.forceAnon = !state.forceAnon
     }
   },
   actions: {

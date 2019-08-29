@@ -22,12 +22,21 @@
 					<div class="row">
 						<div class="col">
 							<p class="mb-0 lead">NSFW Mode</p>
-							<p class="small font-chan-normal">If turned on, 0xchan will not auto-fetch images. Think twice before flipping the switch.</p>
+							<p class="small font-chan-normal">0xchan will not auto-fetch images by default. Think twice before flipping the switch.</p>
 						</div>
 						<div class="col-2">
 							<button 
 							class="p-0 px-1 w-100 btn btn-outline-chan-red text-mono"
 							@click="switcheroo()">is: {{getGrab?'off':'on'}}</button>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col">
+							<p class="mb-0 lead">Force Anonymous</p>
+							<p class="small font-chan-normal">Removes custom names from posts and replaces them with 'Anonymous'.</p>
+						</div>
+						<div class="col-2">
+							<button class="p-0 w-100 px-1 btn btn-outline-chan-red text-mono" @click="setBool('mutAnon')">is: {{getForceAnon?'on':'off'}}</button>
 						</div>
 					</div>
 					<div class="row">
@@ -159,7 +168,8 @@
 				'getGrab',
 				'getAutoSwitch',
 				'getTheme',
-				'getCustomCss'
+				'getCustomCss',
+				'getForceAnon'
 			])
 		},
 		mounted(){

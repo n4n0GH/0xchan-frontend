@@ -20,7 +20,6 @@ The interface is made with VueJS, so you should also check out their documentati
 
 ## TODO
 - [ ] Modify new thread input to also function as reply input
-- [ ] Add "force anonymous" setting -> will render all names as "Anonymous"
 - [ ] Re-Scrape content deep to get full threads and be able to simulate the JSON parsing properly in it's entirety before Sergey eats all the big macs
 - [ ] Create pagination for board view
 - [ ] Create catalog view for each board
@@ -52,6 +51,7 @@ The interface is made with VueJS, so you should also check out their documentati
 - [ ] Host interface on IPFS
 
 ## DONE
+- [x] Add "force anonymous" setting -> will render all names as "Anonymous"
 - [x] Create 'new thread' input
 - [x] Create 'custom' css input -> store in vuex, place with vue-head (see App.vue)
 - [x] Change CSS based on NSFW on (Yotsuba B) or off (Yotsuba)
