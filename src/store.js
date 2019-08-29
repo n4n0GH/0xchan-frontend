@@ -15,7 +15,8 @@ export default new Vuex.Store({
     useModal: false,
     autoSwitch: true,
     theme: 'YotsubaB',
-    disclaimer: true
+    disclaimer: true,
+    customCSS: ''
   },
   getters: {
     getLogin: state => {
@@ -35,6 +36,9 @@ export default new Vuex.Store({
     },
     getTheme: state => {
       return state.theme
+    },
+    getCustomCss: state => {
+      return state.customCSS
     },
     getDisclaimer: state => {
       return state.disclaimer
@@ -63,6 +67,9 @@ export default new Vuex.Store({
     },
     mutDisclaimer: state => {
       state.disclaimer = !state.disclaimer
+    },
+    mutCss: (state, payload) => {
+      state.customCSS = payload
     }
   },
   actions: {
@@ -74,6 +81,9 @@ export default new Vuex.Store({
     },
     setTheme: (context, payload) => {
       context.commit('mutTheme', payload)
+    },
+    setCss: (context, payload) => {
+      context.commit('mutCss', payload)
     }
   }
 })

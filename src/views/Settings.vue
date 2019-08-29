@@ -60,15 +60,16 @@
 					<div class="row" v-if="!getAutoSwitch">
 						<div class="col">
 							<p class="mb-0 lead">Theme Selector</p>
-							<p class="small font-chan-normal mb-0">Choose your favorite theme to use for 0xchan. Want your theme featured here? Contact us on Discord!</p>
-							<p class="small font-chan-normal mb-0">Alternatively you could clone the Git repository, add your style and run it on your own machine.</p>
+							<p class="small font-chan-normal mb-0">Choose your favorite theme to use for 0xchan.</p>
 						</div>
 						<div class="col-2">
 							<p class="mb-0 form-group">
 									<select class="form-control" v-model="themeSelect">
 										<option>Yotsuba</option>
 										<option>YotsubaB</option>
-										<option disabled>&raquo;DIY</option>
+										<option disabled>Photon</option>
+										<option disabled>Tomorrow</option>
+										<option disabled>Floeeens</option>
 										<option>Custom</option>
 									</select>
 							</p>
@@ -78,7 +79,30 @@
 						</div>
 					</div>
 					</transition>
-					<hr>
+					<transition name="fade" mode="out-in">
+					<div v-if="themeSelect=='Custom'">
+						<div class="row">
+							<div class="col">
+								<p class="mb-0 lead">Custom CSS</p>
+								<p class="mb-0 small font-chan-normal">Check out the documentation [insert link here] to find out about class-names.</p>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-7 form-group">
+								<textarea name="customCss" rows="4" class="w-100" placeholder="Paste your CSS here" v-model="custom"></textarea>
+								<button class="btn btn-inline-block btn-outline-chan mt-2 mr-1" @click="saveFile()">
+									Save CSS to file
+								</button>
+								<button class="btn btn-inline-block btn-outline-chan mt-2 ml-1" @click="updateCustom()">
+									Use CSS in 0xchan
+								</button>
+							</div>
+							<div class="col-5">
+								<mini-preview />
+							</div>
+						</div>
+					</div>
+					</transition>
 				</div>
 			</div>
 		</div>
@@ -87,17 +111,23 @@
 
 <script>
 	import {mapGetters, mapActions} from 'vuex'
+	import MiniPreview from '../components/MiniPreview.vue'
 
 	export default {
 		data(){
 			return{
-				themeSelect: ''
+				themeSelect: '',
+				custom: ''
 			}
+		},
+		components: {
+			MiniPreview
 		},
 		methods: {
 			...mapActions([
 				'setBool',
-				'setTheme'
+				'setTheme',
+				'setCss'
 			]),
 			clearState(){
 				if(confirm("Are you sure you want to reset the browser's local storage?")){
@@ -107,6 +137,13 @@
 			},
 			saveTheme(){
 				this.setTheme(this.themeSelect)
+				if(this.themeSelect=='Custom'){
+					this.setCss(this.custom)
+				}
+				location.reload()
+			},
+			updateCustom(){
+				this.setCss(this.custom)
 				location.reload()
 			},
 			switcheroo(){
@@ -126,11 +163,13 @@
 			...mapGetters([
 				'getGrab',
 				'getAutoSwitch',
-				'getTheme'
+				'getTheme',
+				'getCustomCss'
 			])
 		},
 		mounted(){
 			this.themeSelect = this.getTheme
+			this.custom = this.getCustomCss
 		}
 	}	
 </script>

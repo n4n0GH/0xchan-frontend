@@ -26,22 +26,32 @@
 		},
 		computed: {
 			...mapGetters([
-				'getTheme'
-			]),
-			cssLink(){
-				return this.getTheme
-			}
+				'getTheme',
+				'getCustomCss'
+			])
 		},
 		methods: {
 		},
 		head: {
 			link(){
-				return [
-					{
-						rel: 'stylesheet', 
-						href: require(`@/assets/css/${this.cssLink}.css`)
-					}
-				]
+				if(this.getTheme != 'Custom'){
+					return [
+						{
+							rel: 'stylesheet', 
+							href: require(`@/assets/css/${this.getTheme}.css`)
+						}
+					]
+				}
+			},
+			style(){
+				if(this.getTheme == 'Custom'){
+					return [
+						{
+							type: 'text/css',
+							inner: `${this.getCustomCss}`
+						}
+					]
+				}
 			}
 		},
 		mounted(){

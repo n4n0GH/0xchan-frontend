@@ -29,7 +29,6 @@ The interface is made with VueJS, so you should also check out their documentati
 - [ ] Make 'reply' a z-index 9999999 floating and draggable element
 - [ ] Create vote page and subpages
 - [ ] DEVELOPERS DEVELOPERS DEVELOPERS
-- [ ] CSS Switcher for users (settings)
 - [ ] Make vue-router wait for all content to be loaded before switching views
 	-> might require to create single components for all content
 - [ ] Include "ANN" function in smart contract (ANNs stored on IPFS, Qm~ stored on chain)
@@ -39,8 +38,9 @@ The interface is made with VueJS, so you should also check out their documentati
 - [ ] Create modal functionality
 - [ ] Add reporting function
 - [ ] Introduce web3
-- [ ] Release interface on Github
 - [ ] Deploy smart contract (testnet)
+- [ ] Sanitize user input data
+- [ ] Release interface on Github
 - [ ] Bug testing smart contract (testnet)
 - [ ] Deploy smart contract (mainnet)
 - [ ] Har(j)berger Tax minigame for the banner component (credit to Troopy)
@@ -50,6 +50,7 @@ The interface is made with VueJS, so you should also check out their documentati
 - [ ] Host interface on IPFS
 
 ## DONE
+- [x] Create 'custom' css input -> store in vuex, place with vue-head (see App.vue)
 - [x] Change CSS based on NSFW on (Yotsuba B) or off (Yotsuba)
 - [x] Add possibility for future themes to be added to the interface, selectable in the settings menu
 - [x] Add user setting to disable the loading of images (default: false)
