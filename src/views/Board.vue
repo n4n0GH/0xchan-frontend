@@ -10,7 +10,7 @@
 				<hr>
 			</div>
 		</div>
-		<router-view v-if="thread" />
+		<router-view />
 		<div class="row" v-if="!thread">
 			<p v-if="posts==''" class="text-center text-chan w-100 text-mono">no posts yet, do something about it!</p>
 			<div class="col-12 thread-preview" v-for="(post, index) in posts.slice((5*(page-1)),(5*(page-1))+5)" :key="'thread-'+index" :style="getHidden.includes(board+post.thread)?'height:2.2rem;':''" :id="'p'+post.thread">
@@ -97,7 +97,8 @@
 				<hr v-if="!getHidden.includes(board+post.thread)">
 			</div>
 
-			<div class="row w-100">
+			<div class="row w-100" v-if="!thread">
+				{{thread}}
 				<div class="col-12">
 					<p class="text-mono text-center">
 						<span v-for="n in pages" v-if="n!=page" :key="'page-'+n">

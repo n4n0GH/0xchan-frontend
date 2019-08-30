@@ -55,7 +55,7 @@
 			opContent() {
 				return Threads.map((item) => {
 					if(item.subject == ""){
-						return item.text.slice(0,80)
+						return item.text.slice(0,100)
 					}
 					else {
 						return item.subject

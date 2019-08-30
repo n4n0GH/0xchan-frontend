@@ -20,6 +20,7 @@ The interface is made with VueJS, so you should also check out their documentati
 
 ## TODO
 - [ ] Create catalog view for each board
+- [ ] "New" buttons (board, thread, boards) should only be visible when user is logged in
 - [ ] Live update for custom style in settings
 - [ ] Modify new thread input to also function as reply input
 - [ ] Sort Boardlist by single, double and tripple chars, then by alphabet for each
