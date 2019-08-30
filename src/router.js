@@ -20,6 +20,10 @@ export default new Router({
 			component: () => import(/* webpackChunkName: "board" */ './views/Board.vue'),
 			children: [
 				{
+					path: ':page', // grab page identifier
+					name: 'page',
+				},
+				{
 					path: 'thread/:number', // grab thread identifier
 					name: 'thread',
 					component: () => import(/* webpackChunkName: "thread" */ './views/Thread.vue')

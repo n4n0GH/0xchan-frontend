@@ -8,12 +8,12 @@
 					[<router-link :to="{name: 'index'}">home</router-link>] 
 				</div>
 				<div class="col-6 text-right">
-					({{post.replies.length+1}})
+					({{post.replies.length}})
 				</div>
 			</div>
 				<div class="row mt-2">
 					<div class="col" :id="'thread-'+post.thread">
-						<post class="op-container col-12 pl-0" :id="post.thread">
+						<post class="op-container col-12 pl-0" :id="'p'+post.thread">
 							<template #postSubject>
 								{{post.subject}}
 							</template>
@@ -40,7 +40,7 @@
 								</blockquote>
 							</template>
 						</post>
-						<post v-for="reply in post.replies" :key="reply.id" class="reply-container ml-5 col-auto" :id="reply.id">
+						<post v-for="reply in post.replies" :key="reply.id" class="reply-container ml-5 col-auto" :id="'p'+reply.id">
 							<template #postSubject>
 								{{reply.subject}}
 							</template>

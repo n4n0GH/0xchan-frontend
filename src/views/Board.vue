@@ -13,13 +13,13 @@
 		<router-view v-if="thread" />
 		<div class="row" v-if="!thread">
 			<p v-if="posts==''" class="text-center text-chan w-100 text-mono">no posts yet, do something about it!</p>
-			<div class="col-12 thread-preview" v-for="(post, index) in posts" :key="'thread-'+index" :style="getHidden.includes(board+post.thread)?'height:2.2rem;':''" :id="'p'+post.thread">
+			<div class="col-12 thread-preview" v-for="(post, index) in posts.slice((5*(page-1)),(5*(page-1))+5)" :key="'thread-'+index" :style="getHidden.includes(board+post.thread)?'height:2.2rem;':''" :id="'p'+post.thread">
 				<div class="row">
 					<div class="col-auto p-0">
 						<button style="line-height: 1rem;" class="mt-2 p-0 px-1 btn btn-outline-chan-red text-mono" @click="setHidden(board+post.thread)">{{getHidden.includes(board+post.thread)?'+':'-'}}</button>
 					</div>
 					<div class="col" v-if="!getHidden.includes(board+post.thread)" :id="'thread-'+post.thread">
-						<post class="op-container col-12 pl-0" :id="post.thread">
+						<post class="op-container col-12 pl-0" :id="'p'+post.thread">
 							<template #postSubject>
 								{{post.subject}}
 							</template>
@@ -61,7 +61,7 @@
 							view thread</router-link>
 							]</p>
 						</div>
-						<post v-for="reply in post.replies.slice(-5)" :key="reply.id" class="reply-container ml-5 col-auto" :id="reply.id">
+						<post v-for="reply in post.replies.slice(-5)" :key="reply.id" class="reply-container ml-5 col-auto" :id="'p'+reply.id">
 							<template #postSubject>
 								{{reply.subject}}
 							</template>
@@ -96,6 +96,20 @@
 				
 				<hr v-if="!getHidden.includes(board+post.thread)">
 			</div>
+
+			<div class="row w-100">
+				<div class="col-12">
+					<p class="text-mono text-center">
+						<span v-for="n in pages" v-if="n!=page" :key="'page-'+n">
+							[<router-link :to="{name: 'page', params: {'page': n}}">{{n}}</router-link>]
+						</span>
+						<span v-else>
+							[{{page}}]
+						</span>
+					</p>
+				</div>
+			</div>
+
 		</div>
 	</div>
 </template>
@@ -159,6 +173,9 @@
 			thread() {
 				return this.$route.params.number
 			},
+			page() {
+				return this.$route.params.page
+			},
 			posts() { //switch returns if using axios or nah
 				//return this.threads.filter(a => a.board == this.board)
 				return Threads.filter(a => a.board == this.board)
@@ -168,6 +185,9 @@
 			},
 			loading() {
 				return Loading
+			},
+			pages() {
+				return this.posts.length/5
 			}
 		},
 		updated(){
