@@ -8,7 +8,7 @@
 		<div class="row pb-2" v-for="(post, index) in sortedItems()" :key="index+1" :class="{'bg-chan': index % 2 !== 0}">
 			<router-link tag="div" class="col-8" :to="{path: '/board/'+post.board+'/thread/'+post.thread}"><a>{{post.content}}</a></router-link>
 			
-			<router-link tag="div" class="col text-center" :to="{name: 'board', params: {'ticker': post.board}}"><a>/{{post.board}}/</a></router-link>
+			<router-link tag="div" class="col text-center" :to="{path: '/board/'+post.board}"><a>/{{post.board}}/</a></router-link>
 			<div class="col text-right">{{post.replies}} {{post.replies==1?'reply':'replies'}}</div>
 		</div>
 		<div class="row">

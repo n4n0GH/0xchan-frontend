@@ -3,7 +3,7 @@
 			<ul class="list-unstyled list-chan d-none d-xl-block">
 				<hr>
 				<li v-for="(board, index) in boardList" :key="board.ticker+index">
-					<router-link :to="{name: 'board', params: {'ticker': board.ticker}}" class="p-1 pb-2">
+					<router-link :to="{path: '/board/'+board.ticker}" class="p-1 pb-2">
 						/{{board.ticker}}/ - {{board.punchline}}
 					</router-link>
 				</li>
@@ -16,7 +16,7 @@
 			<ul class="list-unstyled list-chan d-block d-xl-none">
 				<hr>
 				<li v-for="(board, index) in boardList" :key="board.ticker+index" class="text-center">
-					<router-link :to="{name: 'board', params: {'ticker': board.ticker}}" class="p-1 pb-2">
+					<router-link :to="{path: '/board/'+board.ticker}" class="p-1 pb-2">
 						/{{board.ticker}}/
 					</router-link>
 				</li>

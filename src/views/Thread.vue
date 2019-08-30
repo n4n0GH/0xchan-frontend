@@ -72,7 +72,7 @@
 				<p class="w-100 text-center text-mono">EOF</p>
 				<div class="row text-mono">
 				<div class="col-6">
-					[<router-link :to="{name: 'board', params: {ticker: board}}">return</router-link>]	
+					[<a href="javascript:history.back();">return</a>]	
 				</div>
 				<div class="col-6 text-right">
 					[<router-link :to="{name: 'index'}">home</router-link>] 
@@ -88,6 +88,7 @@
 	import Thread from '../components/board/thread.json'
 	import Threads from '../components/board/threads.json'
 	import Post from '../components/board/Post.vue'
+	import {mapGetters} from 'vuex'
 
 	export default {
 		components: {
@@ -98,6 +99,9 @@
 			}
 		},
 		computed: {
+			...mapGetters([
+				'getForceAnon'
+			]),
 			thread() {
 				return this.$route.params.number
 			},
