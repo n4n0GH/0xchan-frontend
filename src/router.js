@@ -27,6 +27,11 @@ export default new Router({
 					path: 'thread/:number', // grab thread identifier
 					name: 'thread',
 					component: () => import(/* webpackChunkName: "thread" */ './views/Thread.vue')
+				},
+				{
+					path: 'catalog',
+					name: 'catalog',
+					component: () => import(/* webpackChunkName: "catalog" */ './views/Catalog.vue')
 				}
 			]
 		},

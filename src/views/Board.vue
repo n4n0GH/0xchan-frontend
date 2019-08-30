@@ -101,11 +101,9 @@
 				{{thread}}
 				<div class="col-12">
 					<p class="text-mono text-center">
-						<span v-for="n in pages" v-if="n!=page" :key="'page-'+n">
-							[<router-link :to="{name: 'page', params: {'page': n}}">{{n}}</router-link>]
-						</span>
-						<span v-else>
-							[{{page}}]
+						<span v-for="n in pages" :key="'page-'+n">
+							<router-link tag="span" v-if="n!=page" :to="{name: 'page', params: {'page': n}}">[<a>{{n}}</a>]</router-link>
+							<span v-if="n==page">[{{n}}]</span>
 						</span>
 					</p>
 				</div>
