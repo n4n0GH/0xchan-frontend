@@ -19,7 +19,6 @@ Afterwards use any browser you want (although a connected Ethereum wallet is nee
 The interface is made with VueJS, so you should also check out their documentation as well if you want to change things in this codebase.
 
 ## TODO
-- [ ] Create pagination for board view
 - [ ] Create catalog view for each board
 - [ ] Live update for custom style in settings
 - [ ] Modify new thread input to also function as reply input
@@ -50,6 +49,7 @@ The interface is made with VueJS, so you should also check out their documentati
 - [ ] Host interface on IPFS
 
 ## DONE
+- [x] Create pagination for board view
 - [x] Cache IPFS returns (media + text) to minimize load times and prevent double-fetching
 - [x] Re-Scrape content deep to get full threads and be able to simulate the JSON parsing properly in it's entirety before Sergey eats all the big macs
 - [x] Add "force anonymous" setting -> will render all names as "Anonymous"

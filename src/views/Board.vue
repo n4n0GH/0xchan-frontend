@@ -174,7 +174,13 @@
 				return this.$route.params.number
 			},
 			page() {
-				return this.$route.params.page
+				let curPag = this.$route.params.page 
+				if(curPag){
+					return curPag
+				}
+				else{
+					return 1
+				}
 			},
 			posts() { //switch returns if using axios or nah
 				//return this.threads.filter(a => a.board == this.board)
