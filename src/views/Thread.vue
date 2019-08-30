@@ -88,6 +88,7 @@
 	import Thread from '../components/board/thread.json'
 	import Threads from '../components/board/threads.json'
 	import Post from '../components/board/Post.vue'
+	import {mapGetters} from 'vuex'
 
 	export default {
 		components: {
@@ -98,6 +99,9 @@
 			}
 		},
 		computed: {
+			...mapGetters([
+				'getForceAnon'
+			]),
 			thread() {
 				return this.$route.params.number
 			},

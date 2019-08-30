@@ -12,6 +12,7 @@
 
 <script>
 	import Banner from './Banner.vue'
+	import Boards from '../navbar/boards.json'
 	export default{
 		data(){
 			return{
@@ -20,6 +21,14 @@
 		},
 		components: {
 			Banner
+		},
+		computed: {
+			board(){
+				return this.$route.params.ticker
+			},
+			tag(){
+				return Boards.filter(a => a.ticker == this.board)
+			}
 		},
 		updated(){
 			this.componentKey = Math.floor(Math.random()*10)

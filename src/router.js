@@ -23,6 +23,7 @@ export default new Router({
 					path: ':ticker',
 					name: 'ticker',
 					component: () => import(/* webpackChunkName: "ticker" */ './components/board/Single.vue'),
+
 					children: [
 						{
 							path: 'catalog',

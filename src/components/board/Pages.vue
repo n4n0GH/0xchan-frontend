@@ -3,8 +3,6 @@
 		<div class="row">
 		{{this.$route.params}}
 		<div class="col-12 text-center">
-			<banner :key="componentKey"/>
-			<p v-for="line in tag" class="lead font-weight-bold text-chan mb-2" :key="line.punchline">/{{line.ticker}}/ - {{line.punchline}}</p>
 			<new-template v-if="openNew"/> <!-- supply slots in case of reply instead of new thread -->
 			<button class="btn btn-outline-chan" v-if="!openNew" @click="openNew = !openNew"><i class="far fa-plus"></i> {{!thread?'New Thread':'New Reply'}}</button>
 			<hr>
@@ -119,17 +117,20 @@
 	import Threads from './threads.json' //disable for axios testing
 	import Boards from '../navbar/boards.json'
 	import Post from './Post.vue'
+	import NewTemplate from './NewTemplate.vue'
 	import {mapGetters, mapActions} from 'vuex'
 
 	export default{
 		components: {
 			Post,
+			NewTemplate
 		},
 		data() {
 			return {
 				threads: [],
 				hiddenThreads: [],
 				componentKey: 0,
+				openNew: false
 			}
 		},
 		methods: {
