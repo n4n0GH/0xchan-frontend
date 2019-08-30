@@ -1,7 +1,9 @@
 <template>
-	<div>ayy</div>
+	<div>dick</div>
 </template>
 
 <script>
-	
+	export default{
+		
+	}
 </script>

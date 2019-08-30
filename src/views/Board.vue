@@ -1,6 +1,7 @@
 <template>
 	<div class="container-fluid">
 		<div class="row">
+			{{this.$route.params}}
 			<div class="col-12 text-center">
 				<banner :key="componentKey"/>
 				<p v-for="line in tag" class="lead font-weight-bold text-chan mb-2" :key="line.punchline">/{{line.ticker}}/ - {{line.punchline}}</p>
