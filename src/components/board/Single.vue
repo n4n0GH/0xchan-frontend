@@ -32,6 +32,12 @@
 		},
 		updated(){
 			this.componentKey = Math.floor(Math.random()*10)
+
+				if(this.$route.params.ticker && this.$route.path != 'catalog' && !this.$route.params.page && !this.$route.params.number){
+					this.$router.push({
+						path: this.board+'/1'
+					})
+				}
 		}
 	}
 </script>

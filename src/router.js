@@ -23,7 +23,6 @@ export default new Router({
 					path: ':ticker',
 					name: 'ticker',
 					component: () => import(/* webpackChunkName: "ticker" */ './components/board/Single.vue'),
-
 					children: [
 						{
 							path: 'catalog',
@@ -54,11 +53,11 @@ export default new Router({
 			name: 'error',
 			component: () => import(/* webpackChunkName: "error" */ './views/Error.vue')
 		},
-		{
+		/*{
 			path: '*',
 			name: 'catchErr',
 			redirect: '/no-bueno'
-		}
+		}*/
 	],
 	scrollBehavior (to, from, savedPosition) {
 	if (savedPosition) {
