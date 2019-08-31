@@ -6,8 +6,7 @@
 				<button class="btn btn-outline-chan" v-if="!openNew" @click="openNew = !openNew"><i class="far fa-plus"></i> {{!thread?'New Thread':'New Reply'}}</button>
 				<hr>
 				<div class="row text-mono text-left">
-					<div class="col-12">
-						<router-link tag="span" :to="{name: 'index'}">[<a>home</a>]</router-link>
+					<div class="col-12 mb-2">
 						<router-link tag="span" :to="{name: 'catalog'}">[<a>catalog</a>]</router-link>
 					</div>
 				</div>

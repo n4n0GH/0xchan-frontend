@@ -6,7 +6,9 @@
 				<p v-for="line in tag" class="lead font-weight-bold text-chan mb-2" :key="line.punchline">/{{line.ticker}}/ - {{line.punchline}}</p>
 			</div>
 		</div>
+		<keep-alive>
 		<router-view />
+		</keep-alive>
 	</div>
 </template>
 
