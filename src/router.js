@@ -42,14 +42,14 @@ export default new Router({
 			component: Settings
 		},
 		{
-			path: '/no-bueno',
+			path: '/no-bueno/:err',
 			name: 'error',
 			component: () => import(/* webpackChunkName: "error" */ './views/Error.vue')
 		},
 		{
 			path: '*',
 			name: 'catchErr',
-			redirect: '/no-bueno'
+			redirect: '/no-bueno/404'
 		}
 	],
 	scrollBehavior (to, from, savedPosition) {

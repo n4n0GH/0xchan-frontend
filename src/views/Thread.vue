@@ -1,7 +1,7 @@
 <template>
 	<div class="row">
-
 		<div class="col-12 thread-view" v-for="(post, index) in posts" :key="'thread-'+index">
+			<hr>
 			<div class="row text-mono">
 				<div class="col-6">
 					[<a href="javascript:history.back();">return</a>]	
@@ -107,7 +107,7 @@
 		},
 		computed: {
 			...mapGetters([
-				'getForceAnon'
+				'getForceAnon',
 			]),
 			thread() {
 				return this.$route.params.number
