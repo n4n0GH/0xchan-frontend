@@ -1,5 +1,5 @@
 <template>
-	<div>
+	<div class="container-fluid">
 		<div class="row">
 			<div class="col-12 text-center">
 				<new-template v-if="openNew"/> <!-- supply slots in case of reply instead of new thread -->
@@ -8,7 +8,7 @@
 				<div class="row text-mono text-left">
 					<div class="col-12">
 						<router-link tag="span" :to="{name: 'index'}">[<a>home</a>]</router-link>
-						<router-link tag="span" :to="{path: 'catalog'}">[<a>catalog</a>]</router-link>
+						<router-link tag="span" :to="{name: 'catalog'}">[<a>catalog</a>]</router-link>
 					</div>
 				</div>
 			</div>

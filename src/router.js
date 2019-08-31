@@ -15,31 +15,24 @@ export default new Router({
 			component: Index
 		},
 		{
-			path: '/board', // grab board identifier
-			name: 'board',
-			component: () => import(/* webpackChunkName: "board" */ './views/Board.vue'),
+			path: '/board/:ticker',
+			name: 'ticker',
+			component: () => import(/* webpackChunkName: "ticker" */ './components/board/Single.vue'),
 			children: [
 				{
-					path: ':ticker',
-					name: 'ticker',
-					component: () => import(/* webpackChunkName: "ticker" */ './components/board/Single.vue'),
-					children: [
-						{
-							path: 'catalog',
-							name: 'catalog',
-							component: () => import(/* webpackChunkName: "catalog" */ './views/Catalog.vue')
-						},
-						{
-							path: ':page', // grab page identifier
-							name: 'page',
-							component: () => import(/* webpackChunkName: "page" */ './components/board/Pages.vue')
-						},
-						{
-							path: 'thread/:number', // grab thread identifier
-							name: 'thread',
-							component: () => import(/* webpackChunkName: "thread" */ './views/Thread.vue')
-						}
-					]
+					path: 'catalog',
+					name: 'catalog',
+					component: () => import(/* webpackChunkName: "catalog" */ './views/Catalog.vue')
+				},
+				{
+					path: ':page?', // grab page identifier
+					name: 'page',
+					component: () => import(/* webpackChunkName: "page" */ './components/board/Pages.vue')
+				},
+				{
+					path: 'thread/:number', // grab thread identifier
+					name: 'thread',
+					component: () => import(/* webpackChunkName: "thread" */ './views/Thread.vue')
 				}
 			]
 		},
@@ -53,11 +46,11 @@ export default new Router({
 			name: 'error',
 			component: () => import(/* webpackChunkName: "error" */ './views/Error.vue')
 		},
-		/*{
+		{
 			path: '*',
 			name: 'catchErr',
 			redirect: '/no-bueno'
-		}*/
+		}
 	],
 	scrollBehavior (to, from, savedPosition) {
 	if (savedPosition) {
