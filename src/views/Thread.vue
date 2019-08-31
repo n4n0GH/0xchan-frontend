@@ -8,7 +8,7 @@
 					[<router-link :to="{name: 'index'}">home</router-link>] 
 				</div>
 				<div class="col-6 text-right">
-					({{post.replies.length}})
+					({{post.replies.length}}/{{imageCounter(post.replies)}})
 				</div>
 			</div>
 				<div class="row mt-2">
@@ -98,6 +98,13 @@
 			return {
 			}
 		},
+		methods: {
+			imageCounter(c) {
+				return c.reduce(function(n, x){
+					return n + (x.file.originalName != '');
+				}, 0)
+			}
+		},
 		computed: {
 			...mapGetters([
 				'getForceAnon'
@@ -116,7 +123,7 @@
 			},
 			loading() {
 				return Loading
-			}
+			},
 		}
 	}
 </script>

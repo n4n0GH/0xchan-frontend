@@ -33,8 +33,6 @@
 		updated(){
 			this.componentKey = Math.floor(Math.random()*10)
 				
-			console.log(this.$route.params)
-				
 		}
 	}
 </script>
