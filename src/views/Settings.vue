@@ -21,7 +21,7 @@
 					</div>
 					<div class="row">
 						<div class="col">
-							<p class="mb-0 lead">NSFW Mode</p>
+							<p class="mb-0 lead">SFW Mode</p>
 							<p class="small font-chan-normal">0xchan will not auto-fetch images by default. Think twice before flipping the switch.</p>
 						</div>
 						<div class="col-2">
