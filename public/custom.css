@@ -45,3 +45,49 @@ body {
 	transition: opacity 0.2s;
 	opacity: 0;
 }
+.font-error {
+	color: #800;
+	animation: rainbow 2s infinite;
+}
+.font-swerve {
+	animation: swerve 5s infinite;
+}
+
+/* keyframes */
+@keyframes rainbow {
+	0%{
+		color: red;
+	}
+	14%{
+		color: orange;
+	}
+	28%{
+		color: yellow;
+	}
+	42%{
+		color: green;
+	}
+	56%{
+		color: blue;
+	}
+	70%{
+		color: indigo;
+	}
+	84%{
+		color: violet;
+	}
+}
+@keyframes swerve {
+	0%{
+		transform: rotate(0);
+	}
+	25%{
+		transform: rotate(2deg);
+	}
+	75%{
+		transform: rotate(-2deg);
+	}
+	100%{
+		transform: rotate(0);
+	}
+}
