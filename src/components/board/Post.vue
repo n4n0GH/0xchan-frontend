@@ -29,7 +29,10 @@
 					<div class="col-12">
 						<div class="float-left mr-3 w-auto" style="max-width:30%;" v-if="picRelated && getGrab">
 							<p class="small mb-0 text-mono text-overflow">
-								File: <slot name="fileMeta" />
+								File: <slot name="fileMeta" /> [<a href="javascript:void(0);" @click="doResearch = !doResearch">?</a>]
+							</p>
+							<p class="small mb-0 text-mono" v-if="doResearch">
+								<slot name="fileLookup" />
 							</p>
 							<p class="small mb-0 text-mono">
 								(11.11 MB, 1920&times;1080)
@@ -69,6 +72,11 @@
 	import {mapGetters} from 'vuex'
 
 	export default {
+		data(){
+			return{
+				doResearch: false
+			}
+		},
 		computed: {
 			picRelated(){
 				return !!this.$slots.fileMeta
