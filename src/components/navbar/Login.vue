@@ -45,6 +45,9 @@
 						web3 = null
 					}
 				}
+				else {
+					alert('No Metamask detected. Please install it, and try again.')
+				}
 			},
 			...mapActions([
 				'setBool'
