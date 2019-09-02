@@ -22,11 +22,29 @@
 </template>
 
 <script>
+	/* eslint-disable */
 	import {mapGetters, mapActions} from 'vuex'
+	import Web3 from 'web3'
+
+	let web3
+	let ethereum
+
 	export default {
 		methods: {
-			login(){
-				this.setBool('mutLogin')
+			async login(){
+				if(window.ethereum){
+					ethereum = window.ethereum
+					web3 = new Web3(ethereum)
+					try{
+						await ethereum.enable();
+						
+						this.setBool('mutLogin')
+					}
+					catch(error){
+						await console.log('Eth Auth failed')
+						web3 = null
+					}
+				}
 			},
 			...mapActions([
 				'setBool'

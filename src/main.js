@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
-import store from './store'	// just used for demo purposes to pass login state dummies and shit
+import store from './store'
 // import NProgress from 'vue-nprogress'
 import VueLazyload from 'vue-lazyload'
 import VueHead from 'vue-head'
@@ -16,6 +16,7 @@ Vue.use(VueLazyload, {
 Vue.use(VueHead)
 
 Vue.config.productionTip = false
+
 
 /*const nprogress = new NProgress({
 	parent: '.nprogress-container'
