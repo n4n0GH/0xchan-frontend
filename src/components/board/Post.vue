@@ -47,7 +47,7 @@
 				<div class="row mt-2" v-if="picRelated && !getGrab">
 					<div class="col">
 						<p class="small mb-0 text-mono">
-							File omitted: <slot name="fileMeta" /> (11.11 MB, 1920&times;1080)
+							File omitted: <slot name="fileMeta" /> (11.11 MB, 1920&times;1080) [<a :href="fileLink" target="_blank">view</a>]
 						</p>
 					</div>
 				</div>
@@ -74,7 +74,14 @@
 	export default {
 		data(){
 			return{
-				doResearch: false
+				doResearch: false,
+				singleLoad: false
+			}
+		},
+		props: {
+			fileLink: {
+				type: String,
+				default: ''
 			}
 		},
 		computed: {

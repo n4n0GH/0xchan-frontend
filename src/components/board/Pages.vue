@@ -21,7 +21,7 @@
 						<button style="line-height: 1rem;" class="mt-2 p-0 px-1 btn btn-outline-chan-red text-mono" @click="setHidden(board+post.thread)">{{getHidden.includes(board+post.thread)?'+':'-'}}</button>
 					</div>
 					<div class="col" v-if="!getHidden.includes(board+post.thread)" :id="'thread-'+post.thread">
-						<post class="op-container col-12 pl-0" :id="'p'+post.thread">
+						<post class="op-container col-12 pl-0" :id="'p'+post.thread" :fileLink="post.file.src">
 							<template #postSubject>
 								{{post.subject}}
 							</template>
@@ -66,7 +66,7 @@
 							view thread</router-link>
 							]</p>
 						</div>
-						<post v-for="reply in post.replies.slice(-5)" :key="reply.id" class="reply-container ml-5 col-auto" :id="'p'+reply.id">
+						<post v-for="reply in post.replies.slice(-5)" :key="reply.id" class="reply-container ml-5 col-auto" :id="'p'+reply.id" :fileLink="reply.file.src">
 							<template #postSubject>
 								{{reply.subject}}
 							</template>

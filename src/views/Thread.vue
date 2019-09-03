@@ -13,7 +13,7 @@
 			</div>
 				<div class="row mt-2">
 					<div class="col" :id="'thread-'+post.thread">
-						<post class="op-container col-12 pl-0" :id="'p'+post.thread">
+						<post class="op-container col-12 pl-0" :id="'p'+post.thread" :fileLink="post.file.src">
 							<template #postSubject>
 								{{post.subject}}
 							</template>
@@ -40,7 +40,7 @@
 								</blockquote>
 							</template>
 						</post>
-						<post v-for="reply in post.replies" :key="reply.id" class="reply-container ml-5 col-auto" :id="'p'+reply.id">
+						<post v-for="reply in post.replies" :key="reply.id" class="reply-container ml-5 col-auto" :id="'p'+reply.id" :fileLink="reply.file.src">
 							<template #postSubject>
 								{{reply.subject}}
 							</template>
