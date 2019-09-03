@@ -42,6 +42,11 @@ export default new Router({
 			component: Settings
 		},
 		{
+			path: '/account',
+			name: 'account',
+			component: () => import(/* webpackChunkName: "account" */ './views/User.vue')
+		},
+		{
 			path: '/no-bueno/:err',
 			name: 'error',
 			component: () => import(/* webpackChunkName: "error" */ './views/Error.vue')
