@@ -104,6 +104,10 @@
 a.btn-chan:hover {
 	color:white;
 }
+button.router-link-active {
+	background-color: #800;
+	color: white!important;
+}
 
 /* cardy things */
 .card-chan {

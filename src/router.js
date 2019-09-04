@@ -51,6 +51,11 @@ export default new Router({
 			component: () => import(/* webpackChunkName: "account" */ './views/User.vue')
 		},
 		{
+			path: '/votes',
+			name: 'votes',
+			component: () => import(/* webpackChunkName: "votes" */ './views/Votes.vue')
+		},
+		{
 			path: '/no-bueno/:err',
 			name: 'error',
 			component: () => import(/* webpackChunkName: "error" */ './views/Error.vue')

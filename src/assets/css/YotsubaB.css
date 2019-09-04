@@ -111,6 +111,10 @@ a.quotelink {
 a.btn-chan:hover {
 	color:white;
 }
+button.router-link-active {
+	background-color: #34345c;
+	color: white!important;
+}
 
 /* cardy things */
 .card-chan {

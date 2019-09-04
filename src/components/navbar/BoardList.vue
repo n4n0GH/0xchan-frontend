@@ -1,5 +1,5 @@
 <template>
-	<div class="col px-0 mt-2">
+	<div class="col px-0">
 			<ul class="list-unstyled list-chan d-none d-xl-block">
 				<hr>
 				<li v-for="(board, index) in boardList" :key="board.ticker+index">

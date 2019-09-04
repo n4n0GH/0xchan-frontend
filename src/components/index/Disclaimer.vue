@@ -14,7 +14,7 @@
 				<p>0xchan users must adhere to the laws in their own legal jurisdiction as well as their conscience. The 0xchan developers do not condone and are not responsible for any use of the platform to conduct illegal activities.</p>
 				<p>The 0xchan developers have worked hard to deliver a free platform to discuss your favorite topics with anyone in the world. But as with any software, bugs may occur. The software is provided as is, using it is at the risk of the user.</p>
 			</div>
-			<button class="btn btn-outline-chan-red btn-block mb-4" @click="setBool('mutDisclaimer')">Hide Disclaimer</button>
+			<button class="btn btn-outline-chan-red btn-block mb-4" @click="setBool('mutDisclaimer')"><i class="fal fa-eye-slash"></i> Hide Disclaimer</button>
 		</div>
 		<div class="row" v-if="!getDisclaimer">
 			<p class="text-center text-mono w-100">[

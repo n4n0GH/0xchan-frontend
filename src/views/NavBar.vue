@@ -7,11 +7,11 @@
 				</router-link>
 			</div>
 		
-			<div class="col-12">
+			<div class="col-12 px-0">
 				<login />
 			</div>
 		
-			<div class="col-12">
+			<div class="col-12 px-0">
 				<votes />
 			</div>
 		</div>

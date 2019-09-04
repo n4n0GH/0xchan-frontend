@@ -72,5 +72,8 @@
 </script>
 
 <style>
-
+	a[href*="//"]:not([href*="localhost"]):after {
+		content: '\2197';
+    /* external link styles, use :before or :after if you want! */
+}
 </style>
