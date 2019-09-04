@@ -155,12 +155,12 @@
 			},
 			resetList(){
 				this.setBoardListReset()
-				location.reload()
+				this.$router.go()
 			},
 			clearState(){
 				if(confirm("Are you sure you want to reset the browser's local storage?")){
 					localStorage.clear()
-					location.reload()
+					this.$router.go()
 				}
 			},
 			saveTheme(){
@@ -168,11 +168,11 @@
 				if(this.themeSelect=='Custom'){
 					this.setCss(this.custom)
 				}
-				location.reload()
+				this.$router.go()
 			},
 			updateCustom(){
 				this.setCss(this.custom)
-				location.reload()
+				this.$router.go()
 			},
 			switcheroo(){
 				this.setBool('mutGrab')
@@ -183,7 +183,7 @@
 					else{
 						this.setTheme('YotsubaB')
 					}
-					location.reload()
+					this.$router.go()
 				}
 			}
 		},

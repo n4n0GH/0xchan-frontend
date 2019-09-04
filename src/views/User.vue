@@ -6,8 +6,8 @@
 					<div class="row">
 						<div class="col pl-4 py-1">
 							<p class="mb-0 font-chan-red">
-								<span class="post-subject font-weight-bold">
-									Account {{wallet}}
+								<span class="post-subject font-weight-bold text-mono">
+									web3.eth.getAccount({{wallet}})
 								</span>
 							</p>
 						</div>
@@ -16,8 +16,51 @@
 				<div class="card-body bg-chan-light">
 					<div class="row">
 						<div class="col">
-							<p class="display-4 text-center">Stake</p>
-							<p class="font-chan-normal">Staking ETH allows you to take part in the lively discussions on 0xchan and receive your share of the distributed rewards system.</p>
+							<p class="display-4 text-center">Account Overview</p>
+							<p class="font-chan-normal small text-center">Check your balance, manage your stake and retrieve your rewards.</p>
+						</div>
+					</div>
+					<div class="row">
+	
+						<div class="col-4">
+							<p class="lead text-center">
+								ZCH Balance
+							</p>
+							<p class="text-center text-mono">
+								1333.4156 <i class="fab fa-creative-commons-zero"></i>
+							</p>
+							<p class="text-center">
+								<button class="btn btn-outline-chan-red text-mono">Buy ZCH</button>
+							</p>
+						</div>
+						<div class="col-4">
+							<p class="lead text-center">
+								Stake Balance
+							</p>
+							<p class="text-center text-mono">
+								2 <i class="fab fa-ethereum"></i>
+							</p>
+							<p class="text-center">
+								<button class="btn btn-outline-chan-red text-mono">Manage</button>
+							</p>
+						</div>
+						<div class="col-4">
+							<p class="lead text-center">
+								Open Rewards
+							</p>
+							<p class="text-center text-mono">
+								1333.4156 <i class="fab fa-ethereum"></i>
+							</p>
+							<p class="text-center">
+								<button class="btn btn-outline-chan text-mono">Withdraw</button>
+							</p>
+						</div>
+					</div>
+					<hr>
+					<div class="row">
+						<div class="col">
+							<p class="display-4 text-center">Stake Overview</p>
+							<p class="font-chan-normal small text-center">Staking ETH allows you to take part in the lively discussions on 0xchan and receive your share of the distributed rewards system.</p>
 						</div>
 					</div>
 					<div class="row">
