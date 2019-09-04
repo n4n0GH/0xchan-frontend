@@ -27,15 +27,20 @@
 						<p class="small mb-0 text-mono text-overflow">
 							<input type="file" @change="fileSelect">
 						</p>
-						<img class="mw-100" :src="filePreview" v-if="filePreview" />
+						<img class="mw-100" style="max-height:200px;" :src="filePreview" v-if="filePreview" />
 					</div>
 					<div class="font-chan-normal">
-						<textarea name="postContent" rows="10" placeholder="&gt;implying you have anything worth posting" style="width:60%;"></textarea>
+						<textarea name="postContent" rows="9" placeholder="&gt;implying you have anything worth posting" style="width:60%;"></textarea>
 					</div>
 				</div>
 			</div>
 		</div>
 		<div class="card-footer bg-chan-light border-0 p-1">
+			<div class="row">
+				<div class="col">
+					<p class="small">Please make sure to <router-link :to="{name: 'help'}">read our guidelines on how to stay anonymous</router-link> if that is important to you.</p>
+				</div>
+			</div>
 			<div class="row">
 				<div class="col">
 					<button class="btn btn-outline-chan btn-block">Submit</button>

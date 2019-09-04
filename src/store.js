@@ -77,6 +77,12 @@ export default new Vuex.Store({
     },
     mutAnon: state => {
       state.forceAnon = !state.forceAnon
+    },
+    mutBoardList: (state, payload) => {
+      state.userBoards = payload
+    },
+    mutBoardListReset: state => {
+      state.userBoards.length = 0
     }
   },
   actions: {
@@ -91,6 +97,12 @@ export default new Vuex.Store({
     },
     setCss: (context, payload) => {
       context.commit('mutCss', payload)
+    },
+    setBoardListReset: context => {
+      context.commit('mutBoardListReset')
+    },
+    setBoardList: (context, payload) => {
+      context.commit('mutBoardList', payload)
     }
   }
 })

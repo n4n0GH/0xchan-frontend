@@ -41,6 +41,17 @@
 					</div>
 					<div class="row">
 						<div class="col">
+							<p class="mb-0 lead">Custom Board List</p>
+							<p class="small mb-0 font-chan-normal">Define your own set of boards you wish to see in the navigation. Shortcode seperated by comma.</p>
+							<p><input type="text" v-model.trim="boardList" placeholder="a, g, v, biz" class="pl-1 w-100"></p>
+						</div>
+						<div class="col-2">
+							<button class="btn btn-outline-chan-red p-0 w-100 px-1 text-mono" @click="saveList()">save()</button>
+							<button class="btn btn-outline-danger mt-2 p-0 w-100 px-1 text-mono" @click="resetList()">reset()</button>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col">
 							<p class="mb-0 lead">Clear States</p>
 							<p class="small font-chan-normal">Reset settings to factory default. Refreshes page to take effect. WARNING: DELETES YOUR CUSTOM STYLES!</p>
 						</div>
@@ -121,7 +132,9 @@
 		data(){
 			return{
 				themeSelect: '',
-				custom: ''
+				custom: '',
+				boardList: '',
+				testArray: []
 			}
 		},
 		components: {
@@ -131,8 +144,19 @@
 			...mapActions([
 				'setBool',
 				'setTheme',
-				'setCss'
+				'setCss',
+				'setBoardList',
+				'setBoardListReset'
 			]),
+			saveList(){
+				if(this.boardList){	
+					this.setBoardList(this.boardList.replace(/^,/, "").replace(/,\s*$/, "").split(',').map(s => s.trim()))
+				}
+			},
+			resetList(){
+				this.setBoardListReset()
+				location.reload()
+			},
 			clearState(){
 				if(confirm("Are you sure you want to reset the browser's local storage?")){
 					localStorage.clear()
@@ -169,10 +193,14 @@
 				'getAutoSwitch',
 				'getTheme',
 				'getCustomCss',
-				'getForceAnon'
+				'getForceAnon',
+				'getUserBoards'
 			])
 		},
 		mounted(){
+			if(this.getUserBoards){
+				this.boardList = this.getUserBoards
+			}
 			this.themeSelect = this.getTheme
 			this.custom = this.getCustomCss
 		}

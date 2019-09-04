@@ -37,7 +37,8 @@
 							<p class="font-chan-normal small">Find out more about Virtual Private Networks: <a href="https://en.wikipedia.org/wiki/Virtual_private_network" target="_blank">Wikipedia EN</a></p>
 
 							<p class="lead mb-0">Ethereum Mixer</p>
-							<p class="font-chan normal small">The goal of a so called Mixer is to hide which Ethereum address belongs to you. It usually works by providing a new address you want the Ether to be sent to, as well as actually sending Ether to the service. You'll receive new Ether from a pool to a new address and your old Ether is sent to the pool for other users. There are many mixers available (i.e. eth-mixer.com, tornado.cash) and we don't recommend specific mixing services. Although tornado.cash does get the benefit for incorporating <a href="https://blog.ethereum.org/2016/12/05/zksnarks-in-a-nutshell/" target="_blank">zkSnarks</a> into it's protocol and using smart contracts to trustlessly operate. Do your due diligence and research before using any kind of mixer.</p>
+							<p class="font-chan-normal small">The goal of a so called Mixer is to hide which Ethereum address belongs to you. It usually works by providing a new address you want the Ether to be sent to, as well as actually sending Ether to the service. You'll receive new Ether from a pool to a new address and your old Ether is sent to the pool for other users. There are many mixers available (i.e. eth-mixer.com, tornado.cash) and we don't recommend specific mixing services. Although tornado.cash does get the benefit for incorporating <a href="https://blog.ethereum.org/2016/12/05/zksnarks-in-a-nutshell/" target="_blank">zkSnarks</a> into it's protocol and using smart contracts to trustlessly operate. Do your due diligence and research before using any kind of mixer.</p>
+							<p class="font-chan-normal small">Please note: use a mixer to supply your unlinked wallet with gas for your Ethereum transactions as well!</p>
 
 						</div>
 					</div>

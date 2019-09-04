@@ -1,7 +1,10 @@
 <template>
 	<div class="container-fluid">
 		<div class="row">
-			<div class="col-12 text-center">
+			<div class="col-auto p-0" v-if="openNew">
+				<button style="line-height: 1rem;" class="mt-2 p-0 px-1 btn btn-outline-chan-red text-mono" @click="openNew = !openNew">&times;</button>
+			</div>
+			<div class="col text-center">
 				<new-template v-if="openNew"/> <!-- supply slots in case of reply instead of new thread -->
 				<button class="btn btn-outline-chan" v-if="!openNew && getLogin" @click="openNew = !openNew"><i class="far fa-plus"></i> {{!thread?'New Thread':'New Reply'}}</button>
 				<hr>
