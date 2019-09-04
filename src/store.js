@@ -16,7 +16,8 @@ export default new Vuex.Store({
     theme: 'YotsubaB',
     disclaimer: true,
     customCSS: '',
-    forceAnon: false
+    forceAnon: false,
+    userBoards: []
   },
   getters: {
     getLogin: state => {
@@ -42,6 +43,9 @@ export default new Vuex.Store({
     },
     getForceAnon: state => {
       return state.forceAnon
+    },
+    getUserBoards: state => {
+      return state.userBoards
     }
   },
   mutations: {

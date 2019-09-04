@@ -6,6 +6,12 @@
 		<span v-else>
 			[<router-link :to="{name: 'settings'}">settings</router-link>]
 		</span>
+		<span v-if="path=='/help'">
+			[<a href="javascript:history.back();">return</a>]
+		</span>
+		<span v-else>
+			[<router-link :to="{name: 'help'}">help</router-link>]
+		</span>
 	</div>
 </template>
 

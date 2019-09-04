@@ -1,7 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import Index from './views/Index.vue'
-import Settings from './views/Settings.vue'
 
 Vue.use(Router)
 
@@ -39,7 +38,12 @@ export default new Router({
 		{
 			path: '/settings',
 			name: 'settings',
-			component: Settings
+			component: () => import (/* webpackChunkName: "help" */ './views/Settings.vue')
+		},
+		{
+			path: '/help',
+			name: 'help',
+			component: () => import (/* webpackChunkName: "help" */ './views/Help.vue')
 		},
 		{
 			path: '/account',
