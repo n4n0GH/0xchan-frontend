@@ -64,7 +64,7 @@ body {
 	animation: rainbow 2s infinite;
 }
 .font-warning {
-	animation: blinkenlights 2s infinite;
+	animation: blinkenlights 1s infinite;
 }
 .font-swerve {
 	animation: swerve 5s infinite;

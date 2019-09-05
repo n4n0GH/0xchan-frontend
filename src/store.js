@@ -94,6 +94,12 @@ export default new Vuex.Store({
     },
     mutAlert: state => {
       state.showAlert = !state.showAlert
+    },
+    mutReports: (state, payload) => {
+      state.reports.push(payload)
+    },
+    mutReportsRemove: (state, payload) => {
+      state.reports.splice(state.reports.indexOf(payload), 1)
     }
   },
   actions: {
@@ -114,6 +120,12 @@ export default new Vuex.Store({
     },
     setBoardList: (context, payload) => {
       context.commit('mutBoardList', payload)
+    },
+    setReports: (context, payload) => {
+      context.commit('mutReports', payload)
+    },
+    setReportsRemove: (context, payload) => {
+      context.commit('mutReportsRemove', payload)
     }
   }
 })

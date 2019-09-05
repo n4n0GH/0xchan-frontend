@@ -35,36 +35,7 @@
 							view thread</router-link>
 							]</p>
 						</div>
-						<post v-for="reply in post.replies.slice(-5)" :key="reply.id" class="reply-container ml-5 col-auto" :id="'p'+reply.id" :fileLink="reply.file.src">
-							<template #postSubject>
-								{{reply.subject}}
-							</template>
-							<template #postName>
-								{{getForceAnon?'Anonymous':reply.name}}
-							</template>
-							<template #postStamp>
-								{{reply.timestamp}}
-							</template>
-							<template #postNumber>
-								No. {{reply.id}}
-							</template>
-							<template #fileMeta v-if="reply.file.originalName != ''">
-								{{reply.file.originalName}}
-							</template>
-							<template #fileLookup>
-								[<a :href="'https://www.google.com/searchbyimage?image_url='+post.file.src" target="_blank">Google</a>] [<a :href="'https://iqdb.org/?url='+post.file.src" target="_blank">IQDB</a>] [<a :href="'https://saucenao.com/search.php?url='+post.file.src" target="_blank">Sauce</a>]
-							</template>
-							<template #fileThumb v-if="reply.file.src != 'undefined'">
-								<a :href="reply.file.src" v-lazy-container="{selector: 'img'}">
-									<img :data-src="reply.file.src" :data-loading="loading" style="max-width:100%; max-height:128px; object-fit: cover;" alt="">
-								</a>
-							</template>
-							<template #postText>
-								<blockquote class="mb-0" v-html="reply.text">
-									{{reply.text}}
-								</blockquote>
-							</template>
-						</post>
+						<post v-for="reply in post.replies.slice(-5)" :key="reply.id" class="reply-container ml-5 col-auto" :id="'p'+reply.id" :post="reply" />
 					</div>
 					<div class="col" v-if="getHidden.includes(board+post.thread)">
 						<p class="chan-disabled text-mono small font-chan-red pt-2">Thread #{{post.thread}} hidden</p>
@@ -92,7 +63,6 @@
 
 <script>
 	//import Axios from 'axios'
-	import Loading from '../../assets/loading.gif'
 	import Threads from './threads.json' //disable for axios testing
 	import Boards from '../navbar/boards.json'
 	import Post from './Post.vue'
@@ -155,9 +125,6 @@
 			},
 			tag() {
 				return Boards.filter(a => a.ticker == this.board)
-			},
-			loading() {
-				return Loading
 			},
 			pages() {
 				return this.posts.length/5
