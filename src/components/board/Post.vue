@@ -15,7 +15,7 @@
 								{{getForceAnon?'Anonymous':post.name}}
 							</span>
 							- {{post.timestamp}}
-							| {{post.id?post.id:post.thread}}
+							| No. {{post.id?post.id:post.thread}}
 						</p>
 					</div>
 					<div class="col-auto mr-2">
