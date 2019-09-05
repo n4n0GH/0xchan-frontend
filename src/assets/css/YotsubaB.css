@@ -4,7 +4,7 @@ body {
 
 /* general color stuff */
 .bg-chan {
-	background-color: #8d9db5;
+	background-color: #8d9db5!important;
 }
 .bg-chan-regular {
 	background-color: #c9dcf7;

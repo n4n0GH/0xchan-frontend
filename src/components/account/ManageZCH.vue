@@ -13,9 +13,9 @@
 					Buy ZCH
 				</p>
 				<div class="input-group text-center mb-0">
-					<input type="number" placeholder="1" class="form-control text-center" v-model="purchaseAmount"/>
+					<input type="number" placeholder="1" class="form-control text-center border-chan-red" v-model="purchaseAmount"/>
 					<div class="input-group-append">
-						<span class="input-group-text">
+						<span class="input-group-text bg-chan text-chan border-chan-red">
 							<i class="fab fa-creative-commons-zero"></i>
 						</span>
 					</div>
@@ -32,9 +32,9 @@
 					Convert Rewards
 				</p>
 				<div class="input-group text-center mb-0">
-					<input value="1333.4156" class="form-control text-center" disabled />
+					<input value="1333.4156" class="form-control text-center bg-chan text-chan border-chan-red" disabled />
 					<div class="input-group-append">
-						<span class="input-group-text">
+						<span class="input-group-text bg-chan text-chan border-chan-red">
 							<i class="fab fa-ethereum"></i>
 						</span>
 					</div>
@@ -51,9 +51,9 @@
 					Swap ZCI
 				</p>
 				<div class="input-group text-center mb-0">
-					<input value="1333.4156" class="form-control text-center" disabled />
+					<input value="1333.4156" class="form-control text-center bg-chan text-chan border-chan-red" disabled />
 					<div class="input-group-append">
-						<span class="input-group-text">
+						<span class="input-group-text bg-chan text-chan border-chan-red">
 							ZCI
 						</span>
 					</div>
