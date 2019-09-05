@@ -141,7 +141,6 @@
 					reason: reason
 				}
 				this.setReports(reportObj)
-				alert("Filing this report - ID: "+id+", Subject: "+subject+", Name: "+name+", File: "+fileName+", Board: /"+board+"/, Reason: "+reason)
 			}
 		}
 	}

@@ -25,13 +25,13 @@
 								</div>
 								<button class="mt-2 btn btn-block btn-outline-warning" @click="setBool('mutAlert')"><i class="fal fa-eye-slash"></i> Understood</button>
 							</div>
-							<p class="font-chan-normal lead text-center">{{openVotes?'There are open disputes':'Community is balanced'}}.</p>
-							<div class="w-100 text-center" v-if="!openVotes">
+							<p class="font-chan-normal lead text-center">{{disputeCheck?'There are open disputes':'Community is balanced'}}.</p>
+							<div class="w-100 text-center" v-if="!disputeCheck">
 								<img src="../assets/peace.png" class="mx-auto" />
 							</div>
 						</div>
 					</div>
-					<open-votes v-if="openVotes" />
+					<open-votes v-if="disputeCheck" />
 					<single-dispute v-if="openDispute" :report="dispute" />
 				</div>
 			</div>
@@ -48,7 +48,6 @@
 	export default {
 		data(){
 			return{
-				openVotes: false,
 				dispute: '',
 				openDispute: false
 			}
@@ -57,7 +56,10 @@
 			...mapGetters([
 				'getShowAlert',
 				'getReports'
-			])
+			]),
+			disputeCheck(){
+				return this.getReports.length
+			}
 		},
 		methods: {
 			...mapActions([
@@ -76,9 +78,6 @@
 			eBus.$on('closeDispute', () => {
 				this.openDispute = false
 			})
-			if(this.getReports.length){
-				this.openVotes = true
-			}
 		}
 	}
 </script>
