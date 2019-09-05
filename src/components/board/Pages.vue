@@ -5,7 +5,7 @@
 				<button style="line-height: 1rem;" class="mt-2 p-0 px-1 btn btn-outline-chan-red text-mono" @click="openNew = !openNew">&times;</button>
 			</div>
 			<div class="col text-center">
-				<new-template v-if="openNew"/> <!-- supply slots in case of reply instead of new thread -->
+				<new-template v-if="openNew" /> <!-- supply slots in case of reply instead of new thread -->
 				<button class="btn btn-outline-chan" v-if="!openNew && getLogin" @click="openNew = !openNew"><i class="far fa-plus"></i> {{!thread?'New Thread':'New Reply'}}</button>
 				<hr>
 				<div class="row text-mono text-left">
@@ -18,7 +18,7 @@
 		<div class="row">
 
 			<p v-if="posts==''" class="text-center text-chan w-100 text-mono">no posts yet, do something about it!</p>
-			<div class="col-12 thread-preview" v-for="(post, index) in posts.slice((5*(page-1)),(5*(page-1))+5)" :key="'thread-'+index" :style="getHidden.includes(board+post.thread)?'height:2.2rem;':''" :id="'p'+post.thread">
+			<div class="col-12 thread-preview" v-for="(post, index) in posts.slice((5*(page-1)),(5*(page-1))+5)" :key="'post.thread-'+index" :style="getHidden.includes(board+post.thread)?'height:2.2rem;':''" :id="'p'+post.thread">
 				<div class="row">
 					<div class="col-auto p-0">
 						<button style="line-height: 1rem;" class="mt-2 p-0 px-1 btn btn-outline-chan-red text-mono" @click="setHidden(board+post.thread)">{{getHidden.includes(board+post.thread)?'+':'-'}}</button>

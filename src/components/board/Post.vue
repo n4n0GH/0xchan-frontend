@@ -20,8 +20,17 @@
 					</div>
 					<div class="col-auto mr-2">
 						<p class="mb-0 font-chan-red">
-							<button style="line-height: 1rem;" class="mt-1 p-0 px-1 btn btn-outline-chan-red text-mono" @click="report(post)">R</button>
+							<button style="line-height: 1rem;" class="mt-1 p-0 px-1 btn btn-outline-chan-red text-mono" @click="openReport = !openReport">R</button>
 						</p>
+					</div>
+					<div class="col-12" v-if="openReport">
+						<div class="input-group">
+							<input type="text" class="form-control" placeholder="State your complaint" v-model="reportReason">
+							<div class="input-group-append">
+								<button class="btn btn-outline-danger" @click="report(post)">File Report</button>
+							</div>
+							
+						</div>
 					</div>
 				</div>
 			</div>
@@ -80,7 +89,9 @@
 		data(){
 			return{
 				doResearch: false,
-				hasReplies: ''
+				openReport: false,
+				hasReplies: '',
+				reportReason: ''
 			}
 		},
 		props: {
@@ -94,6 +105,7 @@
 			},
 			...mapGetters([
 				'getGrab',
+				'getReports',
 				'getForceAnon'
 			])
 		},
@@ -127,7 +139,7 @@
 				}
 				let post = n.text
 				let board = this.$route.params.ticker
-				let reason = "what a faggot holy shit"
+				let reason = this.reportReason
 				let reportObj = {
 					board: board,
 					id: id,
@@ -140,6 +152,7 @@
 					post: post,
 					reason: reason
 				}
+				this.openReport = false
 				this.setReports(reportObj)
 			}
 		}
