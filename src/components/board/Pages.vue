@@ -24,7 +24,7 @@
 						<button style="line-height: 1rem;" class="mt-2 p-0 px-1 btn btn-outline-chan-red text-mono" @click="setHidden(board+post.thread)">{{getHidden.includes(board+post.thread)?'+':'-'}}</button>
 					</div>
 					<div class="col" v-if="!getHidden.includes(board+post.thread)" :id="'thread-'+post.thread">
-						<post class="op-container col-12 pl-0" :id="'p'+post.thread" :fileLink="post.file.src">
+						<post class="op-container col-12 pl-0" :id="'p'+post.thread" :fileLink="post.file.src" :post="post">
 							<template #postSubject>
 								{{post.subject}}
 							</template>

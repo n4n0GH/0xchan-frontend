@@ -18,7 +18,8 @@ export default new Vuex.Store({
     customCSS: '',
     forceAnon: false,
     userBoards: [],
-    showAlert: true
+    showAlert: true,
+    reports: []                                 // demo only!
   },
   getters: {
     getLogin: state => {
@@ -50,6 +51,9 @@ export default new Vuex.Store({
     },
     getShowAlert: state => {
       return state.showAlert
+    },
+    getReports: state => {
+      return state.reports
     }
   },
   mutations: {

@@ -42,6 +42,7 @@
 						<div class="font-chan-normal">
 							<slot name="postText" />
 						</div>
+						{{post.thread}}
 					</div>
 				</div>
 				<div class="row mt-2" v-if="picRelated && !getGrab">
@@ -69,18 +70,20 @@
 </template>
 
 <script>
-	import {mapGetters} from 'vuex'
+	import {mapGetters, mapActions} from 'vuex'
 
 	export default {
 		data(){
 			return{
-				doResearch: false,
-				singleLoad: false
+				doResearch: false
 			}
 		},
 		props: {
 			fileLink: {
 				type: String,
+				default: ''
+			},
+			post: {
 				default: ''
 			}
 		},

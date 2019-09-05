@@ -6,13 +6,13 @@
 					<div class="col pl-4 py-1">
 						<p class="mb-0 font-chan-red">
 							<span class="post-subject font-weight-bold">
-								you're waifu is shit
+								<slot name="subject" />
 							</span>
 							<span class="post-name font-chan-ok">
-								Ken-sama
+								<slot name="name" />
 							</span>
-							- 01/11/13(Fri)01:02:03
-							| No. 123415
+							- <slot name="date" />
+							| No. <slot name="id" />
 						</p>
 					</div>
 				</div>
@@ -21,11 +21,7 @@
 				<div class="row">
 					<div class="col font-chan-normal">
 						<blockquote>
-							<a class="quotelink" href="javascript:void(0);">&gt;&gt;123414</a>
-							<br>
-							<span class="quote">&gt;implying your waifu is any good</span>
-							<br>
-							here's a protip you massive raging faggot you're waifu is shit and you should feel bad for even thinking about talking about her like she's a queen or something like you fucking bitch would be lucky enough if the qt3.14 at the burgerking register looks you in the eye you fucking incel holy shit go back into your hiki-cave and stay go
+							<slot name="post" />
 						</blockquote>
 					</div>
 				</div>
@@ -49,7 +45,7 @@
 </template>
 
 <script>
-	import {eBus} from '../EventBus.js'
+	/*import {eBus} from '../EventBus.js'*/
 
 	export default {
 		data(){

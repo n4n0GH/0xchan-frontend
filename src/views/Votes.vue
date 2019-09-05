@@ -6,7 +6,7 @@
 					<div class="row">
 						<div class="col pl-4 py-1">
 							<p class="mb-0 font-chan-red font-weight-bold">
-								Open Disputes
+								Dispute Management
 							</p>
 						</div>
 					</div>
@@ -14,7 +14,7 @@
 				<div class="card-body bg-chan-light">
 					<div class="row">
 						<div class="col">
-							<p class="font-chan-normal lead text-center">{{openVotes?'Community is in discord':'Community is balanced'}}.</p>
+							<p class="font-chan-normal lead text-center">{{openVotes?'There are open disputes':'Community is balanced'}}.</p>
 
 							<div class="alert alert-warning" v-if="getShowAlert">
 								<div class="row">
@@ -32,8 +32,26 @@
 							</div>
 						</div>
 					</div>
-					<open-votes v-if="openVotes" />
-					<single-dispute v-if="openDispute" />
+					<open-votes v-if="openVotes">
+						
+					</open-votes>
+					<single-dispute v-if="openDispute">
+						<template #subject>
+							you suck balls
+						</template>
+						<template #name>
+							Ken-sama
+						</template>
+						<template #date>
+							time what is time
+						</template>
+						<template #id>
+							1251352
+						</template>
+						<template #post>
+							u r an fagit lol
+						</template>
+					</single-dispute>
 				</div>
 			</div>
 		</div>
@@ -49,14 +67,15 @@
 	export default {
 		data(){
 			return{
-				openVotes: true,
+				openVotes: false,
 				disputeId: '',
 				openDispute: false
 			}
 		},
 		computed: {
 			...mapGetters([
-				'getShowAlert'
+				'getShowAlert',
+				'getReports'
 			])
 		},
 		methods: {
@@ -73,6 +92,9 @@
 				this.disputeId = id
 				this.openDispute = true
 			})
+			if(this.getReports.length){
+				this.openVotes = true
+			}
 		}
 	}
 </script>
