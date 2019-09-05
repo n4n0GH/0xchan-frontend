@@ -5,7 +5,7 @@
 				<button style="line-height: 1rem;" class="mt-2 p-0 px-1 btn btn-outline-chan-red text-mono" @click="openNew = !openNew">&times;</button>
 			</div>
 			<div class="col text-center">
-				<new-template v-if="openNew"/> <!-- supply slots in case of reply instead of new thread -->
+				<new-template v-if="openNew" /> <!-- supply slots in case of reply instead of new thread -->
 				<button class="btn btn-outline-chan" v-if="!openNew && getLogin" @click="openNew = !openNew"><i class="far fa-plus"></i> {{!thread?'New Thread':'New Reply'}}</button>
 				<hr>
 				<div class="row text-mono text-left">
@@ -18,47 +18,13 @@
 		<div class="row">
 
 			<p v-if="posts==''" class="text-center text-chan w-100 text-mono">no posts yet, do something about it!</p>
-			<div class="col-12 thread-preview" v-for="(post, index) in posts.slice((5*(page-1)),(5*(page-1))+5)" :key="'thread-'+index" :style="getHidden.includes(board+post.thread)?'height:2.2rem;':''" :id="'p'+post.thread">
+			<div class="col-12 thread-preview" v-for="(post, index) in posts.slice((5*(page-1)),(5*(page-1))+5)" :key="'post.thread-'+index" :style="getHidden.includes(board+post.thread)?'height:2.2rem;':''" :id="'p'+post.thread">
 				<div class="row">
 					<div class="col-auto p-0">
 						<button style="line-height: 1rem;" class="mt-2 p-0 px-1 btn btn-outline-chan-red text-mono" @click="setHidden(board+post.thread)">{{getHidden.includes(board+post.thread)?'+':'-'}}</button>
 					</div>
 					<div class="col" v-if="!getHidden.includes(board+post.thread)" :id="'thread-'+post.thread">
-						<post class="op-container col-12 pl-0" :id="'p'+post.thread" :fileLink="post.file.src" :post="post">
-							<template #postSubject>
-								{{post.subject}}
-							</template>
-							<template #postName>
-								{{getForceAnon?'Anonymous':post.name}}
-							</template>
-							<template #postStamp>
-								{{post.timestamp}}
-							</template>
-							<template #postNumber>
-								No. {{post.thread}}
-							</template>
-							<template #openThread>
-								<router-link tag="button" :to="{name: 'thread', params: {'number': post.thread}}" style="line-height: 1rem;" class="mt-n1 mr-2 p-0 px-1 btn btn-outline-chan-red text-mono">
-								V
-								</router-link>
-							</template>
-							<template #fileMeta>
-								{{post.file.originalName}}
-							</template>
-							<template #fileLookup>
-								[<a :href="'https://www.google.com/searchbyimage?image_url='+post.file.src" target="_blank">Google</a>] [<a :href="'https://iqdb.org/?url='+post.file.src" target="_blank">IQDB</a>] [<a :href="'https://saucenao.com/search.php?url='+post.file.src" target="_blank">Sauce</a>]
-							</template>
-							<template #fileThumb>
-								<a :href="post.file.src" v-lazy-container="{selector: 'img'}">
-									<img :data-src="post.file.src" :data-loading="loading" style="max-width:100%; max-height:256px; object-fit: cover;" alt="">
-								</a>
-							</template>
-							<template #postText>
-								<blockquote class="mb-0" v-html="post.text">
-									{{post.text}}
-								</blockquote>
-							</template>
-						</post>
+						<post class="op-container col-12 pl-0" :id="'p'+post.thread" :post="post" />
 						<div class="row">
 							<p class="text-mono small mb-1 ml-4" v-if="post.replies.length - 5 > 0">&gt;&gt; {{post.replies.length-5+' posts'}} <span v-if="omittedImages(post)>0">and {{omittedImages(post)}} {{omittedImages(post)&gt;1?'images':'image'}}</span> omitted [
 							<router-link :to="{name: 'thread', params: {'number': post.thread}}">
@@ -69,36 +35,7 @@
 							view thread</router-link>
 							]</p>
 						</div>
-						<post v-for="reply in post.replies.slice(-5)" :key="reply.id" class="reply-container ml-5 col-auto" :id="'p'+reply.id" :fileLink="reply.file.src">
-							<template #postSubject>
-								{{reply.subject}}
-							</template>
-							<template #postName>
-								{{getForceAnon?'Anonymous':reply.name}}
-							</template>
-							<template #postStamp>
-								{{reply.timestamp}}
-							</template>
-							<template #postNumber>
-								No. {{reply.id}}
-							</template>
-							<template #fileMeta v-if="reply.file.originalName != ''">
-								{{reply.file.originalName}}
-							</template>
-							<template #fileLookup>
-								[<a :href="'https://www.google.com/searchbyimage?image_url='+post.file.src" target="_blank">Google</a>] [<a :href="'https://iqdb.org/?url='+post.file.src" target="_blank">IQDB</a>] [<a :href="'https://saucenao.com/search.php?url='+post.file.src" target="_blank">Sauce</a>]
-							</template>
-							<template #fileThumb v-if="reply.file.src != 'undefined'">
-								<a :href="reply.file.src" v-lazy-container="{selector: 'img'}">
-									<img :data-src="reply.file.src" :data-loading="loading" style="max-width:100%; max-height:128px; object-fit: cover;" alt="">
-								</a>
-							</template>
-							<template #postText>
-								<blockquote class="mb-0" v-html="reply.text">
-									{{reply.text}}
-								</blockquote>
-							</template>
-						</post>
+						<post v-for="reply in post.replies.slice(-5)" :key="reply.id" class="reply-container ml-5 col-auto" :id="'p'+reply.id" :post="reply" />
 					</div>
 					<div class="col" v-if="getHidden.includes(board+post.thread)">
 						<p class="chan-disabled text-mono small font-chan-red pt-2">Thread #{{post.thread}} hidden</p>
@@ -126,7 +63,6 @@
 
 <script>
 	//import Axios from 'axios'
-	import Loading from '../../assets/loading.gif'
 	import Threads from './threads.json' //disable for axios testing
 	import Boards from '../navbar/boards.json'
 	import Post from './Post.vue'
@@ -189,9 +125,6 @@
 			},
 			tag() {
 				return Boards.filter(a => a.ticker == this.board)
-			},
-			loading() {
-				return Loading
 			},
 			pages() {
 				return this.posts.length/5

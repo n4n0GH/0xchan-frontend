@@ -6,22 +6,30 @@
 					<div class="col pl-4 py-1">
 						<p class="mb-0 font-chan-red">
 							<span class="post-subject font-weight-bold">
-								<slot name="subject" />
+								{{report.subject}}
 							</span>
 							<span class="post-name font-chan-ok">
-								<slot name="name" />
+								{{report.name}}
 							</span>
 							- <slot name="date" />
-							| No. <slot name="id" />
+							| No. {{report.id}}
 						</p>
 					</div>
 				</div>
 			</div>
 			<div class="card-body bg-chan-light p-1">
 				<div class="row">
+					<div class="float-left ml-3 mr-3 w-auto" style="max-width:30%;" v-if="!!report.file.name">
+							<p class="small mb-0 text-mono text-overflow">
+								File:&nbsp;{{report.file.name}}
+							</p>
+							<a :href="report.file.src" v-lazy-container="{selector: 'img'}">
+								<img :data-src="report.file.src" :data-loading="loading" style="max-width:100%; max-height:256px; object-fit: cover;" alt="">
+							</a>
+						</div>
 					<div class="col font-chan-normal">
-						<blockquote>
-							<slot name="post" />
+						<blockquote v-html="report.post">
+							
 						</blockquote>
 					</div>
 				</div>
@@ -30,13 +38,16 @@
 			<div class="card-footer bg-chan-light border-0 p-1">
 				<div class="row">
 					<div class="col-12">
-						<p class="text-center lead mb-2">Is the report justified?</p>
+						<p class="font-chan-normal small mb-0">Complaint: {{report.reason}}</p>
+					</div>
+					<div class="col-12">
+						<p class="text-center font-chan-normal lead mb-2">Is the report justified?</p>
 					</div>
 					<div class="col ml-1 mr-0 pr-1">
-						<button class="btn btn-block btn-outline-chan text-center text-mono"><i class="fal fa-vote-yea"></i> Yea</button>
+						<button class="btn btn-block btn-outline-chan text-center text-mono" @click="punish(report)"><i class="fal fa-vote-yea"></i> Yea</button>
 					</div>
 					<div class="col mr-1 ml-0 pl-1">
-						<button class="btn btn-block btn-outline-danger text-center text-mono"><i class="fal fa-vote-nay"></i> Nay</button>
+						<button class="btn btn-block btn-outline-danger text-center text-mono" @click="britney(report)"><i class="fal fa-vote-nay"></i> Nay</button>
 					</div>
 				</div>
 			</div>
@@ -45,15 +56,38 @@
 </template>
 
 <script>
-	/*import {eBus} from '../EventBus.js'*/
+	import {eBus} from '../EventBus.js'
+	import Loading from '../../assets/loading.gif'
+	import {mapGetters, mapActions} from 'vuex'
 
 	export default {
-		data(){
-			return{
-				disputeId: ''
+		methods: {
+			...mapActions([
+				'setReportsRemove'
+			]),
+			punish(n){
+				this.setReportsRemove(n)
+				alert("OP will be punished")
+				eBus.$emit('closeDispute')
+			},
+			britney(n){
+				this.setReportsRemove(n)
+				alert("Leaving Britney alone...")
+				eBus.$emit('closeDispute')
 			}
 		},
-		components: {
+		computed: {
+			...mapGetters([
+				'getReports'
+			]),
+			loading(){
+				return Loading
+			}
+		},
+		props: {
+			report: {
+				default: ''
+			}
 		}
 	}
 </script>

@@ -14,8 +14,6 @@
 				<div class="card-body bg-chan-light">
 					<div class="row">
 						<div class="col">
-							<p class="font-chan-normal lead text-center">{{openVotes?'There are open disputes':'Community is balanced'}}.</p>
-
 							<div class="alert alert-warning" v-if="getShowAlert">
 								<div class="row">
 									<div class="col-auto display-4">
@@ -27,31 +25,14 @@
 								</div>
 								<button class="mt-2 btn btn-block btn-outline-warning" @click="setBool('mutAlert')"><i class="fal fa-eye-slash"></i> Understood</button>
 							</div>
-							<div class="w-100 text-center">
-								<img src="../assets/peace.png" class="mx-auto" v-if="!openVotes"/>
+							<p class="font-chan-normal lead text-center">{{disputeCheck?'There are open disputes':'Community is balanced'}}.</p>
+							<div class="w-100 text-center" v-if="!disputeCheck">
+								<img src="../assets/peace.png" class="mx-auto" />
 							</div>
 						</div>
 					</div>
-					<open-votes v-if="openVotes">
-						
-					</open-votes>
-					<single-dispute v-if="openDispute">
-						<template #subject>
-							you suck balls
-						</template>
-						<template #name>
-							Ken-sama
-						</template>
-						<template #date>
-							time what is time
-						</template>
-						<template #id>
-							1251352
-						</template>
-						<template #post>
-							u r an fagit lol
-						</template>
-					</single-dispute>
+					<open-votes v-if="disputeCheck" />
+					<single-dispute v-if="openDispute" :report="dispute" />
 				</div>
 			</div>
 		</div>
@@ -67,8 +48,7 @@
 	export default {
 		data(){
 			return{
-				openVotes: false,
-				disputeId: '',
+				dispute: '',
 				openDispute: false
 			}
 		},
@@ -76,7 +56,10 @@
 			...mapGetters([
 				'getShowAlert',
 				'getReports'
-			])
+			]),
+			disputeCheck(){
+				return this.getReports.length
+			}
 		},
 		methods: {
 			...mapActions([
@@ -88,13 +71,13 @@
 			SingleDispute
 		},
 		mounted(){
-			eBus.$on('openDispute', id => {
-				this.disputeId = id
+			eBus.$on('openDispute', r => {
+				this.dispute = r
 				this.openDispute = true
 			})
-			if(this.getReports.length){
-				this.openVotes = true
-			}
+			eBus.$on('closeDispute', () => {
+				this.openDispute = false
+			})
 		}
 	}
 </script>

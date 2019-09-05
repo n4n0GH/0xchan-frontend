@@ -1,11 +1,11 @@
 <template>
 	<div class="row">
 		<ul class="list-group w-100">
-			<li class="bg-chan list-group-item text-truncate border-0" v-for="vote in getReports" :key="vote.id">
-				<button class="btn btn-outline-chan-red small py-0 mr-2" @click="openDispute(vote.id)"><i class="fal fa-eye"></i></button>
-				<span class="mr-2">#<slot name="id" /></span>
-				<span class="mr-2"><slot name="board" /></span>
-				<span><slot name="reason" /></span>
+			<li class="bg-chan list-group-item text-truncate border-0" :class="{'bg-chan-light': index % 2 !== 0}" v-for="(report, index) in getReports" :key="report.id">
+				<button class="btn btn-outline-chan-red small py-0 mr-2" @click="openDispute(report)"><i class="fal fa-eye"></i></button>
+				<span class="mr-2">No. {{report.id}}</span>
+				<span class="mr-2">/{{report.board}}/</span>
+				<span>{{report.reason}}</span>
 			</li>
 		</ul>
 	</div>
@@ -17,8 +17,8 @@
 	
 	export default {
 		methods: {
-			openDispute(id){
-				eBus.$emit('openDispute', id)
+			openDispute(r){
+				eBus.$emit('openDispute', r)
 			}
 		},
 		computed: {
