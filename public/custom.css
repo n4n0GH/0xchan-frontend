@@ -34,6 +34,11 @@ body {
 
 }
 
+/* formy things */
+.form-control, .input-group-text {
+	border-radius: 2px;
+}
+
 /* flashy animations */
 .fade-enter {
 	opacity: 0;

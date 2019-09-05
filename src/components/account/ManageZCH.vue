@@ -12,16 +12,14 @@
 				<p class="lead text-center">
 					Buy ZCH
 				</p>
-				<p class="text-center mb-0">
-					<div class="input-group">
-						<input type="number" placeholder="1" class="form-control text-center" v-model="purchaseAmount"/>
-						<div class="input-group-append">
-							<span class="input-group-text">
-								<i class="fab fa-creative-commons-zero"></i>
-							</span>
-						</div>
+				<div class="input-group text-center mb-0">
+					<input type="number" placeholder="1" class="form-control text-center" v-model="purchaseAmount"/>
+					<div class="input-group-append">
+						<span class="input-group-text">
+							<i class="fab fa-creative-commons-zero"></i>
+						</span>
 					</div>
-				</p>
+				</div>
 				<p class="text-center small text-mono">
 					= {{totalCost}} <i class="fab fa-ethereum"></i>
 				</p>
@@ -33,16 +31,14 @@
 				<p class="lead text-center">
 					Convert Rewards
 				</p>
-				<p class="text-center mb-0">
-					<div class="input-group">
-						<input value="1333.4156" class="form-control text-center" disabled />
-						<div class="input-group-append">
-							<span class="input-group-text">
-								<i class="fab fa-ethereum"></i>
-							</span>
-						</div>
+				<div class="input-group text-center mb-0">
+					<input value="1333.4156" class="form-control text-center" disabled />
+					<div class="input-group-append">
+						<span class="input-group-text">
+							<i class="fab fa-ethereum"></i>
+						</span>
 					</div>
-				</p>
+				</div>
 				<p class="text-center small text-mono">
 					= 13.334.156‬ <i class="fab fa-creative-commons-zero"></i>
 				</p>
@@ -54,16 +50,14 @@
 				<p class="lead text-center">
 					Swap ZCI
 				</p>
-				<p class="text-center mb-0">
-					<div class="input-group">
-						<input value="1333.4156" class="form-control text-center" disabled />
-						<div class="input-group-append">
-							<span class="input-group-text">
-								ZCI
-							</span>
-						</div>
+				<div class="input-group text-center mb-0">
+					<input value="1333.4156" class="form-control text-center" disabled />
+					<div class="input-group-append">
+						<span class="input-group-text">
+							ZCI
+						</span>
 					</div>
-				</p>
+				</div>
 				<p class="text-center small text-mono">
 					= 1,333.4156‬ <i class="fab fa-creative-commons-zero"></i>
 				</p>
