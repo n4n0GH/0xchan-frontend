@@ -5,7 +5,7 @@
 				<h4 class="font-chan-red font-roboto">Newest Posts</h4>
 			</div>
 		</div>
-		<div class="row pb-2" v-for="(post, index) in sortedItems()" :key="index+1" :class="{'bg-chan': index % 2 !== 0}">
+		<div class="row pb-2" v-for="(post, index) in sortedItems()" :key="index+1" :class="{'bg-chan-light': index % 2 !== 0}">
 			<router-link tag="div" class="col-8" :to="{path: '/board/'+post.board+'/thread/'+post.thread}"><a>{{post.content}}</a></router-link>
 			
 			<router-link tag="div" class="col text-center" :to="{path: '/board/'+post.board}"><a>/{{post.board}}/</a></router-link>

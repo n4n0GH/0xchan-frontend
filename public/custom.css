@@ -35,8 +35,18 @@ body {
 }
 
 /* formy things */
-.form-control, .input-group-text {
+.form-control, .input-group-text, .alert {
 	border-radius: 2px;
+}
+
+/* listy things */
+.list-group-item:first-child {
+	border-top-left-radius: 2px;
+	border-top-right-radius: 2px;
+}
+.list-group-item:last-child {
+	border-bottom-left-radius: 2px;
+	border-bottom-right-radius: 2px;
 }
 
 /* flashy animations */
@@ -51,14 +61,21 @@ body {
 	opacity: 0;
 }
 .font-error {
-	color: #800;
 	animation: rainbow 2s infinite;
+}
+.font-warning {
+	animation: blinkenlights 2s infinite;
 }
 .font-swerve {
 	animation: swerve 5s infinite;
 }
 
 /* keyframes */
+@keyframes blinkenlights {
+	50%{
+		color: #dc3545;
+	}
+}
 @keyframes rainbow {
 	0%{
 		color: red;

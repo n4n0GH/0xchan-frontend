@@ -17,7 +17,8 @@ export default new Vuex.Store({
     disclaimer: true,
     customCSS: '',
     forceAnon: false,
-    userBoards: []
+    userBoards: [],
+    showAlert: true
   },
   getters: {
     getLogin: state => {
@@ -46,6 +47,9 @@ export default new Vuex.Store({
     },
     getUserBoards: state => {
       return state.userBoards
+    },
+    getShowAlert: state => {
+      return state.showAlert
     }
   },
   mutations: {
@@ -83,6 +87,9 @@ export default new Vuex.Store({
     },
     mutBoardListReset: state => {
       state.userBoards.length = 0
+    },
+    mutAlert: state => {
+      state.showAlert = !state.showAlert
     }
   },
   actions: {
