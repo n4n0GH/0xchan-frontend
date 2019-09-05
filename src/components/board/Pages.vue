@@ -24,41 +24,7 @@
 						<button style="line-height: 1rem;" class="mt-2 p-0 px-1 btn btn-outline-chan-red text-mono" @click="setHidden(board+post.thread)">{{getHidden.includes(board+post.thread)?'+':'-'}}</button>
 					</div>
 					<div class="col" v-if="!getHidden.includes(board+post.thread)" :id="'thread-'+post.thread">
-						<post class="op-container col-12 pl-0" :id="'p'+post.thread" :fileLink="post.file.src" :post="post">
-							<template #postSubject>
-								{{post.subject}}
-							</template>
-							<template #postName>
-								{{getForceAnon?'Anonymous':post.name}}
-							</template>
-							<template #postStamp>
-								{{post.timestamp}}
-							</template>
-							<template #postNumber>
-								No. {{post.thread}}
-							</template>
-							<template #openThread>
-								<router-link tag="button" :to="{name: 'thread', params: {'number': post.thread}}" style="line-height: 1rem;" class="mt-n1 mr-2 p-0 px-1 btn btn-outline-chan-red text-mono">
-								V
-								</router-link>
-							</template>
-							<template #fileMeta>
-								{{post.file.originalName}}
-							</template>
-							<template #fileLookup>
-								[<a :href="'https://www.google.com/searchbyimage?image_url='+post.file.src" target="_blank">Google</a>] [<a :href="'https://iqdb.org/?url='+post.file.src" target="_blank">IQDB</a>] [<a :href="'https://saucenao.com/search.php?url='+post.file.src" target="_blank">Sauce</a>]
-							</template>
-							<template #fileThumb>
-								<a :href="post.file.src" v-lazy-container="{selector: 'img'}">
-									<img :data-src="post.file.src" :data-loading="loading" style="max-width:100%; max-height:256px; object-fit: cover;" alt="">
-								</a>
-							</template>
-							<template #postText>
-								<blockquote class="mb-0" v-html="post.text">
-									{{post.text}}
-								</blockquote>
-							</template>
-						</post>
+						<post class="op-container col-12 pl-0" :id="'p'+post.thread" :post="post" />
 						<div class="row">
 							<p class="text-mono small mb-1 ml-4" v-if="post.replies.length - 5 > 0">&gt;&gt; {{post.replies.length-5+' posts'}} <span v-if="omittedImages(post)>0">and {{omittedImages(post)}} {{omittedImages(post)&gt;1?'images':'image'}}</span> omitted [
 							<router-link :to="{name: 'thread', params: {'number': post.thread}}">
