@@ -5,7 +5,7 @@
 				<div class="row">
 					<div class="col pl-4 pr-0 py-1">
 						<p class="mb-0 font-chan-red">
-							<router-link tag="button" :to="{name: 'thread', params: {'number': post.thread}}" style="line-height: 1rem;" class="mt-n1 mr-2 p-0 px-1 btn btn-outline-chan-red" v-if="!post.id">
+							<router-link tag="button" :to="{name: 'thread', params: {'number': post.thread}}" style="line-height: 1rem;" class="mt-n1 mr-2 p-0 px-1 btn btn-outline-chan-red" v-if="!post.id && !threadCheck">
 								<i class="fal fa-eye"></i>
 							</router-link>
 							<span class="post-subject font-weight-bold">
@@ -109,7 +109,10 @@
 				'getGrab',
 				'getReports',
 				'getForceAnon'
-			])
+			]),
+			threadCheck(){
+				return this.$route.params.number
+			}
 		},
 		methods: {
 			...mapActions([
