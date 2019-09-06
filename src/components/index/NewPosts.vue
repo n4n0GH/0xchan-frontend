@@ -1,5 +1,5 @@
 <template>
-	<div class="col pl-0">
+	<div class="col-12 pl-sm-0 pr-0 pr-sm-4">
 		<div class="row bg-chan">
 			<div class="col text-center">
 				<h4 class="font-chan-red font-roboto">Newest Posts</h4>

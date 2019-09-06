@@ -7,7 +7,7 @@
 						/{{board.ticker}}/<span class="d-none d-xl-inline"> - {{board.punchline}}</span>
 					</router-link>
 				</li>
-				<li class="p-1 pb-2 text-center">
+				<li class="pl-1 pb-2 text-center">
 					<hr>
 					<span class="small">that's all :(</span>
 					<button class="mt-2 btn btn-outline-chan btn-block" v-if="getLogin"><i class="far fa-plus"></i> <span class="d-none d-xl-inline">New </span>Board</button>

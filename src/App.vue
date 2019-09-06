@@ -17,7 +17,7 @@
 			<div class="col col-sm-10 px-0">
 				<top-links class="d-none d-sm-block"/>
 				<keep-alive>
-					<router-view/>
+					<router-view class="mt-4 mt-sm-0 pt-4 pt-sm-0" />
 				</keep-alive>
 			</div>
 		</div>

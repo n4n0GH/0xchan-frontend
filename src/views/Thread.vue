@@ -14,7 +14,7 @@
 				<div class="row mt-2">
 					<div class="col" :id="'thread-'+post.thread">
 						<post class="op-container col-12 pl-0" :id="'p'+post.thread" :post="post" />
-						<post v-for="reply in post.replies" :key="reply.id" class="reply-container ml-5 col-auto" :id="'p'+reply.id" :post="reply" />
+						<post v-for="reply in post.replies" :key="reply.id" class="d-inline d-sm-block reply-container ml-sm-5 col-auto" :id="'p'+reply.id" :post="reply" />
 					</div>
 				</div>
 				<p class="w-100 text-center text-mono">EOF</p>

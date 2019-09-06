@@ -1,5 +1,5 @@
 <template>
-	<div class="pr-0">
+	<div class="pr-0 pl-0">
 		<div class="card card-chan mb-2">
 			<div class="card-header bg-chan p-0 border-0">
 				<div class="row">
@@ -40,12 +40,11 @@
 					<div class="col-12">
 						<div class="float-left mr-3 w-auto" style="max-width:30%;" v-if="!!post.file.originalName && getGrab">
 							<p class="small mb-0 text-mono text-overflow">
-								[<a href="javascript:void(0);" @click="doResearch = !doResearch">{{doResearch?'&#11206;':'&#11208;'}}</a>]&nbsp;File:&nbsp;{{post.file.originalName}}
-							</p>
+								[<a href="javascript:void(0);" @click="doResearch = !doResearch">?</a>]<span class="d-none d-sm-inline">&nbsp;File:&nbsp;{{post.file.originalName}}</span></p>
 							<p class="small mb-0 text-mono" v-if="doResearch">
 								[<a :href="'https://www.google.com/searchbyimage?image_url='+post.file.src" target="_blank">Google</a>] [<a :href="'https://iqdb.org/?url='+post.file.src" target="_blank">IQDB</a>] [<a :href="'https://saucenao.com/search.php?url='+post.file.src" target="_blank">Sauce</a>]
 							</p>
-							<p class="small mb-0 text-mono">
+							<p class="small mb-0 text-mono d-none d-sm-inline">
 								(11.11 MB, 1920&times;1080)
 							</p>
 							<a :href="post.file.src" v-lazy-container="{selector: 'img'}">

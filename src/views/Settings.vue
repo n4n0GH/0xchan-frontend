@@ -25,7 +25,7 @@
 								<p class="mb-0 lead">SFW Mode</p>
 								<p class="small font-chan-normal">0xchan will not auto-fetch images by default. Think twice before flipping the switch.</p>
 							</div>
-							<div class="col-2">
+							<div class="col-12 col-sm-2">
 								<button 
 								class="p-0 px-1 w-100 btn btn-outline-chan-red text-mono"
 								@click="switcheroo()">is: {{getGrab?'off':'on'}}</button>
@@ -36,7 +36,7 @@
 								<p class="mb-0 lead">Force Anonymous</p>
 								<p class="small font-chan-normal">Removes custom names from posts and replaces them with 'Anonymous'.</p>
 							</div>
-							<div class="col-2">
+							<div class="col-12 col-sm-2">
 								<button class="p-0 w-100 px-1 btn btn-outline-chan-red text-mono" @click="setBool('mutAnon')">is: {{getForceAnon?'on':'off'}}</button>
 							</div>
 						</div>
@@ -46,7 +46,7 @@
 								<p class="small mb-0 font-chan-normal">Define your own set of boards you wish to see in the navigation. Shortcode seperated by comma.</p>
 								<p><input type="text" v-model.trim="boardList" placeholder="a, g, v, biz" class="pl-1 w-100"></p>
 							</div>
-							<div class="col-2">
+							<div class="col-12 col-sm-2">
 								<button class="btn btn-outline-chan-red p-0 w-100 px-1 text-mono" @click="saveList()">save()</button>
 								<button class="btn btn-outline-danger mt-2 p-0 w-100 px-1 text-mono" @click="resetList()">reset()</button>
 							</div>
@@ -56,7 +56,7 @@
 								<p class="mb-0 lead">Clear States</p>
 								<p class="small font-chan-normal">Reset settings to factory default. Refreshes page to take effect. WARNING: DELETES YOUR CUSTOM STYLES!</p>
 							</div>
-							<div class="col-2">
+							<div class="col-12 col-sm-2">
 								<button class="p-0 w-100 px-1 btn btn-outline-danger text-mono" @click="clearState()">clear()</button>
 							</div>
 						</div>
@@ -71,7 +71,7 @@
 								<p class="mb-0 lead">Auto Switch</p>
 								<p class="small font-chan-normal">Switch styles between Yotsuba and Yotsuba B when toggling NSFW mode.</p>
 							</div>
-							<div class="col-2">
+							<div class="col-12 col-sm-2">
 								<button 
 								class="p-0 w-100 px-1 btn btn-outline-chan-red text-mono"
 								@click="setBool('mutAuto')">is: {{getAutoSwitch?'on':'off'}}</button>
@@ -83,16 +83,16 @@
 								<p class="mb-0 lead">Theme Selector</p>
 								<p class="small font-chan-normal mb-0">Choose your favorite theme to use for 0xchan.</p>
 							</div>
-							<div class="col-2">
+							<div class="col-12 col-sm-2">
 								<p class="mb-0 form-group">
-										<select class="form-control" v-model="themeSelect">
-											<option>Yotsuba</option>
-											<option>YotsubaB</option>
-											<option disabled>Photon</option>
-											<option disabled>Tomorrow</option>
-											<option disabled>Floeeens</option>
-											<option>Custom</option>
-										</select>
+									<select class="form-control" v-model="themeSelect">
+										<option>Yotsuba</option>
+										<option>YotsubaB</option>
+										<option disabled>Photon</option>
+										<option disabled>Tomorrow</option>
+										<option disabled>Floeeens</option>
+										<option>Custom</option>
+									</select>
 								</p>
 								<p>
 									<button class="p-0 w-100 px-1 btn btn-outline-chan-red text-mono" @click="saveTheme()">use this</button>

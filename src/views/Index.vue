@@ -15,7 +15,7 @@
 			<div class="col">
 				<new-posts />
 			</div>
-			<div class="col-4">
+			<div class="col-12 col-sm-4">
 				<anns />
 			</div>
 		</div>

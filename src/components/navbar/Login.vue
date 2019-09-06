@@ -1,5 +1,5 @@
 <template>
-	<div class="mt-4">
+	<div class="mt-4 pl-1">
 		<hr>
 		<transition name="fade" mode="out-in">
 			<button class="btn btn-block btn-outline-chan" @click="login()" v-if="!getLogin"><i class="fab fa-ethereum"></i> Login</button>

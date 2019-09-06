@@ -1,5 +1,5 @@
 <template>
-	<div class="container-fluid">
+	<div class="container-fluid px-0 px-sm-4">
 		<div class="row">
 			<div class="col-auto p-0" v-if="openNew">
 				<button style="line-height: 1rem;" class="mt-2 p-0 px-1 btn btn-outline-chan-red text-mono" @click="openNew = !openNew">&times;</button>
@@ -21,28 +21,28 @@
 			<div class="col-12 thread-preview" v-for="(post, index) in posts.slice((5*(page-1)),(5*(page-1))+5)" :key="'post.thread-'+index" :style="getHidden.includes(board+post.thread)?'height:2.2rem;':''" :id="'p'+post.thread">
 				<div class="row">
 					<div class="col-auto p-0">
-						<button style="line-height: 1rem;" class="mt-2 p-0 px-1 btn btn-outline-chan-red text-mono" @click="setHidden(board+post.thread)">{{getHidden.includes(board+post.thread)?'+':'-'}}</button>
+						<button style="line-height: 1rem;" class="d-none d-sm-inline mt-2 p-0 px-1 btn btn-outline-chan-red text-mono" @click="setHidden(board+post.thread)">{{getHidden.includes(board+post.thread)?'+':'-'}}</button>
 					</div>
 					<div class="col" v-if="!getHidden.includes(board+post.thread)" :id="'thread-'+post.thread">
 						<post class="op-container col-12 pl-0" :id="'p'+post.thread" :post="post" />
 						<div class="row">
-							<p class="text-mono small mb-1 ml-4" v-if="post.replies.length - 5 > 0">&gt;&gt; {{post.replies.length-5+' posts'}} <span v-if="omittedImages(post)>0">and {{omittedImages(post)}} {{omittedImages(post)&gt;1?'images':'image'}}</span> omitted [
+							<p class="text-mono small mb-1 ml-4 d-none d-sm-block" v-if="post.replies.length - 5 > 0">&gt;&gt; {{post.replies.length-5+' posts'}} <span v-if="omittedImages(post)>0">and {{omittedImages(post)}} {{omittedImages(post)&gt;1?'images':'image'}}</span> omitted [
 							<router-link :to="{name: 'thread', params: {'number': post.thread}}">
 							view thread</router-link>
 							]</p>
-							<p class="text-mono small mb-1 ml-4" v-if="post.replies.length <= 0">&gt;&gt; No replies yet [
+							<p class="text-mono small mb-1 ml-4 d-none d-sm-block" v-if="post.replies.length <= 0">&gt;&gt; No replies yet [
 							<router-link :to="{name: 'thread', params: {'number': post.thread}}">
 							view thread</router-link>
 							]</p>
 						</div>
-						<post v-for="reply in post.replies.slice(-5)" :key="reply.id" class="reply-container ml-5 col-auto" :id="'p'+reply.id" :post="reply" />
+						<post v-for="reply in post.replies.slice(-5)" :key="reply.id" class="reply-container ml-5 col-auto d-none d-sm-block" :id="'p'+reply.id" :post="reply" />
 					</div>
 					<div class="col" v-if="getHidden.includes(board+post.thread)">
 						<p class="chan-disabled text-mono small font-chan-red pt-2">Thread #{{post.thread}} hidden</p>
 					</div>
 				</div>
 				
-				<hr v-if="!getHidden.includes(board+post.thread)">
+				<hr v-if="!getHidden.includes(board+post.thread)" class=" d-none d-sm-block">
 			</div>
 
 			<div class="row w-100" v-if="!thread">
