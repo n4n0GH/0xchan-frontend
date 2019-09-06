@@ -17,6 +17,7 @@
     "vue-head": "^2.1.2",
     "vue-lazyload": "^1.3.2",
     "vue-nprogress": "^0.1.5",
+    "vue-radial-menu": "^1.1.1",
     "vue-router": "^3.0.3",
     "vuex": "^3.0.1",
     "vuex-persistedstate": "^2.5.4",
