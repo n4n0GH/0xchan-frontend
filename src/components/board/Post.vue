@@ -25,9 +25,10 @@
 					</div>
 					<div class="col-12" v-if="openReport">
 						<div class="input-group">
-							<input type="text" class="form-control" placeholder="State your complaint" v-model="reportReason">
-							<div class="input-group-append">
-								<button class="btn btn-outline-danger" @click="report(post)">File Report</button>
+							<input type="text" class="form-control border-chan-red border-left-0 border-right-0 rounded-0 text-mono" placeholder="State your complaint" v-model="reportReason" :maxlength="maxLength">
+							<div class="input-group-append text-mono">
+								<span class="input-group-text border-chan-red" style="background-color:white;">{{reportReason.length}}/{{maxLength}}</span>
+								<button class="btn btn-outline-chan-red border-right-0 rounded-0" @click="report(post)"><i class="fal fa-paper-plane"></i> File Report</button>
 							</div>
 							
 						</div>
@@ -39,7 +40,7 @@
 					<div class="col-12">
 						<div class="float-left mr-3 w-auto" style="max-width:30%;" v-if="!!post.file.originalName && getGrab">
 							<p class="small mb-0 text-mono text-overflow">
-								[<a href="javascript:void(0);" @click="doResearch = !doResearch">?</a>]&nbsp;File:&nbsp;{{post.file.originalName}}
+								[<a href="javascript:void(0);" @click="doResearch = !doResearch">{{doResearch?'&#11206;':'&#11208;'}}</a>]&nbsp;File:&nbsp;{{post.file.originalName}}
 							</p>
 							<p class="small mb-0 text-mono" v-if="doResearch">
 								[<a :href="'https://www.google.com/searchbyimage?image_url='+post.file.src" target="_blank">Google</a>] [<a :href="'https://iqdb.org/?url='+post.file.src" target="_blank">IQDB</a>] [<a :href="'https://saucenao.com/search.php?url='+post.file.src" target="_blank">Sauce</a>]
@@ -91,6 +92,7 @@
 				doResearch: false,
 				openReport: false,
 				hasReplies: '',
+				maxLength: 140,
 				reportReason: ''
 			}
 		},
@@ -139,7 +141,7 @@
 				}
 				let post = n.text
 				let board = this.$route.params.ticker
-				let reason = this.reportReason
+				let reason = this.reportReason.slice(0, 140)
 				let reportObj = {
 					board: board,
 					id: id,

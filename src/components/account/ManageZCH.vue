@@ -1,13 +1,6 @@
 <template>
 	<div>
-		<hr>
-		<div class="row">
-			<div class="col">
-				<p class="display-4 text-center">ZCH</p>
-				<p class="font-chan-normal small text-center">ZCH enable you to pay for posts instead of using ETH. Think of them as shitposting vouchers. They also increase your overall portion in the distributed rewards system.</p>
-			</div>
-		</div>
-		<div class="row">
+		<div class="row border-chan-red border-top pt-4">
 			<div class="col">
 				<p class="lead text-center">
 					Buy ZCH
@@ -24,7 +17,7 @@
 					= {{totalCost}} <i class="fab fa-ethereum"></i>
 				</p>
 				<p class="text-center">
-					<button class="btn btn-outline-chan-red text-mono"><i class="fab fa-ethereum"></i> Purchase</button>
+					<button class="btn btn-block btn-outline-chan-red text-mono"><i class="fab fa-ethereum"></i> Purchase</button>
 				</p>
 			</div>
 			<div class="col">
@@ -32,7 +25,7 @@
 					Convert Rewards
 				</p>
 				<div class="input-group text-center mb-0">
-					<input value="1333.4156" class="form-control text-center bg-chan text-chan border-chan-red" disabled />
+					<input value="1333.4156" class="form-control text-center bg-chan text-chan border-chan-red border-right-0" disabled />
 					<div class="input-group-append">
 						<span class="input-group-text bg-chan text-chan border-chan-red">
 							<i class="fab fa-ethereum"></i>
@@ -43,7 +36,7 @@
 					= 13.334.156‬ <i class="fab fa-creative-commons-zero"></i>
 				</p>
 				<p class="text-center">
-					<button class="btn btn-outline-chan-red text-mono"><i class="far fa-sync-alt"></i> Convert</button>
+					<button class="btn btn-block btn-outline-chan-red text-mono"><i class="far fa-sync-alt"></i> Convert</button>
 				</p>
 			</div>
 			<div class="col">
@@ -51,7 +44,7 @@
 					Swap ZCI
 				</p>
 				<div class="input-group text-center mb-0">
-					<input value="1333.4156" class="form-control text-center bg-chan text-chan border-chan-red" disabled />
+					<input value="1333.4156" class="form-control text-center bg-chan text-chan border-chan-red border-right-0" disabled />
 					<div class="input-group-append">
 						<span class="input-group-text bg-chan text-chan border-chan-red">
 							ZCI
@@ -62,7 +55,7 @@
 					= 1,333.4156‬ <i class="fab fa-creative-commons-zero"></i>
 				</p>
 				<p class="text-center">
-					<button class="btn btn-outline-chan-red text-mono"><i class="far fa-sync-alt"></i> Convert</button>
+					<button class="btn btn-block btn-outline-chan-red text-mono"><i class="far fa-sync-alt"></i> Convert</button>
 				</p>
 			</div>
 		</div>

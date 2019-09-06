@@ -7,7 +7,7 @@
 		</div>
 		<div class="row w-100 ml-4 justify-content-end">
 			<div class="col-10">
-				<settings />
+				<top-links />
 				<keep-alive>
 					<router-view/>
 				</keep-alive>
@@ -18,13 +18,13 @@
 
 <script>
 	import {mapGetters} from 'vuex'
-	import Settings from './components/Settings.vue'
+	import TopLinks from './components/TopLinks.vue'
 	import NavBar from './views/NavBar.vue'
 
 	export default {
 		components: {
 			NavBar,
-			Settings
+			TopLinks
 		},
 		computed: {
 			...mapGetters([

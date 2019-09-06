@@ -27,9 +27,7 @@
 							<p class="text-center text-mono">
 								1333.4156 <i class="fab fa-creative-commons-zero"></i>
 							</p>
-							<p class="text-center">
-								<button class="btn btn-outline-chan-red text-mono" :class="tabComponent=='manage-zch'?'router-link-active':''" @click="tabComponent='manage-zch'"><i class="fal fa-wallet"></i> Manage ZCH</button>
-							</p>
+							<button class="btn btn-block btn-outline-chan-red text-mono border-0 rounded-0" :class="tabComponent=='manage-zch'?'router-link-active':''" @click="tabComponent='manage-zch'"><i class="fal fa-wallet"></i> Manage ZCH</button>
 						</div>
 						<div class="col-4">
 							<p class="lead text-center">
@@ -38,9 +36,7 @@
 							<p class="text-center text-mono">
 								2 <i class="fab fa-ethereum"></i>
 							</p>
-							<p class="text-center">
-								<button class="btn btn-outline-chan-red text-mono" :class="tabComponent=='manage-stake'?'router-link-active':''" @click="tabComponent='manage-stake'"><i class="fal fa-file-signature"></i> Manage Stake</button>
-							</p>
+								<button class="btn btn-block btn-outline-chan-red text-mono border-0 rounded-0" :class="tabComponent=='manage-stake'?'router-link-active':''" @click="tabComponent='manage-stake'"><i class="fal fa-file-signature"></i> Manage Stake</button>
 						</div>
 						<div class="col-4">
 							<p class="lead text-center">
@@ -49,13 +45,13 @@
 							<p class="text-center text-mono">
 								1333.4156 <i class="fab fa-ethereum"></i>
 							</p>
-							<p class="text-center">
-								<button class="btn btn-outline-chan text-mono"><i class="fal fa-hand-holding-heart"></i> Withdraw</button>
-							</p>
+								<button class="btn btn-block btn-outline-chan text-mono border-0 rounded-0"><i class="fal fa-hand-holding-heart"></i> Withdraw</button>
 						</div>
 					</div>
 					<keep-alive>
+						<transition name="fade" mode="out-in">
 						<component :is="tabComponent" />
+						</transition>
 					</keep-alive>
 				</div>
 			</div>

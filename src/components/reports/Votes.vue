@@ -5,6 +5,7 @@
 				<div class="row">
 					<div class="col pl-4 py-1">
 						<p class="mb-0 font-chan-red">
+							<button class="btn btn-outline-chan-red mt-n1 mr-2 p-0 px-1" style="line-height: 1rem;" @click="closeView()"><i class="fal fa-eye-slash"></i></button>
 							<span class="post-subject font-weight-bold">
 								{{report.subject}}
 							</span>
@@ -38,7 +39,8 @@
 			<div class="card-footer bg-chan-light border-0 p-1">
 				<div class="row">
 					<div class="col-12">
-						<p class="font-chan-normal small mb-0">Complaint: {{report.reason}}</p>
+						<p class="lead font-chan-normal text-center mb-1">Submitted complaint:</p>
+						<p class="text-mono font-chan-ok bg-chan small px-2 mb-2"><span class="font-chan-red">&gt;&gt;{{report.id}}</span><br>&gt;{{report.reason}}</p>
 					</div>
 					<div class="col-12">
 						<p class="text-center font-chan-normal lead mb-2">Is the report justified?</p>
@@ -67,12 +69,13 @@
 			]),
 			punish(n){
 				this.setReportsRemove(n)
-				alert("OP will be punished")
 				eBus.$emit('closeDispute')
 			},
 			britney(n){
 				this.setReportsRemove(n)
-				alert("Leaving Britney alone...")
+				eBus.$emit('closeDispute')
+			},
+			closeView(){
 				eBus.$emit('closeDispute')
 			}
 		},

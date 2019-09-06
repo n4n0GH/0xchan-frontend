@@ -1,13 +1,6 @@
 <template>
 	<div>
-		<hr>
-		<div class="row">
-			<div class="col">
-				<p class="display-4 text-center">Staking</p>
-				<p class="font-chan-normal small text-center">Staking ETH allows you to take part in the lively discussions on 0xchan and receive your share of the distributed rewards system.</p>
-			</div>
-		</div>
-		<div class="row">
+		<div class="row border-chan-red border-top pt-4">
 			<div class="col">
 				<p class="lead mb-0">Text Posting</p>
 				<p class="small font-chan-normal">0.5 ETH required to post text content.</p>
