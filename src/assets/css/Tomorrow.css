@@ -103,7 +103,7 @@ div.float-left p{
 	color: #101011!important;
 }
 .btn-chan {
-	color: white;
+	color: white!important;
 	background-color: #009245;
 }
 .btn-chan:hover {

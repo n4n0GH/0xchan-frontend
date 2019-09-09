@@ -10,7 +10,9 @@
 				<li class="pl-1 pb-2 text-center">
 					<hr>
 					<span class="small">that's all :(</span>
-					<button class="mt-2 btn btn-outline-chan btn-block" v-if="getLogin"><i class="far fa-plus"></i> <span class="d-none d-xl-inline"> New</span> Board</button>
+					<router-link :to="{name: 'newBoard'}" v-if="getLogin" tag="button" class="btn btn-outline-chan btn-block mt-2" active-class="btn-chan">
+						<i class="far fa-plus"></i> <span class="d-none d-xl-inline"> New</span> Board
+					</router-link>
 				</li>
 			</ul>
 	</div>

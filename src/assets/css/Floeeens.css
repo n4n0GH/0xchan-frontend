@@ -109,7 +109,7 @@ li.bg-chan{
 	color: #005817!important;
 }
 .btn-chan {
-	color: white;
+	color: white!important;
 	background-color: #005817;
 }
 .btn-chan:hover {
