@@ -1,0 +1,125 @@
+/* general color stuff */
+.bg-chan {
+	background-color: #101011!important;
+}
+.bg-chan-regular {
+	background-color: #1d1f21 ;
+}
+.bg-chan-light {
+	background-color: #282a2e;
+}
+.bg-chan-red {
+	background-color: #101011;
+}
+.font-chan-red, a.quotelink {
+	color: white;
+}
+.font-chan-imply, .quote {
+	color: #5baa42;
+}
+.font-chan-ok {
+	color: #009245;
+}
+.font-chan-normal {
+	color: white;
+}
+.border-chan-light {
+	border-color: white;
+}
+.border-chan-red {
+	border-color: #101011!important;
+}
+.input-group .text-chan{
+	color: white;
+}
+
+/* typo related */
+.text-chan {
+	color: white;
+	font-family: 'Roboto';
+}
+.text-chan-brand {
+	font-size: 3rem;
+	line-height: 3rem;	
+}
+.text-chan-brand:hover {
+	color: white;
+	text-decoration: none;
+}
+.text-mono {
+	font-family: 'Overpass Mono', monospace;
+}
+.text-overflow {
+	overflow: hidden;
+	word-wrap: normal;
+	text-overflow: ellipsis;
+}
+.list-chan a {
+	color: white;
+	display: block;
+}
+.list-chan a:hover {
+	text-decoration: none;
+	color: #ddd;
+}
+.list-chan a.router-link-active {
+	background-color: white;
+	color: #101011;
+}
+li.bg-chan, li.bg-chan-light {
+	color:white;
+}
+div.float-left p{
+	color:white;
+}
+
+/* clicky things */
+.btn {
+	border-radius: 2px;
+}
+.btn a {
+	color: white;
+}
+.btn:hover a {
+	color: white;
+	text-decoration: none;
+}
+.btn-outline-chan {
+	border-color: #009245;
+	color: #009245!important;
+	background-color: rgba(0,0,0,0);
+}
+.btn-outline-chan:hover {
+	background-color: #009245;
+	color: white!important;
+}
+.btn-outline-chan-red {
+	border-color: white;
+	color: white!important;
+	background-color: transparent;
+}
+.btn-outline-chan-red:hover {
+	background-color: white;
+	color: #101011!important;
+}
+.btn-chan {
+	color: white;
+	background-color: #009245;
+}
+.btn-chan:hover {
+	background-color: #006837;
+}
+a.btn-chan:hover {
+	color:white;
+}
+button.router-link-active {
+	background-color: white;
+	color: #101011!important;
+}
+
+/* cardy things */
+.card-chan {
+	border-color: #101011;
+	border-radius: 2px;
+	color: white;
+}

@@ -88,9 +88,9 @@
 									<select class="form-control" v-model="themeSelect">
 										<option>Yotsuba</option>
 										<option>YotsubaB</option>
-										<option disabled>Photon</option>
-										<option disabled>Tomorrow</option>
-										<option disabled>Floeeens</option>
+										<option>Photon</option>
+										<option>Tomorrow</option>
+										<option>Floeeens</option>
 										<option>Custom</option>
 									</select>
 								</p>
@@ -103,7 +103,7 @@
 						<transition name="fade" mode="out-in">
 						<div v-if="themeSelect=='Custom'">
 							<div class="row">
-								<div class="col-7">
+								<div class="col-12 col-xl-7">
 									<p class="mb-0 lead">Custom Styles</p>
 									<p class="mb-0 small font-chan-normal">Check out the documentation [insert link here] to find out about class-names.</p>
 									<textarea name="customCss" rows="4" class="w-100" placeholder="Paste your CSS here" v-model="custom"></textarea>
@@ -111,7 +111,7 @@
 										Update Styles
 									</button>
 								</div>
-								<div class="col-5">
+								<div class="col-12 col-xl-5">
 									<p class="mb-0 lead">Preview</p>
 									<p class="mb-0 small font-chan-normal">Update styles to see changes.</p>
 									<mini-preview />

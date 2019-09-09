@@ -1,0 +1,131 @@
+/* general color stuff */
+.bg-chan {
+	background-color: #005817!important;
+}
+.bg-chan-regular {
+	background-color: white;
+}
+.bg-chan-light {
+	background-color: white;
+}
+.bg-chan-red {
+	background-color: #800;
+}
+.font-chan-red, a.quotelink {
+	color: #800;
+}
+.font-chan-imply, .quote {
+	color: #5baa42;
+}
+.font-chan-ok {
+	color: #009245;
+}
+.font-chan-normal {
+	color: #212529;
+}
+.border-chan-light {
+	border-color: #fff7eb;
+}
+.border-chan-red {
+	border-color: #005817!important;
+}
+.bg-chan .font-chan-red {
+	color: white;
+}
+li.bg-chan{
+	background-color: #379850!important;
+	color:white;
+}
+
+/* typo related */
+.text-chan {
+	color: #005817;
+	font-family: 'Roboto';
+}
+.text-chan-brand {
+	font-size: 3rem;
+	line-height: 3rem;	
+}
+.text-chan-brand:hover {
+	color: #005817;
+	text-decoration: none;
+}
+.text-mono {
+	font-family: 'Overpass Mono', monospace;
+}
+.text-overflow {
+	overflow: hidden;
+	word-wrap: normal;
+	text-overflow: ellipsis;
+}
+.list-chan a {
+	color: #212529;
+	display: block;
+}
+.list-chan a:hover {
+	text-decoration: none;
+	color: #005817;
+}
+.list-chan a.router-link-active {
+	background-color: #005817;
+	color: white;
+}
+
+/* clicky things */
+.btn {
+	border-radius: 2px;
+}
+.btn a {
+	color: #005817;
+}
+.btn:hover a {
+	color: white;
+	text-decoration: none;
+}
+.btn-outline-chan {
+	border-color: #005817;
+	color: #005817!important;
+	background-color: rgba(0,0,0,0);
+}
+.btn-outline-chan:hover {
+	background-color: #005817;
+	color: white!important;
+}
+.btn-outline-chan-red {
+	border-color: #005817;
+	color: #005817!important;
+	background-color: transparent;
+}
+.btn-outline-chan-red:hover {
+	background-color: #005817;
+	color: white!important;
+}
+.card-header .btn-outline-chan-red, li.bg-chan .btn-outline-chan-red {
+	border-color: white;
+	color: white!important;
+}
+.card-header .btn-outline-chan-red:hover, li.bg-chan .btn-outline-chan-red:hover {
+	background-color: white;
+	color: #005817!important;
+}
+.btn-chan {
+	color: white;
+	background-color: #005817;
+}
+.btn-chan:hover {
+	background-color: #005817;
+}
+a.btn-chan:hover {
+	color:white;
+}
+button.router-link-active {
+	background-color: #005817;
+	color: white!important;
+}
+
+/* cardy things */
+.card-chan {
+	border-color: #005817;
+	border-radius: 2px;
+	color: #005817;
+}

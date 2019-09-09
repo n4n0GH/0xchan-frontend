@@ -39,6 +39,7 @@
 			<div class="row">
 				<div class="col">
 					<p class="small">Please make sure to <router-link :to="{name: 'help'}">read our guidelines on how to stay anonymous</router-link> if that is important to you.</p>
+					<p class="small mb-0"><i class="fal fa-gas-pump"></i> Gas Prices &mdash; Fast: {{gasPrice.fast/10}} | Average: {{gasPrice.average/10}} | Safe Low: {{gasPrice.safeLow/10}}</p>
 				</div>
 			</div>
 			<div class="row">
@@ -51,17 +52,28 @@
 </template>
 
 <script>
+	import Axios from 'axios'
+	
 	export default {
 		data(){
 			return{
-				filePreview: null
+				filePreview: null,
+				gasPrice: null
 			}
 		},
 		methods: {
 			fileSelect(e){
 				const file = e.target.files[0]
 				this.filePreview = URL.createObjectURL(file)
+			},
+			refreshGas(){
+				Axios.get("https://ethgasstation.info/json/ethgasAPI.json")
+					.then(response => {this.gasPrice = response.data})
 			}
+		},
+		mounted(){
+			Axios.get("https://ethgasstation.info/json/ethgasAPI.json")
+				.then(response => {this.gasPrice = response.data})
 		}
 	}
 </script>

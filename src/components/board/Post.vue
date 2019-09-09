@@ -28,7 +28,7 @@
 							<input type="text" class="form-control border-chan-red border-left-0 border-right-0 rounded-0 text-mono" placeholder="State your complaint" v-model="reportReason" :maxlength="maxLength">
 							<div class="input-group-append text-mono">
 								<span class="input-group-text border-chan-red" style="background-color:white;">{{reportReason.length}}/{{maxLength}}</span>
-								<button class="btn btn-outline-chan-red border-right-0 rounded-0" @click="report(post)"><i class="fal fa-paper-plane"></i> File Report</button>
+								<button class="btn btn-outline-chan-red border-right-0 rounded-0" @click="report(post)"><i class="fal fa-paper-plane"></i><span class="d-none d-xl-inline"> File Report</span><span class="d-inline d-xl-none"> Send</span></button>
 							</div>
 							
 						</div>
@@ -48,7 +48,7 @@
 								(11.11 MB, 1920&times;1080)
 							</p>
 							<a :href="post.file.src" v-lazy-container="{selector: 'img'}">
-								<img :data-src="post.file.src" :data-loading="loading" style="max-width:100%; max-height:256px; object-fit: cover;" alt="">
+								<img :data-src="post.file.src" :data-loading="loading" style="max-width:100%; max-height:256px; object-fit: cover; display: block;" alt="">
 							</a>
 						</div>
 						<div class="font-chan-normal">
