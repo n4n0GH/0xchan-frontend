@@ -2,15 +2,9 @@
 	<div class="card card-chan mb-2">
 		<div class="card-header bg-chan p-0 border-0">
 			<div class="row">
-				<div class="col pl-4 py-1 text-left">
-					<p class="mb-0 font-chan-red">
-						<span class="post-subject mr-2">
-							<input type="text" placeholder="Subject (optional)">
-						</span>
-						<span class="post-name">
-							<input type="text" placeholder="Name (optional)">
-						</span>
-					</p>
+				<div class="col pl-4 py-1 text-left input-group">
+					<input class="form-control" type="text" placeholder="Subject (optional)">
+					<input class="form-control" type="text" placeholder="Name (optional)">
 				</div>
 				<div class="col-auto mr-2 py-1">
 						<p class="mb-0 font-chan-red">
@@ -22,16 +16,15 @@
 		<div class="card-body bg-chan-light p-1">
 			<!-- @dev maybe split this into a card so text can flow around it -->
 			<div class="row">
-				<div class="col-12">
-					<div class="float-left mr-3 w-auto" style="max-width:30%;">
-						<p class="small mb-0 text-mono text-overflow">
-							<input type="file" @change="fileSelect">
-						</p>
-						<img class="mw-100" style="max-height:200px;" :src="filePreview" v-if="filePreview" />
-					</div>
-					<div class="font-chan-normal">
-						<textarea name="postContent" rows="9" placeholder="&gt;implying you have anything worth posting" style="width:60%;"></textarea>
-					</div>
+				<div class="col-4">
+					<p class="small mb-0 text-mono text-overflow">
+						<input type="file" @change="fileSelect">
+					</p>
+					<img class="mw-100" style="max-height:200px;" :src="filePreview" v-if="filePreview" />
+				</div>
+				<div class="col-8 font-chan-normal">
+					<textarea class="form-control pr-0" name="postContent" rows="9" placeholder="&gt;implying you have anything worth posting" style="width:100%;"></textarea>
+					
 				</div>
 			</div>
 		</div>

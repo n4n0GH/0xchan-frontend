@@ -20,7 +20,7 @@
 					</div>
 					<div class="col-auto mr-2">
 						<p class="mb-0 font-chan-red">
-							<button style="line-height: 1rem;" class="mt-1 p-0 px-1 btn btn-outline-chan-red text-mono" @click="openReport = !openReport">R</button>
+							<button style="line-height: 1rem;" class="mt-1 p-0 px-1 btn btn-outline-chan-red text-mono" @click="openReport = !openReport" v-if="getLogin">R</button>
 						</p>
 					</div>
 					<div class="col-12" v-if="openReport">
@@ -28,7 +28,7 @@
 							<input type="text" class="form-control border-chan-red border-left-0 border-right-0 rounded-0 text-mono" placeholder="State your complaint" v-model="reportReason" :maxlength="maxLength">
 							<div class="input-group-append text-mono">
 								<span class="input-group-text border-chan-red" style="background-color:white;">{{reportReason.length}}/{{maxLength}}</span>
-								<button class="btn btn-outline-chan-red border-right-0 rounded-0" @click="report(post)"><i class="fal fa-paper-plane"></i><span class="d-none d-xl-inline"> File Report</span><span class="d-inline d-xl-none"> Send</span></button>
+								<button class="btn btn-outline-chan-red border-right-0 rounded-0" @click="report(post)"><i class="fal fa-paper-plane"></i><span class="d-none d-lg-inline"> File Report</span><span class="d-inline d-lg-none"> Send</span></button>
 							</div>
 							
 						</div>
@@ -73,7 +73,7 @@
 						</p>
 					</div>
 					<div class="col-auto">
-						<button class="p-0 px-1 btn btn-outline-chan-red text-mono">(you)</button>
+						<button class="p-0 px-1 btn btn-outline-chan-red text-mono" v-if="getLogin">(you)</button>
 					</div>
 				</div>
 			</div>
@@ -107,7 +107,8 @@
 			...mapGetters([
 				'getGrab',
 				'getReports',
-				'getForceAnon'
+				'getForceAnon',
+				'getLogin'
 			]),
 			threadCheck(){
 				return this.$route.params.number

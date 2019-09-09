@@ -15,7 +15,7 @@
 						</div>
 					</div>
 					<div class="card-header bg-chan-light">
-						<p class="lead mb-2 text-center">Board Details</p>
+						<p class="lead mb-2 text-center font-chan-normal">Board Details</p>
 						<div class="input-group mb-2">
 							<div class="input-group-prepend">
 								<span class="input-group-text bg-chan text-chan border-chan-red">Ticker</span>

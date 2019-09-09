@@ -36,6 +36,9 @@ a.quotelink {
 .border-chan-red {
 	border-color: #34345c!important;
 }
+.reply-container:target .card-body, .reply-container:target .card-footer {
+	background-color: #aebed5; 
+}
 
 /* typo related */
 .text-chan {
