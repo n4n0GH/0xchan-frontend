@@ -21,7 +21,6 @@
 					<input type="text" class="form-control small p-0 rounded-0 border-right-0 border-chan-red" placeholder="Subject (optional)">
 				</div>
 				<textarea name="comment" class="form-control p-0 rounded-0 border-top-0 border-left-0 border-right-0 border-chan-red" id="quickReply" placeholder="Comment" v-model="replyTo"></textarea>
-				{{replyTo}}
 				<input type="file">
 			</div>
 			<div class="card-footer bg-chan-light border-top-0 p-0">
