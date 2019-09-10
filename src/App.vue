@@ -30,6 +30,9 @@
 	import TopLinks from './components/TopLinks.vue'
 	import NavBar from './views/NavBar.vue'
 	import MobileBoardList from './components/navbar/MobileBoardList.vue'
+	import Web3 from 'web3'
+
+	let web3
 
 	export default {
 		data(){
@@ -54,6 +57,26 @@
 			])
 		},
 		methods: {
+			async login(){
+				if(window.ethereum){
+					web3 = new Web3(ethereum)
+					try{
+						await ethereum.enable();
+						// returns nothing atm because web3.eth.accounts craps the bed for some reason
+						this.setBool('mutLogin')
+					}
+					catch(error){
+						await console.log('Eth Auth failed')
+						web3 = null
+					}
+				}
+				else if(window.web3){
+					alert('You are using an outdated version of Web3. Please update your dapp browser. 0xchan does not recommend using potential security risks.')
+				}
+				else {
+					alert('No Ethereum enabled browser detected. Please install something like Trustwallet, Metamask or similar and try again.')
+				}
+			},
 			handleClick(item){
 				this.$router.push({name: item.name})
 			},
@@ -105,7 +128,11 @@
 			}
 		},
 		mounted(){
-			var style = [
+			if(this.getLogin){
+				this.login()
+			}
+
+			let style = [
 				'background: linear-gradient(#009245, #006837)',
 				'color: white',
 				'display: block',
@@ -113,9 +140,9 @@
 				'text-align: center',
 				'font-weight: bold'
 			].join(';');
-		/* eslint-disable-next-line */
-		console.log('%c fuck de popo lmao ', style);
-		}
+			/* eslint-disable-next-line */
+			console.log('%c fuck de popo lmao ', style);
+			}
 	};
 </script>
 

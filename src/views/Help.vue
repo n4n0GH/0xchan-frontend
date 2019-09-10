@@ -16,18 +16,39 @@
 					</div>
 					<div class="card-body bg-chan-light">
 						<div class="row">
-							<div class="col">
-								<p class="display-4 text-center">I HAZ A QUESTIOMEN</p>
+							<div class="col-12 col-lg text-justify">
+								<p class="display-4 text-center">Using 0xchan</p>
+
+								<p class="lead mb-0"><i class="fal fa-question"></i> What is this?</p>
+								<p class="font-chan-normal small">TL;DR 0xchan is a decentralized imageboard where users partake not only in a sortition based moderation system, but are also part of a distributed rewards system. 0xchan can not be shut down, even if the glow-in-darks want it to be. The frontend is open source and can be run locally on anyones computer, the "database" is a smart contract on the Ethereum network and the media storage is hosted via IPFS. Decentralized. Immutable. Censorship resistant.</p>
+
+								<p class="lead mb-0"><i class="fal fa-comments-dollar"></i> I have to pay to interact with 0xchan?</p>
+								<p class="font-chan-normal small">Yes. The amount paid for different interactions is being redistributed among the community. 80% of the paid amount will be redistributed to all stake holders, 15% will be used to purchase P3D, 5% will be used as reserve funds to settle expenses. Here's a price list for reference:</p>
+								<ul class="list-group mb-3">
+									<li class="list-group-item bg-chan d-flex justify-content-between">Posting a new thread or reply <span class="badge bg-chan-light">1 ZCH</span></li>
+									<li class="list-group-item bg-chan d-flex justify-content-between">Filing a report <span class="badge bg-chan-light">10 ZCH</span></li>
+									<li class="list-group-item bg-chan d-flex justify-content-between">Creating a new board <span class="badge bg-chan-light">100 ZCH</span></li>
+								</ul>
+
+								<p class="lead mb-0"><i class="fab fa-ethereum"></i> Can't I use ETH instead?</p>
+								<p class="font-chan-normal small">Users can also opt to pay with ETH instead of holding any ZCH. The conversion rate is 1 ZCH = 0.0001 ETH.</p>
+
+								<p class="lead mb-0"><i class="fal fa-lock-alt"></i> Why do I have to "stake" ETH?</p>
+								<p class="font-chan-normal small">The stake is used as a collateral and deterrent to enforce a working moderation. Should a user post questionable content and that content gets reported, voted on and found to be not suitable to stay on 0xchan, will the stake of the offending user be liquidated and used to purchase P3D. Users can withdraw their stake at any time if they haven't made any posts in the last 24 hours and there's no open dispute.</p>
+
+								<p class="lead mb-0"><i class="fal fa-treasure-chest"></i> What is P3D?</p>
+								<p class="font-chan-normal small">P3D is a dividends generating token that is the base for a bigger ecosystem on the Ethereum network. Token holders are rewarded dividends based on transaction volume on the P3D smart contract. 0xchan will hold P3D tokens, generate dividends and enable users to take part in a small passive income opportunity.</p>
+
+							</div>
+
+							<div class="col-12 col-lg text-justify">
+								<p class="display-4 text-center">Your Privacy</p>
+
 								<p class="lead mb-0"><i class="fal fa-user-secret"></i> Am I Anonymous when I post?</p>
 								<p class="font-chan-normal small">While you didn't have to undergo any KYC process to create your Wallet, the ETH was most likely coming from an exchange that you did KYC on. No normal person will be able to get that KYC, but Lawenforcement and glow-in-the-darks can use this information. Also you are submitting an IP everytime you initiate a transaction to your web3 provider (e.g. Infura). Combined with a clear ledger on the blockchain allow certain people to profile your pseudo-anonymous ETH wallet and maybe find out who you are.</p>
 
 								<p class="lead mb-0"><i class="fal fa-question"></i> Is it even possible to be anon then?</p>
 								<p class="small font-chan-normal">There are ways to put a veil on your online tracks. Be mindful tho, that any service you didn't create yourself is a potential risk of being spied on or deliberately leaking data to another party. You should never rely on a single method alone to keep you safe. That being said, here are some ways you can stop people spying on you.</p>
-							</div>
-						</div>
-						<div class="row">
-							<div class="col">
-								<p class="display-4 text-center">zOMG ANSWER PLS</p>
 
 								<p class="lead mb-0"><i class="fal fa-layer-group"></i> The Onion Router</p>
 								<p class="font-chan-normal small">TOR works by having the user connect to a network of relays and bouncing the request from one node to another until an exit node is reached and the user is served with their requested resource. It is probably the most notorious and known way of accessing le dark webz and getting rid of spies. Using TOR is usually very slow, as the network is operated by regular humans that don't have massive data centers. Recently it has been uncovered that many entry and exit nodes are actually operated by three letter agencies, and apparently many intelligence agencies have sufficient tools to attack the network and still spy on it's users. If that is true or not is another story.</p>
