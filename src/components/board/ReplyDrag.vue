@@ -1,6 +1,6 @@
 <template>
 	<vue-draggable-resizable :min-width="width" :h="height" @dragging="onDrag" :parent="true" style="z-index:99999" drag-handle=".card-header" :x="posx" :y="posy">
-		<div class="card card-chan" style="width:300px;">
+		<div class="card card-chan" style="width:300px; position:fixed;">
 			<div class="card-header bg-chan border-bottom-0 pl-2 py-1">
 				<div class="row small">
 					<div class="col pl-3 pr-0 py-1">
@@ -70,9 +70,9 @@
 		mounted(){
 			this.x = this.posx
 			this.y = this.posy
-			this.replyTo = ">>"+this.replyContent+" "
+			this.replyTo = ">>"+this.replyContent+"\n"
 			eBus.$on('addReply', p => {
-				this.replyTo += ">>"+p+" "
+				this.replyTo += ">>"+p+"\n"
 			})
 		}
 	}
