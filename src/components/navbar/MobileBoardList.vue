@@ -3,7 +3,7 @@
 		<div class="col py-1 bg-chan-red">
 			<select class="custom-select" name="boardSelector" @change="routeUser($event)">
 				<option disabled selected>Select a board...</option>
-				<option v-for="board in boardList" :value="board.ticker">/{{board.ticker}}/ - {{board.punchline}}</option>
+				<option v-for="(board, index) in boardList" :value="board.ticker" :key="'board-'+index">/{{board.ticker}}/ - {{board.punchline}}</option>
 			</select>
 		</div>
 	</div>

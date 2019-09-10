@@ -15,7 +15,7 @@
 								{{getForceAnon?'Anonymous':post.name}}
 							</span>
 							- {{post.timestamp}}
-							| No. {{post.id?post.id:post.thread}}
+							| No. <a href="javascript:void(0);" @click="quickReply(postNumber, $event)">{{postNumber}}</a>
 						</p>
 					</div>
 					<div class="col-auto mr-2">
@@ -84,10 +84,12 @@
 <script>
 	import Loading from '../../assets/loading.gif'
 	import {mapGetters, mapActions} from 'vuex'
+	import {eBus} from '../EventBus.js'
 
 	export default {
 		data(){
 			return{
+				postNumber: '',
 				doResearch: false,
 				openReport: false,
 				hasReplies: '',
@@ -159,7 +161,14 @@
 				}
 				this.openReport = false
 				this.setReports(reportObj)
+			},
+			quickReply(p, n){
+				eBus.$emit('openReply', {posx: n.pageX, posy: n.pageY, id: p})
+				eBus.$emit('addReply', p)
 			}
+		},
+		mounted(){
+			this.postNumber = this.post.id?this.post.id:this.post.thread
 		}
 	}
 </script>

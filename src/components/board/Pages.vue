@@ -23,6 +23,7 @@
 						<button style="line-height: 1rem;" class="d-none d-sm-inline mt-2 p-0 px-1 btn btn-outline-chan-red text-mono" @click="setHidden(board+post.thread)">{{getHidden.includes(board+post.thread)?'+':'-'}}</button>
 					</div>
 					<div class="col" v-if="!getHidden.includes(board+post.thread)" :id="'thread-'+post.thread">
+						
 						<post class="op-container col-12 pl-0" :id="'p'+post.thread" :post="post" />
 						<div class="row">
 							<p class="text-mono small mb-1 ml-4 d-none d-sm-block" v-if="post.replies.length - 5 > 0">&gt;&gt; {{post.replies.length-5+' posts'}} <span v-if="omittedImages(post)>0">and {{omittedImages(post)}} {{omittedImages(post)&gt;1?'images':'image'}}</span> omitted [
@@ -67,6 +68,7 @@
 	import Post from './Post.vue'
 	import NewTemplate from './NewTemplate.vue'
 	import {mapGetters, mapActions} from 'vuex'
+	
 
 	export default{
 		components: {
@@ -131,10 +133,11 @@
 		},
 		updated(){
 			this.componentKey = Math.floor(Math.random()*10)
-		}/*,
+		},
 		mounted(){		//disable for dev
-			Axios.get("https://ipfs.globalupload.io/QmTBxkQmp5dEqSspHELZRqUrWt5Neb62MGxg7opAcedpvE")
-				.then(response => {this.threads = response.data})
-		}*/
+			/*Axios.get("https://ipfs.globalupload.io/QmTBxkQmp5dEqSspHELZRqUrWt5Neb62MGxg7opAcedpvE")
+				.then(response => {this.threads = response.data})*/
+			
+		}
 	}
 </script>

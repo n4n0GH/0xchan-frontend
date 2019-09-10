@@ -1,5 +1,6 @@
 <template>
 	<div class="d-flex m-0 container-fluid">
+		<reply-drag v-if="quickReply" :posx="posx" :posy="posy" :replyContent="replyContent"/>
 		<mobile-board-list class="w-100 d-block d-sm-none position-fixed" style="z-index:99999;" />
 		<div style="position: fixed; bottom: 2rem; right: 2rem; z-index:9999999" class="d-sm-none">
 			<radial-menu class="bg-chan-light font-chan-red" :size="60" :item-size="40" :radius="120" :angle-restriction="100">
@@ -30,15 +31,18 @@
 	import TopLinks from './components/TopLinks.vue'
 	import NavBar from './views/NavBar.vue'
 	import MobileBoardList from './components/navbar/MobileBoardList.vue'
-	import Web3 from 'web3'
-
-	let web3
+	import ReplyDrag from './components/board/ReplyDrag.vue'
+	import {eBus} from './components/EventBus.js'
 
 	export default {
 		data(){
 			return{
 				lastClicked: null,
-				items: [{name: 'account', icon: 'fal fa-user-circle', login: 'yes'}, {name: 'votes', icon: 'fal fa-box-ballot', login: 'yes'}, {name: 'settings', icon: 'fal fa-tools', login: 'no'}, {name: 'help', icon: 'fal fa-question-circle', login: 'no'}, {name: 'index', icon: 'fal fa-home-alt', login: 'no'}]
+				items: [{name: 'account', icon: 'fal fa-user-circle', login: 'yes'}, {name: 'votes', icon: 'fal fa-box-ballot', login: 'yes'}, {name: 'settings', icon: 'fal fa-tools', login: 'no'}, {name: 'help', icon: 'fal fa-question-circle', login: 'no'}, {name: 'index', icon: 'fal fa-home-alt', login: 'no'}],
+				posx: null,
+				posy: null,
+				quickReply: false,
+				replyContent: ''
 			}
 		},
 		components: {
@@ -46,7 +50,8 @@
 			TopLinks,
 			RadialMenu,
 			RadialMenuItem,
-			MobileBoardList
+			MobileBoardList,
+			ReplyDrag
 		},
 		computed: {
 			...mapGetters([
@@ -57,26 +62,6 @@
 			])
 		},
 		methods: {
-			async login(){
-				if(window.ethereum){
-					web3 = new Web3(ethereum)
-					try{
-						await ethereum.enable();
-						// returns nothing atm because web3.eth.accounts craps the bed for some reason
-						this.setBool('mutLogin')
-					}
-					catch(error){
-						await console.log('Eth Auth failed')
-						web3 = null
-					}
-				}
-				else if(window.web3){
-					alert('You are using an outdated version of Web3. Please update your dapp browser. 0xchan does not recommend using potential security risks.')
-				}
-				else {
-					alert('No Ethereum enabled browser detected. Please install something like Trustwallet, Metamask or similar and try again.')
-				}
-			},
 			handleClick(item){
 				this.$router.push({name: item.name})
 			},
@@ -128,10 +113,6 @@
 			}
 		},
 		mounted(){
-			if(this.getLogin){
-				this.login()
-			}
-
 			let style = [
 				'background: linear-gradient(#009245, #006837)',
 				'color: white',
@@ -142,6 +123,18 @@
 			].join(';');
 			/* eslint-disable-next-line */
 			console.log('%c fuck de popo lmao ', style);
+			
+			eBus.$on('closeReply', () => {
+				this.quickReply = false
+			})
+			eBus.$on('openReply', n => {
+				if(!this.quickReply){
+					this.quickReply = true
+					this.posx = n.posx
+					this.posy = n.posy
+					this.replyContent = n.id
+				}
+			})
 			}
 	};
 </script>
