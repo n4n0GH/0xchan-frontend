@@ -57,8 +57,8 @@ export default new Vuex.Store({
     }
   },
   mutations: {
-    mutLogin: state => {
-      state.login = !state.login
+    mutLogin: (state, payload) => {
+      state.login = payload
     },
     mutHidden: (state, payload) => {
       if(state.hiddenThreads.includes(payload)){
@@ -104,7 +104,10 @@ export default new Vuex.Store({
   },
   actions: {
     setBool: (context, payload) => {
-        context.commit(payload)
+       context.commit(payload)
+    },
+    setLogin: (context, payload) => {
+      context.commit('mutLogin', payload)
     },
     setHidden: (context, payload) => {
       context.commit('mutHidden', payload)

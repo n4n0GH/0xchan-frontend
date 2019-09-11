@@ -12,8 +12,9 @@
 	/* eslint-disable */
 	import {mapGetters, mapActions} from 'vuex'
 	import Web3 from 'web3'
+	import {eBus} from '../EventBus.js'
 
-	let web3
+	let web3 = null
 
 	export default {
 		data() {
@@ -27,10 +28,11 @@
 					try{
 						await ethereum.enable();
 						// returns nothing atm because web3.eth.accounts craps the bed for some reason
-						this.setBool('mutLogin')
+						this.setLogin('true')
 					}
 					catch(error){
 						await console.log('Eth Auth failed')
+						this.setLogin('false')
 						web3 = null
 					}
 				}
@@ -42,7 +44,8 @@
 				}
 			},
 			...mapActions([
-				'setBool'
+				'setBool',
+				'setLogin'
 			])
 		},
 		computed: {
@@ -52,6 +55,13 @@
 			web3Address(){
 				return window.ethereum.selectedAddress
 			}
+		},
+		mounted(){
+			eBus.$on('checkLogin', () => {
+				if(this.getLogin){
+					this.login()
+				}
+			})
 		}
 	}
 </script>

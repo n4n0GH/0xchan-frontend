@@ -135,7 +135,8 @@
 					this.replyContent = n.id
 				}
 			})
-			}
+			eBus.$emit('checkLogin')	
+		}
 	};
 </script>
 

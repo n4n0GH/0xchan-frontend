@@ -38,7 +38,7 @@
 			<div class="card-body bg-chan-light p-1">
 				<div class="row">
 					<div class="col-12">
-						<div class="float-left mr-3 w-auto" style="max-width:30%;" v-if="!!post.file.originalName && getGrab">
+						<div class="float-left mr-3 w-auto" :style="{maxWidth: [inlinePreview?bigPreview:smolPreview]+'%'}" v-if="!!post.file.originalName && getGrab">
 							<p class="small mb-0 text-mono text-overflow">
 								[<a href="javascript:void(0);" @click="doResearch = !doResearch">?</a>]<span class="d-none d-sm-inline">&nbsp;File:&nbsp;{{post.file.originalName}}</span></p>
 							<p class="small mb-0 text-mono" v-if="doResearch">
@@ -47,8 +47,8 @@
 							<p class="small mb-0 text-mono d-none d-sm-inline">
 								(11.11 MB, 1920&times;1080)
 							</p>
-							<a :href="post.file.src" v-lazy-container="{selector: 'img'}">
-								<img :data-src="post.file.src" :data-loading="loading" style="max-width:100%; max-height:256px; object-fit: cover; display: block;" alt="">
+							<a :href="post.file.src" v-lazy-container="{selector: 'img'}" @click.prevent="toggleSize()">
+								<img :data-src="post.file.src" :data-loading="loading" :class="[inlinePreview?'bigPreview':'smolPreview']" alt="">
 							</a>
 						</div>
 						<div class="font-chan-normal">
@@ -94,7 +94,10 @@
 				openReport: false,
 				hasReplies: '',
 				maxLength: 140,
-				reportReason: ''
+				reportReason: '',
+				inlinePreview: false,
+				smolPreview: 30,
+				bigPreview: 100
 			}
 		},
 		props: {
@@ -120,6 +123,9 @@
 			...mapActions([
 				'setReports'
 			]),
+			toggleSize(){
+				this.inlinePreview = !this.inlinePreview
+			},
 			doingResearch(){
 				this.doResearch = true
 				setTimeout(function(){
@@ -163,7 +169,7 @@
 				this.setReports(reportObj)
 			},
 			quickReply(p, n){
-				eBus.$emit('openReply', {posx: n.pageX, posy: n.pageY, id: p})
+				eBus.$emit('openReply', {posx: n.clientX, posy: n.clientY, id: p})
 				eBus.$emit('addReply', p)
 			}
 		},
@@ -172,3 +178,16 @@
 		}
 	}
 </script>
+
+<style scoped>
+	.bigPreview{
+		max-width:100%;
+		display: block;
+	}
+	.smolPreview{
+		max-width:100%; 
+		max-height:256px; 
+		object-fit: cover; 
+		display: block;
+	}
+</style>
