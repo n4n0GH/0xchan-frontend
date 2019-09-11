@@ -10,6 +10,9 @@
 									web3.eth.getAccount({{wallet}})
 								</p>
 							</div>
+							<div class="col-auto pr-4 pt-1">
+								<p class="text-right mb-0 small text-mono">[<a href="javascript:void(0);" @click="logout()">logout</a>]</p>
+							</div>
 						</div>
 					</div>
 					<div class="card-body bg-chan-light">
@@ -66,6 +69,7 @@
 	import ManageStake from '../components/account/ManageStake.vue'
 	import ManageZch from '../components/account/ManageZCH.vue'
 	import Web3 from 'web3'
+	import {mapActions} from 'vuex'
 
 	let web3 = new Web3(Web3.givenProvider)
 
@@ -77,10 +81,17 @@
 			}
 		},
 		methods: {
+			...mapActions([
+				'setLogout'
+			]),
 			tab(n){
 				this.tabComponent = n
 				console.log(n)
 				console.log(this.tabComponent)
+			},
+			logout(){
+				this.setLogout()
+				this.$router.push({name: 'index'})
 			}
 		},
 		components:{
