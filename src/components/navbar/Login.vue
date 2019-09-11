@@ -24,15 +24,18 @@
 		methods: {
 			async login(){
 				if(window.ethereum){
+					console.log('awaiting resolve')
 					web3 = new Web3(ethereum)
 					try{
+						console.log('awaiting ethereum.enable')
 						await ethereum.enable();
 						// returns nothing atm because web3.eth.accounts craps the bed for some reason
-						this.setLogin('true')
+						console.log('logged in')
+						this.setLogin()
 					}
 					catch(error){
-						await console.log('Eth Auth failed')
-						this.setLogin('false')
+						this.setLogout()
+						console.log('Eth Auth failed')
 						web3 = null
 					}
 				}
@@ -45,7 +48,8 @@
 			},
 			...mapActions([
 				'setBool',
-				'setLogin'
+				'setLogin',
+				'setLogout'
 			])
 		},
 		computed: {
@@ -59,6 +63,7 @@
 		mounted(){
 			eBus.$on('checkLogin', () => {
 				if(this.getLogin){
+					this.setLogout()
 					this.login()
 				}
 			})

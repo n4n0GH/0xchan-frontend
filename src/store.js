@@ -106,8 +106,11 @@ export default new Vuex.Store({
     setBool: (context, payload) => {
        context.commit(payload)
     },
-    setLogin: (context, payload) => {
-      context.commit('mutLogin', payload)
+    setLogin: context => {
+      context.commit('mutLogin', true)
+    },
+    setLogout: context => {
+      context.commit('mutLogin', false)
     },
     setHidden: (context, payload) => {
       context.commit('mutHidden', payload)
