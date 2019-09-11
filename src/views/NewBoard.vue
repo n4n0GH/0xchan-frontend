@@ -40,7 +40,7 @@
 							</template>
 						</alert>
 						<div class="row">
-							<div class="col-12 col-lg-6">
+							<div class="col-12 col-lg-6 mb-2 mb-lg-0">
 								<button class="btn btn-outline-chan btn-block"><i class="fab fa-creative-commons-zero"></i> Create with 100 ZCH</button>
 							</div>
 							<div class="col-12 col-lg-6">
