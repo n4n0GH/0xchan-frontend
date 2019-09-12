@@ -166,7 +166,9 @@
 					reason: reason
 				}
 				this.openReport = false
-				this.setReports(reportObj)
+				if(!this.getReports.some(report => report.id === reportObj.id)){
+					this.setReports(reportObj)
+				} else { alert('This post was already reported.') }
 			},
 			quickReply(p, n){
 				eBus.$emit('openReply', {posx: n.clientX, posy: n.clientY, id: p})
