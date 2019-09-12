@@ -59,7 +59,6 @@
 	import CatalogItem from '../components/board/CatalogItem.vue'
 	import Loading from '../assets/loading.gif'
 	import Threads from '../components/board/threads.json'
-	import NewTemplate from '../components/board/NewTemplate.vue'
 
 	import {mapGetters, mapActions} from 'vuex'
 
@@ -71,8 +70,7 @@
 			}
 		},
 		components: {
-			CatalogItem,
-			NewTemplate
+			CatalogItem
 		},
 		methods:{
 			...mapActions([
