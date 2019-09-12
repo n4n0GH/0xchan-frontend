@@ -3,7 +3,7 @@
 		<div class="card-header bg-chan p-0 border-0">
 			<div class="row">
 				<div class="col text-left input-group">
-					<input class="border-left-0 border-top-0 form-control" type="text" placeholder="Subject (optional)">
+					<input class="border-left-0 border-top-0 form-control" type="text" placeholder="Subject (optional)" v-if="!isReply">
 					<input class="border-top-0 form-control" type="text" placeholder="Name (optional)">
 					<input type="text" class="border-right-0 border-top-0 form-control" placeholder="Options (optional kek)">
 				</div>
@@ -47,7 +47,12 @@
 		data(){
 			return{
 				filePreview: null,
-				gasPrice: null
+				gasPrice: {}
+			}
+		},
+		props: {
+			isReply: {
+				default: false
 			}
 		},
 		methods: {

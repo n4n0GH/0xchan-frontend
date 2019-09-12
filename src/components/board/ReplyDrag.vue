@@ -18,7 +18,7 @@
 			<div class="card-body bg-chan-light p-0 text-overflow">
 				<div class="input-group">
 					<input type="text" class="form-control small p-0 rounded-0 border-left-0 border-chan-red" placeholder="Name (optional)">
-					<input type="text" class="form-control small p-0 rounded-0 border-right-0 border-chan-red" placeholder="Subject (optional)">
+					<input type="text" class="form-control small p-0 rounded-0 border-right-0 border-chan-red" placeholder="Options (optional)">
 				</div>
 				<textarea name="comment" class="form-control p-0 rounded-0 border-top-0 border-left-0 border-right-0 border-chan-red" id="quickReply" placeholder="Comment" v-model="replyTo"></textarea>
 				<input type="file">
