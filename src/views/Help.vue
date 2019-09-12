@@ -43,8 +43,8 @@
 								<p class="font-chan-normal small">0xchan permits the use of names on posts. If you absolutely have to identify yourself consistently through the course of a discussion, you can use a tripcode to identify yourself, but also keep others from pretending to be you. Just fill the name field in the post form, followed by a hash or pound-sign and then any 8 character string you want like so: <code>yourname#yourpass</code> which would result in your name reading <code>yourname!2uxUos2Ruo</code>. Tripcodes are optional and free to use. Try it out!</p>
 								<div class="input-group">
 									<input class="text-center form-control border-right-0 border-chan-red" type="text" placeholder="yourname#yourpass" v-model="inputText">
-									<button class="rounded-0 btn btn-outline-chan" @click="toTrip()"><i class="fal fa-arrow-square-right"></i> Convert</button>
-									<input type="text" class="text-center form-control border-chan-red border-left-0 bg-chan" placeholder="yourname!yourtrip" :value="outputText" disabled>
+									<span class="input-group-text rounded-0 border-chan-red bg-chan border-right-0 font-chan-red"><i class="fal fa-arrow-square-right"></i></span>
+									<input type="text" class="text-center form-control border-chan-red border-left-0 bg-chan font-chan-red" placeholder="yourname!yourtrip" :value="outputText" disabled>
 								</div>
 
 							</div>
@@ -85,20 +85,12 @@
 	export default {
 		data(){
 			return{
-				inputText: 'yourname#yourpass',
-				tripText: '2uxUos2Ruo',
-				nameFag: 'yourname'
-			}
-		},
-		methods: {
-			toTrip(){
-				this.tripText = Tripcode(this.inputText.split('#')[1].slice(0,8))
-				this.nameFag = this.inputText.split('#')[0]
+				inputText: 'yourname#yourpass'
 			}
 		},
 		computed:{
 			outputText(){
-				return this.nameFag+'!'+this.tripText
+				return this.inputText.split('#')[0]+'!'+Tripcode(this.inputText.split('#')[1].slice(0,8))
 			}
 		}
 	}
