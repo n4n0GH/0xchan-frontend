@@ -15,7 +15,7 @@
 								{{getForceAnon?'Anonymous':post.name}}
 							</span>
 							- {{post.timestamp}}
-							| No. <a href="javascript:void(0);" @click="quickReply(postNumber, $event)">{{postNumber}}</a>
+							| No. <a href="javascript:void(0);" @click="quickReply(postNumber, $event)" v-if="getLogin">{{postNumber}}</a><span v-if="!getLogin">{{postNumber}}</span>
 						</p>
 					</div>
 					<div class="col-auto mr-2">
