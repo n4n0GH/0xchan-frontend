@@ -77,7 +77,7 @@
 		data(){
 			return{
 				ethereum: window.ethereum,
-				tabComponent: ''
+				tabComponent: 'manage-zch'
 			}
 		},
 		methods: {
@@ -86,8 +86,6 @@
 			]),
 			tab(n){
 				this.tabComponent = n
-				console.log(n)
-				console.log(this.tabComponent)
 			},
 			logout(){
 				this.setLogout()
