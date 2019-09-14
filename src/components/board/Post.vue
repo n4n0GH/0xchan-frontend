@@ -40,7 +40,7 @@
 					<div class="col-12">
 						<div class="float-left mr-3 w-auto" :style="{maxWidth: [inlinePreview?bigPreview:smolPreview]+'%'}" v-if="!!post.file.originalName && getGrab">
 							<p class="small mb-0 text-mono text-overflow">
-								[<a href="javascript:void(0);" @click="doResearch = !doResearch">?</a>]<span class="d-none d-sm-inline">&nbsp;File:&nbsp;{{post.file.originalName}}</span></p>
+								[<a href="javascript:void(0);" @click="doResearch = !doResearch">?</a>]<span class="d-none d-sm-inline">&nbsp;File:&nbsp;<a :href="post.file.src" target="_blank">{{post.file.originalName}}</a></span></p>
 							<p class="small mb-0 text-mono" v-if="doResearch">
 								[<a :href="'https://www.google.com/searchbyimage?image_url='+post.file.src" target="_blank">Google</a>] [<a :href="'https://iqdb.org/?url='+post.file.src" target="_blank">IQDB</a>] [<a :href="'https://saucenao.com/search.php?url='+post.file.src" target="_blank">Sauce</a>]
 							</p>
