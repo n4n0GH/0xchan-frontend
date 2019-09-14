@@ -1,6 +1,9 @@
 <template>
 	<div>
 		<div class="row border-chan-red border-top pt-4">
+			<div class="col-12">
+				<router-link :to="{name: 'help'}" tag="p" class="text-mono text-center font-chan-normal">[<a>why is staking neccessary?</a>]</router-link>
+			</div>
 			<div class="col">
 				<p class="lead mb-0">Text Posting</p>
 				<p class="small font-chan-normal">0.5 ETH required to post text content.</p>
