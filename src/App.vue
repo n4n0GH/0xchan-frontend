@@ -10,12 +10,12 @@
 			</radial-menu>
 		</div>
 		<div class="row vh-100">
-			<div class="col-2 d-sm-inline d-none px-0 position-fixed w-100 overflow-auto">
+			<div class="col-2 d-sm-inline d-none px-0 position-fixed w-100 overflow-auto" v-if="!getComfy">
 				<nav-bar/>
 			</div>
 		</div>
 		<div class="row w-100 ml-4 justify-content-end">
-			<div class="col col-sm-10 px-0">
+			<div class="px-0" :class="getComfy?'col':'col col-sm-10'">
 				<top-links class="d-none d-sm-block"/>
 				<keep-alive>
 					<router-view class="mt-4 mt-sm-0 pt-4 pt-sm-0" />
@@ -58,7 +58,8 @@
 				'getTheme',
 				'getCustomCss',
 				'getGrab',
-				'getLogin'
+				'getLogin',
+				'getComfy'
 			])
 		},
 		methods: {
