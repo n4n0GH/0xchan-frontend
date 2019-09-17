@@ -4,7 +4,7 @@
 			<hr>
 			<div class="row text-mono">
 				<div class="col-6">
-					[<a href="javascript:history.back();">return</a>]	
+					[<router-link :to="{path: '/board/'+board}">return</router-link>]	
 					[<router-link :to="{name: 'index'}">home</router-link>] 
 				</div>
 				<div class="col-6 text-right">
