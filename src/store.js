@@ -19,6 +19,7 @@ export default new Vuex.Store({
     forceAnon: false,
     userBoards: [],
     showAlert: true,
+    comfyMode: false,
     reports: []                                 // demo only!
   },
   getters: {
@@ -54,6 +55,9 @@ export default new Vuex.Store({
     },
     getReports: state => {
       return state.reports
+    },
+    getComfy: state => {
+      return state.comfyMode
     }
   },
   mutations: {
@@ -100,6 +104,9 @@ export default new Vuex.Store({
     },
     mutReportsRemove: (state, payload) => {
       state.reports.splice(state.reports.indexOf(payload), 1)
+    },
+    mutComfy: state => {
+      state.comfyMode = !state.comfyMode
     }
   },
   actions: {

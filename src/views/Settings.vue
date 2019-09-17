@@ -61,6 +61,13 @@
 						</div>
 						<div class="row">
 							<div class="col">
+								<p class="mb-0 lead">Comfy Mode</p>
+								<p class="small font-chan-normal">Removes sidebar on desktop devices.</p>
+							</div>
+							<div class="col-12 col-sm-2"><button class="btn btn-outline-chan-red text-mono p-0 w-100 px-1" @click="setBool('mutComfy')">is: {{getComfy?'on':'off'}}</button></div>
+						</div>
+						<div class="row">
+							<div class="col">
 								<p class="mb-0 lead">Auto Switch</p>
 								<p class="small font-chan-normal">Switch styles between Yotsuba and Yotsuba B when toggling NSFW mode.</p>
 							</div>
@@ -242,7 +249,8 @@
 				'getTheme',
 				'getCustomCss',
 				'getForceAnon',
-				'getUserBoards'
+				'getUserBoards',
+				'getComfy'
 			]),
 			localSettings(){
 				return localStorage.getItem('vuex')
