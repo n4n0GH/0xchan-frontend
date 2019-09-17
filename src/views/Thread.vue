@@ -20,13 +20,13 @@
 				<p class="w-100 text-center text-mono">EOF</p>
 				<div class="row text-mono">
 				<div class="col-6">
-					[<a href="javascript:history.back();">return</a>]	
+					[<router-link :to="{path: '/board/'+board}">return</router-link>]	
 				</div>
 				<div class="col-6 text-right">
 					[<router-link :to="{name: 'index'}">home</router-link>] 
 				</div>
 			</div>
-			</div>
+		</div>
 	</div>
 </template>
 
