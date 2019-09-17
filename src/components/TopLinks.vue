@@ -5,16 +5,16 @@
 				<router-link :to="{path: '/board/'+board.ticker}" tag="span" class="mr-0" :key="board.ticker+index" v-for="(board, index) in boardList">{{index==0?"[":""}}<a>{{board.ticker}}</a>{{index==boardList.length-1?"]":"/"}}</router-link>
 			</div>
 			<div class="col pr-0 text-right">
-				<span class="mr-0 list-inline-item" v-if="path=='/settings'">
+				<span class="mr-0" v-if="path=='/settings'">
 					[<a href="javascript:history.back();">return</a>]
 				</span>
-				<span class="mr-0 list-inline-item" v-else>
+				<span class="mr-0" v-else>
 					[<router-link :to="{name: 'settings'}">settings</router-link>]
 				</span>
-				<span class="list-inline-item" v-if="path=='/help'">
+				<span v-if="path=='/help'">
 					[<a href="javascript:history.back();">return</a>]
 				</span>
-				<span class="list-inline-item" v-else>
+				<span v-else>
 					[<router-link :to="{name: 'help'}">help</router-link>]
 				</span>
 			</div>
