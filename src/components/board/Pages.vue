@@ -67,6 +67,7 @@
 	import Boards from '../navbar/boards.json'
 	import Post from './Post.vue'
 	import {mapGetters, mapActions} from 'vuex'
+	import {eBus} from '../EventBus.js'
 	
 
 	export default{
@@ -133,6 +134,10 @@
 			/*Axios.get("https://ipfs.globalupload.io/QmTBxkQmp5dEqSspHELZRqUrWt5Neb62MGxg7opAcedpvE")
 				.then(response => {this.threads = response.data})*/
 			
+		},
+		beforeRouteUpdate(to, from, next){
+			eBus.$emit('boardChange')
+			next()
 		}
 	}
 </script>

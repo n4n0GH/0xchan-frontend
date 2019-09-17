@@ -8,7 +8,7 @@
 					[<router-link :to="{name: 'index'}">home</router-link>] 
 				</div>
 				<div class="col-6 text-right">
-					({{post.replies.length}}/{{imageCounter(post.replies)}})
+					(<span title="Replies">{{post.replies.length}}</span>/<span title="Images">{{imageCounter(post.replies)}}</span>)
 				</div>
 			</div>
 				<div class="row mt-2">

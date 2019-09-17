@@ -177,6 +177,17 @@
 		},
 		mounted(){
 			this.postNumber = this.post.id?this.post.id:this.post.thread
+			eBus.$on('boardChange', () => {
+				if(this.doResearch){
+					this.doResearch = false
+				}
+				if(this.inlinePreview){
+					this.inlinePreview = false
+				}
+				if(this.openReport){
+					this.openReport = false
+				}
+			})
 		}
 	}
 </script>
