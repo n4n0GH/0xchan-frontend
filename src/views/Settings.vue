@@ -46,11 +46,11 @@
 							<div class="col">
 								<p class="mb-0 lead">Custom Board List</p>
 								<p class="small mb-0 font-chan-normal">Define your own set of boards you wish to see in the navigation. Shortcode seperated by comma.</p>
-								<p><input type="text" v-model.trim="boardList" placeholder="e.g. a, g, v, biz" class="pl-1 w-100 form-control"></p>
+								<p><input type="text" v-model.trim="boardList" placeholder="i.e. a, g, v, biz" class="pl-1 w-100 form-control text-mono"></p>
 							</div>
 							<div class="col-12 col-sm-2">
 								<button class="btn btn-outline-chan p-0 w-100 px-1 text-mono" @click="saveList()">save()</button>
-								<button class="btn btn-outline-danger mt-2 p-0 w-100 px-1 text-mono" @click="resetList()">clear()</button>
+								<button class="btn btn-outline-danger mt-2 p-0 w-100 px-1 text-mono" @click="resetList()" v-if="getUserBoards.length>0">clear()</button>
 							</div>
 						</div>
 						<hr>
@@ -76,7 +76,7 @@
 								<p class="mb-0 lead">Theme Selector</p>
 								<p class="small font-chan-normal mb-0">Choose your favorite theme to use for 0xchan.</p>
 								<p class="mb-0 form-group">
-									<select class="form-control" v-model="themeSelect">
+									<select class="form-control" v-model="themeSelect" @change="saveTheme()">
 										<option>Yotsuba</option>
 										<option>YotsubaB</option>
 										<option>Photon</option>
@@ -87,25 +87,22 @@
 								</p>
 							</div>
 							<div class="col-12 col-sm-2">
-									<button class="mb-1 p-0 w-100 px-1 btn btn-outline-chan-red text-mono" @click="saveTheme()">use this</button>
-									<button class="p-0 w-100 px-1 btn btn-outline-chan text-mono">modify()</button>
+									<button class="p-0 w-100 px-1 btn btn-outline-chan text-mono" @click="modTheme()" v-if="themeSelect!='Custom'">modify()</button>
 							</div>
 						</div>
 						</transition>
 						<transition name="fade" mode="out-in">
 						<div v-if="themeSelect=='Custom'">
 							<div class="row">
-								<div class="col-12 col-xl-7">
-									<p class="mb-0 lead">Custom Styles</p>
-									<p class="mb-0 small font-chan-normal">Check out the documentation [insert link here] to find out about class-names.</p>
-									<textarea name="customCss" rows="4" class="w-100" placeholder="Paste your CSS here" v-model="custom"></textarea>
-									<button class="btn btn-block btn-outline-chan mt-2" @click="updateCustom()">
-										Update Styles
+								<div class="col-12 col-xl-7 mt-2">
+									<textarea name="customCss" rows="4" class="w-100 form-control text-mono" placeholder="Paste your CSS here" v-model="custom"></textarea>
+									<button class="p-0 px-1 btn btn-block btn-outline-chan mt-2 text-mono" @click="updateCustom()">
+										saveStyle()
 									</button>
 								</div>
 								<div class="col-12 col-xl-5">
 									<p class="mb-0 lead">Preview</p>
-									<p class="mb-0 small font-chan-normal">Update styles to see changes.</p>
+									<p class="mb-0 small font-chan-normal">Save styles to see changes.</p>
 									<mini-preview />
 								</div>
 							</div>
@@ -158,9 +155,7 @@
 			return{
 				themeSelect: '',
 				custom: '',
-				boardList: '',
-				testArray: [],
-				loadFile: {}
+				boardList: ''
 			}
 		},
 		components: {
@@ -180,8 +175,10 @@
 				}
 			},
 			resetList(){
-				this.setBoardListReset()
-				this.$router.go()
+				if(confirm("Are you sure you want to reset your custom board list?")){
+					this.setBoardListReset()
+					this.$router.go()
+				}
 			},
 			clearState(){
 				if(confirm("Are you sure you want to reset your custom settings?")){
@@ -193,8 +190,19 @@
 				this.setTheme(this.themeSelect)
 				if(this.themeSelect=='Custom'){
 					this.setCss(this.custom)
+				} else {
+					this.$router.go()
 				}
-				this.$router.go()
+			},
+			modTheme(){
+				/*let file = this.cssPath @dev: fix this later holy fuck
+				let reader = new FileReader()
+				reader.onload = function(e){
+					console.log(e.target.result)
+					//this.setCss(reader.result)
+				}
+				reader.readAsText(file)*/
+				this.themeSelect = 'Custom'
 			},
 			updateCustom(){
 				this.setCss(this.custom)
@@ -205,8 +213,7 @@
 				if(this.getAutoSwitch){
 					if(this.getGrab){
 						this.setTheme('Yotsuba')
-					}
-					else{
+					} else{
 						this.setTheme('YotsubaB')
 					}
 					this.$router.go()

@@ -1,9 +1,9 @@
 <template>
 	<div class="row">
 		<div class="col py-1 bg-chan-red">
-			<select class="custom-select" name="boardSelector" @change="routeUser($event)">
+			<select class="custom-select" name="boardSelector" v-model="currentBoard" @change="routeUser($event)">
 				<option disabled selected>Select a board...</option>
-				<option v-for="(board, index) in boardList" :value="board.ticker" :key="'board-'+index">/{{board.ticker}}/ - {{board.punchline}}</option>
+				<option v-for="(board, index) in boardList" :value="board.ticker" :key="'board-'+index" :class="getUserBoards.length>0?(!getUserBoards.includes(board.ticker)?'d-none':''):''">/{{board.ticker}}/ - {{board.punchline}}</option>
 			</select>
 		</div>
 	</div>
@@ -14,9 +14,15 @@
 	import {mapGetters} from 'vuex'
 
 	export default {
+		data(){
+			return{
+				currentBoard: 'Select a board...'
+			}
+		},
 		methods: {
 			routeUser(event){
 				this.$router.push({path: '/board/'+event.target.value})
+				this.currentBoard = 'Select a board...'
 			}
 		},
 		computed: {
