@@ -12,6 +12,7 @@ If you want to run this interface on your own machine and maybe tweak some code,
 git clone https://github.com/n4n0GH/0xchan-mainnet
 cd 0xchan-mainnet
 npm install
+npm fuckn resolve all dependency errors
 npm run serve
 ```
 Afterwards use any browser you want (although a connected Ethereum wallet is needed for interaction) and visit the address given by the CLI (usually localhost:8080)

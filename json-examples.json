@@ -34,6 +34,7 @@
 
 // Single Post, example on https://ipfs.io/ipfs/Qmb2uspMc5iTHXYLcYDKov3nP6hwTb7C69QEWwwu4A7Jfd
 {
+	"acc": "0x7ac73ebb~",				// ETH address of creator
 	"id": "1234567890",					// incrementing integer, last number stored in contract
 	"thread": "1234567890",				// define thread to merge this into
 	"stamp": {							// auto set by system, UTC
