@@ -3,7 +3,7 @@
 		<div class="row w-100 text-mono">
 			<div class="col" v-if="getComfy">
 				<span class="mr-0">
-					[<router-link :to="{name: 'index'}" tag="a">home</router-link>/<router-link :to="{name: 'account'}" tag="a">account</router-link>/<router-link :to="{name: 'votes'}" tag="a">votes</router-link>]
+					[<router-link :to="{name: 'index'}" tag="a">home</router-link>{{getLogin?"/":""}}<router-link :to="{name: 'account'}" tag="a" v-if="getLogin">account</router-link>/<router-link :to="{name: 'votes'}" tag="a" v-if="getLogin">votes</router-link>]
 				</span>
 				<router-link :to="{path: '/board/'+board.ticker}" tag="span" class="mr-0" :key="board.ticker+index" v-for="(board, index) in boardList">{{index==0?"[":""}}<a>{{board.ticker}}</a>{{index==boardList.length-1?"]":"/"}}</router-link>
 			</div>
@@ -33,7 +33,8 @@
 		computed: {
 			...mapGetters([
 				'getUserBoards',
-				'getComfy'
+				'getComfy',
+				'getLogin'
 			]),
 			path(){
 				return this.$route.path
