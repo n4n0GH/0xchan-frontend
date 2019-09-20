@@ -1,10 +1,13 @@
 <template>
 	<div>
 		<div class="row w-100 text-mono">
-			<div class="col-auto" v-if="getComfy">
+			<div class="col" v-if="getComfy">
+				<span class="mr-0">
+					[<router-link :to="{name: 'index'}" tag="a">home</router-link>/<router-link :to="{name: 'account'}" tag="a">account</router-link>/<router-link :to="{name: 'votes'}" tag="a">votes</router-link>]
+				</span>
 				<router-link :to="{path: '/board/'+board.ticker}" tag="span" class="mr-0" :key="board.ticker+index" v-for="(board, index) in boardList">{{index==0?"[":""}}<a>{{board.ticker}}</a>{{index==boardList.length-1?"]":"/"}}</router-link>
 			</div>
-			<div class="col pr-0 text-right">
+			<div class="pr-0 text-right" :class="getComfy?'col-auto':'col'">
 				<span class="mr-0" v-if="path=='/settings'">
 					[<a href="javascript:history.back();">return</a>]
 				</span>

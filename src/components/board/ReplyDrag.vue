@@ -1,7 +1,7 @@
 <template>
 	<vue-draggable-resizable :min-width="width" :h="height" @dragging="onDrag" :parent="true" style="z-index:99999" drag-handle=".card-header" :x="posx" :y="posy">
 		<div class="card card-chan" style="width:300px; position:fixed;">
-			<div class="card-header bg-chan border-bottom-0 pl-2 py-1">
+			<div class="card-header bg-chan border-bottom-0 pl-2 py-1" style="cursor:move;">
 				<div class="row small">
 					<div class="col pl-3 pr-0 py-1">
 						<p class="mb-0 font-chan-red">

@@ -73,7 +73,7 @@
 						</p>
 					</div>
 					<div class="col-auto">
-						<button class="p-0 px-1 btn btn-outline-chan-red text-mono" v-if="getLogin">(you)</button>
+						<button class="p-0 px-1 btn btn-outline-chan-red text-mono" v-if="getLogin" @click="giftYou()">(you)</button>
 					</div>
 				</div>
 			</div>
@@ -131,6 +131,11 @@
 				setTimeout(function(){
 					this.doResearch = false
 				}, 10000)
+			},
+			giftYou() {
+				if(confirm("Do you want to send a free (you)? Note: still costs gas to send transaction.")){
+					alert('this is the part were metamask annoys you to send the tx')
+				}
 			},
 			report(n){
 				let id
