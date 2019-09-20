@@ -27,7 +27,7 @@
 
 <script>
 	import {RadialMenu, RadialMenuItem} from 'vue-radial-menu'
-	import {mapGetters} from 'vuex'
+	import {mapGetters, mapActions} from 'vuex'
 	import TopLinks from './components/TopLinks.vue'
 	import NavBar from './views/NavBar.vue'
 	import MobileBoardList from './components/navbar/MobileBoardList.vue'
@@ -64,6 +64,10 @@
 			])
 		},
 		methods: {
+			...mapActions([
+				'setLogin',
+				'setLogout'
+			]),
 			async login(){
 				if(window.ethereum){
 					console.log('awaiting resolve')
