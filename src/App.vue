@@ -32,6 +32,7 @@
 	import NavBar from './views/NavBar.vue'
 	import MobileBoardList from './components/navbar/MobileBoardList.vue'
 	import ReplyDrag from './components/board/ReplyDrag.vue'
+	import Web3 from 'web3'
 	import {eBus} from './components/EventBus.js'
 
 	export default {
@@ -63,6 +64,30 @@
 			])
 		},
 		methods: {
+			async login(){
+				if(window.ethereum){
+					console.log('awaiting resolve')
+					web3 = new Web3(ethereum)
+					try{
+						console.log('awaiting ethereum.enable')
+						await ethereum.enable();
+						// returns nothing atm because web3.eth.accounts craps the bed for some reason
+						console.log('logged in')
+						this.setLogin()
+					}
+					catch(error){
+						this.setLogout()
+						console.log('Eth Auth failed')
+						web3 = null
+					}
+				}
+				else if(window.web3){
+					alert('You are using an outdated version of Web3. Please update your dapp browser. 0xchan does not recommend using potential security risks.')
+				}
+				else {
+					alert('No Ethereum enabled browser detected. Please install something like Trustwallet, Metamask or similar and try again.')
+				}
+			},
 			handleClick(item){
 				this.$router.push({name: item.name})
 			},
@@ -125,9 +150,15 @@
 			/* eslint-disable-next-line */
 			console.log('%c fuck de popo lmao ', style);
 			
+			if(this.getLogin){
+				this.setLogout()
+				this.login()
+			}
+
 			eBus.$on('closeReply', () => {
 				this.quickReply = false
 			})
+
 			eBus.$on('openReply', n => {
 				if(!this.quickReply){
 					this.quickReply = true
@@ -136,7 +167,10 @@
 					this.replyContent = n.id
 				}
 			})
-			eBus.$emit('checkLogin')	
+			
+			eBus.$on('login', () => {
+				this.login()
+			})
 		}
 	};
 </script>
