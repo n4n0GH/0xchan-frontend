@@ -26,6 +26,7 @@
 </template>
 
 <script>
+	/* eslint-disable */
 	import {RadialMenu, RadialMenuItem} from 'vue-radial-menu'
 	import {mapGetters, mapActions} from 'vuex'
 	import TopLinks from './components/TopLinks.vue'
@@ -34,6 +35,8 @@
 	import ReplyDrag from './components/board/ReplyDrag.vue'
 	import Web3 from 'web3'
 	import {eBus} from './components/EventBus.js'
+
+	let web3 = null
 
 	export default {
 		data(){
@@ -61,7 +64,10 @@
 				'getGrab',
 				'getLogin',
 				'getComfy'
-			])
+			]),
+			theme(){
+				return this.getTheme+'.css'
+			}
 		},
 		methods: {
 			...mapActions([
@@ -108,8 +114,9 @@
 				if(this.getTheme != 'Custom'){
 					return [
 						{
-							rel: 'stylesheet', 
-							href: require(`@/assets/css/${this.getTheme}.css`)
+							rel: 'stylesheet',
+							name: 'theme', 
+							href: require('./assets/css/'+this.theme)
 						}
 					]
 				}
@@ -153,7 +160,7 @@
 			].join(';');
 			/* eslint-disable-next-line */
 			console.log('%c fuck de popo lmao ', style);
-			
+
 			if(this.getLogin){
 				this.setLogout()
 				this.login()

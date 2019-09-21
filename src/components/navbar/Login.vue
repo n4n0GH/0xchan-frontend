@@ -9,11 +9,8 @@
 </template>
 
 <script>
-	/* eslint-disable */
 	import {mapGetters} from 'vuex'
 	import {eBus} from '../EventBus.js'
-
-	let web3 = null
 
 	export default {
 		data() {
