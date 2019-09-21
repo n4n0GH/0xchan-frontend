@@ -202,14 +202,20 @@
 				}
 			},
 			modTheme(){
-				/*let file = this.cssPath @dev: fix this later holy fuck
-				let reader = new FileReader()
-				reader.onload = function(e){
-					console.log(e.target.result)
-					//this.setCss(reader.result)
-				}
-				reader.readAsText(file)*/
+				/*let file = require(`@/assets/css/${this.getTheme}.css`)*/
 				this.themeSelect = 'Custom'
+				/*if(typeof window.FileReader !== 'function'){
+					if(confirm("Your browser doesn't support the file API. Get with the times, Grandpa!")){
+						window.location.replace('https://lmgtfy.com/?q=list+of+web+browser')
+					}
+				} else {
+					let file = new Blob([require('../assets/css/'+this.currentTheme)], {type: 'text/plain'})
+					let reader = new FileReader()
+					reader.onload = function(evt){
+						console.log(evt.target.result)
+					}
+					reader.readAsText(file)
+				}*/
 			},
 			updateCustom(){
 				this.setCss(this.custom)
@@ -257,6 +263,9 @@
 			},
 			blobURL(){
 				return window.URL.createObjectURL(new Blob([this.localSettings], {type: "octet/stream"}))
+			},
+			currentTheme(){
+				return this.getTheme+'.css'
 			}
 		},
 		mounted(){
