@@ -10,7 +10,7 @@
 
 <script>
 	/* eslint-disable */
-	import {mapGetters, mapActions} from 'vuex'
+	import {mapGetters} from 'vuex'
 	import {eBus} from '../EventBus.js'
 
 	let web3 = null
@@ -21,11 +21,6 @@
 			}
 		},
 		methods: {
-			...mapActions([
-				'setBool',
-				'setLogin',
-				'setLogout'
-			]),
 			login(){
 				eBus.$emit('login')
 			}
@@ -33,10 +28,7 @@
 		computed: {
 			...mapGetters([
 				'getLogin'
-			]),
-			web3Address(){
-				return window.ethereum.selectedAddress
-			}
+			])
 		}
 	}
 </script>
