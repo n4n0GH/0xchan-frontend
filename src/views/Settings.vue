@@ -93,9 +93,9 @@
 									</select>
 								</p>
 							</div>
-							<div class="col-12 col-sm-2">
+							<!-- <div class="col-12 col-sm-2">
 									<button class="p-0 w-100 px-1 btn btn-outline-chan text-mono" @click="modTheme()" v-if="themeSelect!='Custom'">modify()</button>
-							</div>
+							</div> -->
 						</div>
 						</transition>
 						<transition name="fade" mode="out-in">
