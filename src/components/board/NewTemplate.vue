@@ -21,8 +21,7 @@
 					<p class="small mb-0 text-mono" v-if="filePreview">[<a href="javascript:void(0);" @click="fileClear()">clear</a>]</p>
 				</div>
 				<div class="col pl-1 font-chan-normal">
-					<textarea class="form-control h-100" name="postContent" placeholder="&gt;implying you have anything worth posting anyway" style="line-height:1.1rem;"></textarea>
-					
+					<textarea class="form-control h-100" name="postContent" placeholder="&gt;implying you have anything worth posting anyway" style="line-height:1.1rem;" v-model="postContent"></textarea>
 				</div>
 			</div>
 			<div class="row">
@@ -40,6 +39,10 @@
 				<div class="col-12 col-lg-6">
 					<button class="btn btn-outline-chan btn-block"><i class="fab fa-ethereum"></i> Post with 0.0001 ETH</button>
 				</div>
+				<button class="btn btn-block" @click="encryptData(saltMine, postContent)">encode</button>
+				{{encodePost}}
+				{{equalizeSalt}}
+				{{xorResult}}
 			</div>
 		</div>
 	</div>
@@ -55,6 +58,11 @@
 		data(){
 			return{
 				filePreview: null,
+				postContent: '',
+				encodePost: '',
+				encodeSalt: '',
+				equalizeSalt: '',
+				xorResult: '',
 				gasPrice: {}
 			}
 		},
@@ -76,12 +84,12 @@
 				Axios.get("https://ethgasstation.info/json/ethgasAPI.json")
 					.then(response => {this.gasPrice = response.data})
 			},
-			toHex(str){
-				// take a string and turn it into it's 
-				// hex representation
+			toHex(s){
+				// take a string s and turn it into 
+				// it's hexadecimal representation
 				let arr = []
-				for(let n=0, l=str.length; n<l; n++){
-					let hex = Number(str.charCodeAt(n)).toString(16)
+				for(let n=0, l=s.length; n<l; n++){
+					let hex = Number(s.charCodeAt(n)).toString(16)
 					arr.push(hex)
 				}
 				return arr.join('')
@@ -89,8 +97,8 @@
 			equalize(s, m){
 				// take salt s and repeat for length 
 				// of message m to equalize length of
-				// XOR pairs. s will shrink if s>m
-				return this.toHex(m).slice(0,0).padStart(this.toHex(m).length, s)
+				// XOR pairs. s will shrink if s > m
+				return m.slice(0,0).padStart(m.length, s)
 			},
 			xor(a, b){
 				// setting up basic bitwise
@@ -99,19 +107,34 @@
 				if(!Buffer.isBuffer(a)) a = new Buffer(a)
 				if(!Buffer.isBuffer(b)) b = new Buffer(b)
 				let res = []
-				for(let i=0; i<a.length; i++){
+				for(let i=0; i<b.length; i++){
 					res.push(a[i]^b[i])
 				}
+				console.log(res)
 				return new Buffer(res)
 			},
-			encryptData(salt, message){
-				// function grabs the salt to encrypt with
-				// as well as the message to encrypt as params
+			encryptData(s, m){
+				// function grabs the salt s to encrypt with
+				// as well as the message m to encrypt as params
 				// construct the final output
-				let secret = this.equalize(this.toHex(salt))
-				let encode = this.toHex(message)
+				
+				// encode post content to hexadecimal
+				this.encodePost = this.toHex(m)
+				console.log('hexed post: '+this.encodePost)
 
-				console.log(this.xor(secret, encode))
+				// encode salt to hexadecimal
+				this.encodeSalt = this.toHex(s)
+				console.log('hexed salt: '+this.encodeSalt)
+
+				// equalize length of encoded salt
+				// to match length of encoded post
+				this.equalizeSalt = this.equalize(this.encodeSalt, this.encodePost)
+				console.log('equalized: '+this.equalizeSalt)
+
+				// begin bitwise XOR of the content
+				this.xorResult = this.xor(this.equalizeSalt, this.encodePost)
+				console.log('xor: '+this.xorResult)
+
 			}
 		},
 		computed: {
@@ -127,7 +150,7 @@
 				// dynamically based on the current
 				// board and thread ID which stays 
 				// the same within a single thread
-				return this.$route.params.ticker+this.threadID
+				return this.$route.params.ticker+this.threadId
 			}
 		},
 		mounted(){
