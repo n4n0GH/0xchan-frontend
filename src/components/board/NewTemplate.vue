@@ -39,10 +39,14 @@
 				<div class="col-12 col-lg-6">
 					<button class="btn btn-outline-chan btn-block"><i class="fab fa-ethereum"></i> Post with 0.0001 ETH</button>
 				</div>
-				<button class="btn btn-block" @click="encryptData(saltMine, postContent)">encode</button>
-				{{encodePost}}
-				{{equalizeSalt}}
-				{{xorResult}}
+				<button class="btn" @click="encryptData(saltMine, postContent)">encrypt</button>
+				<button class="btn" @click="decryptData(saltMine, xorResult)">decrypt</button>
+				<span class="text-mono">
+					post: {{encodePost}} <br>
+					salt: {{equalizeSalt}} <br>
+					xor: {{xorResult}} <br>
+					xorRev: {{xorReverse}}
+				</span>
 			</div>
 		</div>
 	</div>
@@ -63,6 +67,7 @@
 				encodeSalt: '',
 				equalizeSalt: '',
 				xorResult: '',
+				xorReverse: '',
 				gasPrice: {}
 			}
 		},
@@ -111,6 +116,8 @@
 					let hex = Number(a[i]^b[i]).toString(16)
 					res.push(hex)
 				}
+				console.log(res.join('').toString(16))
+				console.log(res.join(''))
 				return res.join('')
 			},
 			encryptData(s, m){
@@ -135,6 +142,10 @@
 				this.xorResult = this.xor(this.equalizeSalt, this.encodePost)
 				console.log('xor: '+this.xorResult)
 
+			},
+			decryptData(s, m){
+
+				this.xorReverse = this.xor(this.equalizeSalt, this.xorResult)
 			}
 		},
 		computed: {
