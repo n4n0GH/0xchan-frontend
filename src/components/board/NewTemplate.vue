@@ -54,6 +54,7 @@
 </template>
 
 <script>
+	/* eslint-disable */
 	// some explanation for the cryptographic
 	// process below, will be further detailed
 	// in documentation but for now this is it
@@ -121,15 +122,11 @@
 				// setting up basic bitwise
 				// XOR operation to use on salt a and message b
 				// resulting in output res which is gonna go on IPFS
-				// if(!Buffer.isBuffer(a)) a = new Buffer(a)
-				// if(!Buffer.isBuffer(b)) b = new Buffer(b)
 				let res = []
 				for(let i=0; i<a.length; i++){
 					let hex = Number('0x'+a[i]^'0x'+b[i]).toString(16)
 					res.push(hex)
 				}
-				console.log(res.join('').toString(16))
-				console.log(res.join(''))
 				return res.join('')
 			},
 			encryptData(s, m){
