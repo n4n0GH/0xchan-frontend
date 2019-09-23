@@ -104,14 +104,14 @@
 				// setting up basic bitwise
 				// XOR operation to use on salt a and message b
 				// resulting in output res which is gonna go on IPFS
-				if(!Buffer.isBuffer(a)) a = new Buffer(a)
-				if(!Buffer.isBuffer(b)) b = new Buffer(b)
+				// if(!Buffer.isBuffer(a)) a = new Buffer(a)
+				// if(!Buffer.isBuffer(b)) b = new Buffer(b)
 				let res = []
-				for(let i=0; i<b.length; i++){
-					res.push(a[i]^b[i])
+				for(let i=0; i<a.length; i++){
+					let hex = Number(a[i]^b[i]).toString(16)
+					res.push(hex)
 				}
-				console.log(res)
-				return new Buffer(res)
+				return res.join('')
 			},
 			encryptData(s, m){
 				// function grabs the salt s to encrypt with
