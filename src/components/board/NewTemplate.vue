@@ -45,7 +45,8 @@
 					post: {{encodePost}} <br>
 					salt: {{equalizeSalt}} <br>
 					xor: {{xorResult}} <br>
-					xorRev: {{xorReverse}}
+					xorRev: {{xorReverse}} <br>
+					decrypt: {{decryptPost}}
 				</span>
 			</div>
 		</div>
@@ -68,6 +69,7 @@
 				equalizeSalt: '',
 				xorResult: '',
 				xorReverse: '',
+				decryptPost: '',
 				gasPrice: {}
 			}
 		},
@@ -93,9 +95,19 @@
 				// take a string s and turn it into 
 				// it's hexadecimal representation
 				let arr = []
-				for(let n=0, l=s.length; n<l; n++){
+				for(let n = 0, l = s.length; n < l; n++){
 					let hex = Number(s.charCodeAt(n)).toString(16)
 					arr.push(hex)
+				}
+				return arr.join('')
+			},
+			fromHex(s){
+				// take a string s and return it
+				// into it's non-hex representation
+				let hex = s.toString()
+				let arr = []
+				for(let n = 0; n < hex.length; n+= 2){
+					arr.push(String.fromCharCode(parseInt(hex.substr(n, 2), 16)))
 				}
 				return arr.join('')
 			},
@@ -113,7 +125,7 @@
 				// if(!Buffer.isBuffer(b)) b = new Buffer(b)
 				let res = []
 				for(let i=0; i<a.length; i++){
-					let hex = Number(a[i]^b[i]).toString(16)
+					let hex = Number('0x'+a[i]^'0x'+b[i]).toString(16)
 					res.push(hex)
 				}
 				console.log(res.join('').toString(16))
@@ -123,7 +135,7 @@
 			encryptData(s, m){
 				// function grabs the salt s to encrypt with
 				// as well as the message m to encrypt as params
-				// construct the final output uwu
+				// construct the final output
 				
 				// encode post content to hexadecimal
 				this.encodePost = this.toHex(m)
@@ -144,8 +156,11 @@
 
 			},
 			decryptData(s, m){
-
+				// for dev purpose static data, change to variables s and m later
+				// XOR encoded salt s against message m
 				this.xorReverse = this.xor(this.equalizeSalt, this.xorResult)
+
+				this.decryptPost = this.fromHex(this.xorReverse)
 			}
 		},
 		computed: {
