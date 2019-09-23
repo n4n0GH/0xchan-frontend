@@ -34,6 +34,7 @@
 			<div class="row">
 				<div class="col">
 					<button class="btn btn-outline-chan btn-block border-left-0 border-right-0 border-bottom-0">Submit</button>
+					<span @click="encryptData(saltMine, gasPrice)">salt: {{saltMine}}</span>
 				</div>
 			</div>
 		</div>
@@ -41,6 +42,9 @@
 </template>
 
 <script>
+	// some explanation for the cryptographic
+	// process below, will be further detailed
+	// in documentation but for now this is it
 	import Axios from 'axios'
 	
 	export default {
@@ -63,6 +67,60 @@
 			refreshGas(){
 				Axios.get("https://ethgasstation.info/json/ethgasAPI.json")
 					.then(response => {this.gasPrice = response.data})
+			},
+			toHex(str){
+				// take a string and turn it into it's 
+				// hex representation
+				let arr = []
+				for(let n=0, l=str.length; n<l; n++){
+					let hex = Number(str.charCodeAt(n)).toString(16)
+					arr.push(hex)
+				}
+				return arr.join('')
+			},
+			equalize(s, m){
+				// take salt s and repeat for length 
+				// of message m to equalize length of
+				// XOR pairs. s will shrink if s>m
+				return this.toHex(m).slice(0,0).padStart(this.toHex(m).length, s)
+			},
+			xor(a, b){
+				// setting up basic bitwise
+				// XOR operation to use on salt a and message b
+				// resulting in output res which is gonna go on IPFS
+				if(!Buffer.isBuffer(a)) a = new Buffer(a)
+				if(!Buffer.isBuffer(b)) b = new Buffer(b)
+				let res = []
+				for(let i=0; i<a.length; i++){
+					res.push(a[i]^b[i])
+				}
+				return new Buffer(res)
+			},
+			encryptData(salt, message){
+				// function grabs the salt to encrypt with
+				// as well as the message to encrypt as params
+				// construct the final output
+				let secret = this.equalize(this.toHex(salt))
+				let encode = this.toHex(message)
+
+				console.log(this.xor(secret, encode))
+
+			}
+		},
+		computed: {
+			threadID(){
+				// since it's not possible to reliably 
+				// fetch the next possible ID from the
+				// contract, we have to provide an ID
+				// for the first post in every thread
+				return this.$route.params.number?this.$route.params.number:'OPISAFAGGOT'
+			},
+			saltMine(){
+				// generates the salt to be used
+				// dynamically based on the current
+				// board and thread ID which stays 
+				// the same within a single thread
+				return this.$route.params.ticker+this.threadID
 			}
 		},
 		mounted(){
