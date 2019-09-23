@@ -12,14 +12,16 @@
 		<div class="card-body bg-chan-light p-1">
 			<!-- @dev maybe split this into a card so text can flow around it -->
 			<div class="row">
-				<div class="col-4">
+				<div class="col-4 pr-0">
 					<p class="small mb-0 text-mono text-overflow">
-						<input type="file" @change="fileSelect">
+						<input type="file" @change="fileSelect" style="display: none" ref="fileSelection">
+						<button class="btn btn-outline-chan-red btn-block py-0" @click="$refs.fileSelection.click()" v-if="!filePreview">add file</button>
 					</p>
-					<img class="mw-100" style="max-height:200px;" :src="filePreview" v-if="filePreview" />
+					<img class="mw-100" style="max-height:200px; cursor: pointer;" :src="filePreview" v-if="filePreview" @click="$refs.fileSelection.click()"/>
+					<p class="small mb-0 text-mono" v-if="filePreview">[<a href="javascript:void(0);" @click="fileClear()">clear</a>]</p>
 				</div>
-				<div class="col-8 font-chan-normal">
-					<textarea class="form-control" name="postContent" placeholder="&gt;implying you have anything worth posting anyway" style="line-height:1.1rem;"></textarea>
+				<div class="col pl-1 font-chan-normal">
+					<textarea class="form-control h-100" name="postContent" placeholder="&gt;implying you have anything worth posting anyway" style="line-height:1.1rem;"></textarea>
 					
 				</div>
 			</div>
@@ -30,11 +32,13 @@
 				</div>
 			</div>
 		</div>
-		<div class="card-footer bg-chan-light border-0 p-0">
+		<div class="card-footer bg-chan-light border-0">
 			<div class="row">
-				<div class="col">
-					<button class="btn btn-outline-chan btn-block border-left-0 border-right-0 border-bottom-0">Submit</button>
-					<span @click="encryptData(saltMine, gasPrice)">salt: {{saltMine}}</span>
+				<div class="col-12 col-lg-6 mb-2 mb-lg-0">
+					<button class="btn btn-outline-chan btn-block"><i class="fab fa-creative-commons-zero"></i> Post with 1 ZCH</button>
+				</div>
+				<div class="col-12 col-lg-6">
+					<button class="btn btn-outline-chan btn-block"><i class="fab fa-ethereum"></i> Post with 0.0001 ETH</button>
 				</div>
 			</div>
 		</div>
@@ -63,6 +67,10 @@
 			fileSelect(e){
 				const file = e.target.files[0]
 				this.filePreview = URL.createObjectURL(file)
+			},
+			fileClear(){
+				this.filePreview = null
+				this.$refs.fileSelection.value = ''
 			},
 			refreshGas(){
 				Axios.get("https://ethgasstation.info/json/ethgasAPI.json")
@@ -104,11 +112,10 @@
 				let encode = this.toHex(message)
 
 				console.log(this.xor(secret, encode))
-
 			}
 		},
 		computed: {
-			threadID(){
+			threadId(){
 				// since it's not possible to reliably 
 				// fetch the next possible ID from the
 				// contract, we have to provide an ID
