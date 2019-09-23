@@ -123,7 +123,7 @@
 			encryptData(s, m){
 				// function grabs the salt s to encrypt with
 				// as well as the message m to encrypt as params
-				// construct the final output
+				// construct the final output uwu
 				
 				// encode post content to hexadecimal
 				this.encodePost = this.toHex(m)
