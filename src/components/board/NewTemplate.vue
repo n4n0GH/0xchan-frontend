@@ -95,9 +95,20 @@
 			toHex(s){
 				// take a string s and turn it into 
 				// it's hexadecimal representation
+				console.log(s)
+				let hex
 				let arr = []
-				for(let n = 0, l = s.length; n < l; n++){
-					let hex = Number(s.charCodeAt(n)).toString(16)
+				for(let n = 0; n < s.length; n++){
+					let char = Number(s.charCodeAt(n))
+					// check if the char to encode is a
+					// LF and prepend a 0 to prevent
+					// parsing errors during decoding
+					if(char == 10){
+						hex = '0'+char.toString(16)
+					} else {
+						hex = char.toString(16)
+					}
+					console.log(s.charCodeAt(n)+' -> '+hex)
 					arr.push(hex)
 				}
 				return arr.join('')
@@ -107,8 +118,9 @@
 				// into it's non-hex representation
 				let hex = s.toString()
 				let arr = []
-				for(let n = 0; n < hex.length; n+= 2){
-					arr.push(String.fromCharCode(parseInt(hex.substr(n, 2), 16)))
+				for(let n = 0; n < s.length; n+= 2){
+					arr.push(String.fromCharCode(parseInt(s.substr(n, 2), 16)))
+					console.log(arr)
 				}
 				return arr.join('')
 			},
@@ -156,8 +168,10 @@
 				// for dev purpose static data, change to variables s and m later
 				// XOR encoded salt s against message m
 				this.xorReverse = this.xor(this.equalizeSalt, this.xorResult)
+				console.log('reverse xor: '+this.xorReverse)
 
 				this.decryptPost = this.fromHex(this.xorReverse)
+				console.log('decrypted: '+this.decryptPost)
 			}
 		},
 		computed: {
