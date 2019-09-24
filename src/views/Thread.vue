@@ -35,6 +35,7 @@
 	import Threads from '../components/board/threads.json'
 	import Post from '../components/board/Post.vue'
 	import {mapGetters} from 'vuex'
+	import {eBus} from '../components/EventBus.js'
 
 	export default {
 		components: {
@@ -67,6 +68,10 @@
 			posts() {
 				return this.preSelect.filter(a => a.thread == this.thread)
 			}
+		},
+		beforeRouteUpdate(to, from, next){
+			eBus.$emit('closeReply')
+			next()
 		}
 	}
 </script>

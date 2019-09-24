@@ -25,7 +25,7 @@
 	import Banner from '../components/board/Banner.vue'
 	import Boards from '../components/navbar/boards.json'
 	import NewTemplate from '../components/board/NewTemplate.vue'
-
+	import {eBus} from '../components/EventBus.js'
 	import {mapGetters} from 'vuex'
 
 	export default{
@@ -56,6 +56,11 @@
 		updated(){
 			this.componentKey = Math.floor(Math.random()*10)
 				
+		},
+		mounted(){
+			eBus.$on('closeNew', () => {
+				this.openNew = false
+			})
 		}
 	}
 </script>

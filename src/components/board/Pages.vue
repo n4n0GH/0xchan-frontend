@@ -131,6 +131,8 @@
 		},
 		beforeRouteUpdate(to, from, next){
 			eBus.$emit('boardChange')
+			eBus.$emit('closeReply')
+			eBus.$emit('closeNew')
 			next()
 		}
 	}

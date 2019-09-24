@@ -40,8 +40,8 @@
 					<button class="btn btn-outline-chan btn-block"><i class="fab fa-ethereum"></i> Post with 0.0001 ETH</button>
 				</div>
 				<button class="btn" @click="encryptData(saltMine, postContent)">encrypt</button>
-				<button class="btn" @click="decryptData(saltMine, xorResult)">decrypt</button>
-				<span class="text-mono">
+				<button class="btn" @click="decryptData(saltMine, xorResult)">decrypt</button> <br>
+				<span class="text-mono" style="overflow:auto">
 					post: {{encodePost}} <br>
 					salt: {{equalizeSalt}} <br>
 					xor: {{xorResult}} <br>
@@ -71,6 +71,8 @@
 				xorResult: '',
 				xorReverse: '',
 				decryptPost: '',
+				shaResult: null,
+				shaDecrypt: null,
 				gasPrice: {}
 			}
 		},
@@ -83,6 +85,12 @@
 			fileSelect(e){
 				const file = e.target.files[0]
 				this.filePreview = URL.createObjectURL(file)
+				let fr = new FileReader()
+				fr.readAsText(file)
+				fr.onload = function(e){
+					console.log(fr.result)
+
+				}
 			},
 			fileClear(){
 				this.filePreview = null
@@ -95,7 +103,7 @@
 			toHex(s){
 				// take a string s and turn it into 
 				// it's hexadecimal representation
-				console.log(s)
+				// console.log(s)
 				let hex
 				let arr = []
 				for(let n = 0; n < s.length; n++){
@@ -108,7 +116,7 @@
 					} else {
 						hex = char.toString(16)
 					}
-					console.log(s.charCodeAt(n)+' -> '+hex)
+					// console.log(s.charCodeAt(n)+' -> '+hex)
 					arr.push(hex)
 				}
 				return arr.join('')
@@ -120,7 +128,7 @@
 				let arr = []
 				for(let n = 0; n < s.length; n+= 2){
 					arr.push(String.fromCharCode(parseInt(s.substr(n, 2), 16)))
-					console.log(arr)
+					// console.log(arr)
 				}
 				return arr.join('')
 			},
@@ -131,9 +139,9 @@
 				return m.slice(0,0).padStart(m.length, s)
 			},
 			xor(a, b){
-				// setting up basic bitwise
-				// XOR operation to use on salt a and message b
-				// resulting in output res which is gonna go on IPFS
+				// setting up basic bitwise XOR function
+				// to use on salt a and message b resulting
+				// in output res which is gonna go on IPFS
 				let res = []
 				for(let i=0; i<a.length; i++){
 					let hex = Number('0x'+a[i]^'0x'+b[i]).toString(16)
@@ -170,6 +178,7 @@
 				this.xorReverse = this.xor(this.equalizeSalt, this.xorResult)
 				console.log('reverse xor: '+this.xorReverse)
 
+				// decode this.xorReverse in byte pairs
 				this.decryptPost = this.fromHex(this.xorReverse)
 				console.log('decrypted: '+this.decryptPost)
 			}
@@ -191,8 +200,7 @@
 			}
 		},
 		mounted(){
-			Axios.get("https://ethgasstation.info/json/ethgasAPI.json")
-				.then(response => {this.gasPrice = response.data})
+			this.refreshGas()
 		}
 	}
 </script>
