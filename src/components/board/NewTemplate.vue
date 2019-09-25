@@ -78,12 +78,12 @@
 		methods: {
 			fileSelect(e){
 				const file = e.target.files[0]
+				this.fileRaw = file
 				this.filePreview = URL.createObjectURL(file)
 				let fr = new FileReader()
 				fr.readAsArrayBuffer(file)
 				fr.onload = function(e){
-					// console.log(fr.result)
-					this.fileRaw = fr.result
+					console.log(fr.result)
 				}
 			},
 			fileClear(){
@@ -93,101 +93,6 @@
 			refreshGas(){
 				Axios.get("https://ethgasstation.info/json/ethgasAPI.json")
 					.then(response => {this.gasPrice = response.data})
-			},
-			toHex(s){
-				// take a string s and turn it into 
-				// it's hexadecimal representation
-				// console.log(s)
-				let hex
-				let arr = []
-				for(let n = 0; n < s.length; n++){
-					let char = Number(s.charCodeAt(n))
-					// check if the char to encode is a
-					// LF or other single digit charcode 
-					// and prepend a 0 to prevent parsing
-					// errors during decoding
-					if(char <= 10){
-						hex = '0'+char.toString(16)
-					} else {
-						hex = char.toString(16)
-					}
-					// console.log(s.charCodeAt(n)+' -> '+hex)
-					arr.push(hex)
-				}
-				return arr.join('')
-			},
-			fromHex(s){
-				// take a string s and return it
-				// into it's non-hex representation
-				let hex = s.toString()
-				let arr = []
-				for(let n = 0; n < s.length; n+= 2){
-					arr.push(String.fromCharCode(parseInt(s.substr(n, 2), 16)))
-					// console.log(arr)
-				}
-				return arr.join('')
-			},
-			equalize(s, m){
-				// take salt s and repeat for length 
-				// of message m to equalize length of
-				// XOR pairs. s will shrink if s > m
-				return m.slice(0,0).padStart(m.length, s)
-			},
-			xor(a, b){
-				// setting up basic bitwise XOR function
-				// to use on salt a and message b resulting
-				// in output res which is gonna go on IPFS
-				let res = []
-				for(let i=0; i<a.length; i++){
-					let hex = Number('0x'+a[i]^'0x'+b[i]).toString(16)
-					res.push(hex)
-				}
-				return res.join('')
-			},
-			encryptData(s, m){
-				// function grabs the salt s to encrypt with
-				// as well as the message m to encrypt as params
-				// construct the final output
-				
-				// encode post content to hexadecimal
-				// this.encodePost = this.toHex(m)
-				// console.log('hexed post: '+this.encodePost)
-				this.encrypt(m, s, 'AES-GCM', 256, 12).then(encrypted => {
-					this.shaResult = encrypted
-					console.log(encrypted)
-				})
-
-				// encode salt to hexadecimal
-				// this.encodeSalt = this.toHex(s)
-				// console.log('hexed salt: '+this.encodeSalt)
-
-				// equalize length of encoded salt
-				// to match length of encoded post
-				// this.equalizeSalt = this.equalize(this.encodeSalt, this.encodePost)
-				// console.log('equalized: '+this.equalizeSalt)
-
-				// begin bitwise XOR of the content
-				// this.xorResult = this.xor(this.equalizeSalt, this.encodePost)
-				// console.log('xor: '+this.xorResult)
-
-			},
-			decryptData(s, m){
-				// for dev purpose static data, change to variables s and m later
-				// XOR encoded salt s against message m
-				// this.xorReverse = this.xor(this.equalizeSalt, this.xorResult)
-				// console.log('reverse xor: '+this.xorReverse)
-				;(async () => {
-					let mode = 'AES-GCM'
-					let length = 256
-					let ivLength = 12
-					let decrypted = await(this.decrypt(m, s, mode, length))
-					this.shaDecrypt = decrypted
-					console.log(this.shaDecrypt)
-				})()
-
-				// decode this.xorReverse in byte pairs
-				// this.decryptPost = this.fromHex(this.xorReverse)
-				// console.log('decrypted: '+this.decryptPost)
 			},
 			async genKey(passwd, mode, len){
 				let algo = {
@@ -226,6 +131,24 @@
 				let key = await this.genKey(passwd, mode, len)
 				let decrypted = await crypto.subtle.decrypt(algo, key, encrypted.cipherText)
 				return new TextDecoder().decode(decrypted)
+			},
+			encryptData(s, m){
+				console.log(m)
+				this.encrypt(m, s, 'AES-GCM', 256, 12).then(encrypted => {
+					this.shaResult = encrypted
+					console.log(encrypted)
+				})
+			},
+			decryptData(s, m){
+				console.log(m)
+				;(async () => {
+					let mode = 'AES-GCM'
+					let length = 256
+					let ivLength = 12
+					let decrypted = await(this.decrypt(m, s, mode, length))
+					this.shaDecrypt = decrypted
+					console.log(this.shaDecrypt)
+				})()
 			}
 		},
 		computed: {
