@@ -39,15 +39,8 @@
 				<div class="col-12 col-lg-6">
 					<button class="btn btn-outline-chan btn-block"><i class="fab fa-ethereum"></i> Post with 0.0001 ETH</button>
 				</div>
-				<button class="btn" @click="encryptData(saltMine, postContent)">encrypt</button>
-				<button class="btn" @click="decryptData(saltMine, xorResult)">decrypt</button> <br>
-				<span class="text-mono" style="overflow:auto">
-					post: {{encodePost}} <br>
-					salt: {{equalizeSalt}} <br>
-					xor: {{xorResult}} <br>
-					xorRev: {{xorReverse}} <br>
-					decrypt: {{decryptPost}}
-				</span>
+				<button class="btn btn-outline-chan" @click="encryptData(saltMine, fileRaw)">encrypt</button>
+				<button class="btn btn-outline-chan" @click="decryptData(saltMine, shaResult)">decrypt</button>
 			</div>
 		</div>
 	</div>
@@ -64,6 +57,7 @@
 		data(){
 			return{
 				filePreview: null,
+				fileRaw: null,
 				postContent: '',
 				encodePost: '',
 				encodeSalt: '',
@@ -88,8 +82,8 @@
 				let fr = new FileReader()
 				fr.readAsArrayBuffer(file)
 				fr.onload = function(e){
-					console.log(fr.result)
-
+					// console.log(fr.result)
+					this.fileRaw = fr.result
 				}
 			},
 			fileClear(){
@@ -156,35 +150,44 @@
 				// construct the final output
 				
 				// encode post content to hexadecimal
-				this.encodePost = this.toHex(m)
-				console.log('hexed post: '+this.encodePost)
+				// this.encodePost = this.toHex(m)
+				// console.log('hexed post: '+this.encodePost)
 				this.encrypt(m, s, 'AES-GCM', 256, 12).then(encrypted => {
+					this.shaResult = encrypted
 					console.log(encrypted)
 				})
 
 				// encode salt to hexadecimal
-				this.encodeSalt = this.toHex(s)
-				console.log('hexed salt: '+this.encodeSalt)
+				// this.encodeSalt = this.toHex(s)
+				// console.log('hexed salt: '+this.encodeSalt)
 
 				// equalize length of encoded salt
 				// to match length of encoded post
-				this.equalizeSalt = this.equalize(this.encodeSalt, this.encodePost)
-				console.log('equalized: '+this.equalizeSalt)
+				// this.equalizeSalt = this.equalize(this.encodeSalt, this.encodePost)
+				// console.log('equalized: '+this.equalizeSalt)
 
 				// begin bitwise XOR of the content
-				this.xorResult = this.xor(this.equalizeSalt, this.encodePost)
-				console.log('xor: '+this.xorResult)
+				// this.xorResult = this.xor(this.equalizeSalt, this.encodePost)
+				// console.log('xor: '+this.xorResult)
 
 			},
 			decryptData(s, m){
 				// for dev purpose static data, change to variables s and m later
 				// XOR encoded salt s against message m
-				this.xorReverse = this.xor(this.equalizeSalt, this.xorResult)
-				console.log('reverse xor: '+this.xorReverse)
+				// this.xorReverse = this.xor(this.equalizeSalt, this.xorResult)
+				// console.log('reverse xor: '+this.xorReverse)
+				;(async () => {
+					let mode = 'AES-GCM'
+					let length = 256
+					let ivLength = 12
+					let decrypted = await(this.decrypt(m, s, mode, length))
+					this.shaDecrypt = decrypted
+					console.log(this.shaDecrypt)
+				})()
 
 				// decode this.xorReverse in byte pairs
-				this.decryptPost = this.fromHex(this.xorReverse)
-				console.log('decrypted: '+this.decryptPost)
+				// this.decryptPost = this.fromHex(this.xorReverse)
+				// console.log('decrypted: '+this.decryptPost)
 			},
 			async genKey(passwd, mode, len){
 				let algo = {
@@ -213,6 +216,16 @@
 					cipherText: await crypto.subtle.encrypt(algo, key, encoded),
 					iv: algo.iv
 				}
+			},
+			async decrypt(encrypted, passwd, mode, len){
+				let algo = {
+					name: mode,
+					length: len,
+					iv: encrypted.iv
+				}
+				let key = await this.genKey(passwd, mode, len)
+				let decrypted = await crypto.subtle.decrypt(algo, key, encrypted.cipherText)
+				return new TextDecoder().decode(decrypted)
 			}
 		},
 		computed: {
