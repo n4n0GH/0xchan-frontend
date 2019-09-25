@@ -131,10 +131,13 @@
 							</div>
 						</div>
 						<div class="row">
-							<div class="col mb-3">
+							<div class="col">
 								<p class="mb-0 lead">Load States</p>
-								<p class="small font-chan-normal mb-0">Auto-Load your settings from a JSON file.</p>
-								<input type="file" class="form-control" @change="fileSelect">
+								<p class="small font-chan-normal">Auto-Load your settings from a JSON file.</p>
+								<input type="file" @change="fileSelect" style="display:none;" ref="loadSelection">
+							</div>
+							<div class="col-12 col-sm-2">
+								<button class="p-0 w-100 px-1 btn btn-outline-chan text-mono" @click="$refs.loadSelection.click()">load()</button>
 							</div>
 						</div>
 						<div class="row">
@@ -177,7 +180,7 @@
 				'setBoardListReset'
 			]),
 			saveList(){
-				if(this.boardList){	
+				if(this.boardList){
 					this.setBoardList(this.boardList.replace(/^,/, "").replace(/,\s*$/, "").split(',').map(s => s.trim()))
 				}
 			},
