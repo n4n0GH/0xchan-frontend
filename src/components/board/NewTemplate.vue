@@ -109,9 +109,10 @@
 				for(let n = 0; n < s.length; n++){
 					let char = Number(s.charCodeAt(n))
 					// check if the char to encode is a
-					// LF and prepend a 0 to prevent
-					// parsing errors during decoding
-					if(char == 10){
+					// LF or other single digit charcode 
+					// and prepend a 0 to prevent parsing
+					// errors during decoding
+					if(char <= 10){
 						hex = '0'+char.toString(16)
 					} else {
 						hex = char.toString(16)
