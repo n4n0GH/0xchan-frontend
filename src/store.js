@@ -20,7 +20,30 @@ export default new Vuex.Store({
     userBoards: [],
     showAlert: true,
     comfyMode: false,
-    reports: []                                 // demo only!
+    // below data is for dev purpose only
+    // when users create a board, the object
+    // is written into the "boards" array on
+    // the smartcontract. at the same time a
+    // new array is created in the "threads"
+    // object, where the object key equals
+    // the board ticker specified by the user
+    demo: {                                     // fake smart contract storage
+      boards:[                                  // array to store boards with 1 board premined
+        {
+          "ticker": "b",
+          "punchline": "random",
+          "postcounter": 0
+        }
+      ],
+      threads: {                               // collection of objects each holding an array
+        b: [
+          // see json-examples.json
+          // for reference on how to
+          // structure this array
+        ]
+      }                                
+    },
+    reports: []
   },
   getters: {
     getLogin: state => {

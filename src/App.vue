@@ -116,7 +116,7 @@
 						{
 							rel: 'stylesheet',
 							name: 'theme', 
-							href: require('./assets/css/'+this.theme)
+							href: require(`@/assets/css/${this.getTheme}.css`)
 						}
 					]
 				}

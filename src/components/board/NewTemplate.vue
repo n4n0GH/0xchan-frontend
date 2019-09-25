@@ -21,7 +21,7 @@
 					<p class="small mb-0 text-mono" v-if="filePreview">[<a href="javascript:void(0);" @click="fileClear()">clear</a>]</p>
 				</div>
 				<div class="col pl-1 font-chan-normal">
-					<textarea class="form-control h-100" name="postContent" placeholder="&gt;implying you have anything worth posting anyway" style="line-height:1.1rem;" v-model="postContent"></textarea>
+					<textarea class="form-control h-100" name="postContent" placeholder="&gt;implying you can encrypt unicode during testnet" style="line-height:1.1rem;" v-model="postContent"></textarea>
 				</div>
 			</div>
 			<div class="row">
@@ -59,7 +59,7 @@
 	// process below, will be further detailed
 	// in documentation but for now this is it
 	import Axios from 'axios'
-	
+
 	export default {
 		data(){
 			return{
@@ -86,7 +86,7 @@
 				const file = e.target.files[0]
 				this.filePreview = URL.createObjectURL(file)
 				let fr = new FileReader()
-				fr.readAsText(file)
+				fr.readAsArrayBuffer(file)
 				fr.onload = function(e){
 					console.log(fr.result)
 

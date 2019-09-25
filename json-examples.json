@@ -8,29 +8,29 @@
 	"ticker": "biz",					// chosen by creator of board
 	"punchline": "shitcoins and stocks",// same
 	"postcounter": 0,					// always 0, incrementing with each post
-	"nsfw": false,						// if true, a badge is added on the navbar
 }
 // Thread + Posts
-{
-	"board": "biz",						// board
-	"thread": "1234567890",				// thread ID
-	"post": "Qm~",						// IPFS hash for OP (single post)
-	"replies": [						// IPFS hash for each reply (single post)
-		"Qm~",
-		"Qm~",
-		"...",
-	],
-	"hidden": [							// community voted to hide these
-		{
-			"id": "1234556789",
-			"hash": "Qm~"
-		},
-		{
-			"id": "1234556788",
-			"hash": "Qm~"
-		},
-	],
-}
+biz: [										// array holding all threads on biz
+	{										// object of each thread
+		"thread": "1234567890",				// thread ID
+		"post": "Qm~",						// IPFS hash for OP (single post)
+		"replies": [						// IPFS hash for each reply (single post)
+			"Qm~",
+			"Qm~",
+			"...",
+		],
+		"hidden": [							// community voted to hide these
+			{
+				"id": "1234556789",
+				"hash": "Qm~"
+			},
+			{
+				"id": "1234556788",
+				"hash": "Qm~"
+			},
+		],
+	}
+]
 
 // Single Post, example on https://ipfs.io/ipfs/Qmb2uspMc5iTHXYLcYDKov3nP6hwTb7C69QEWwwu4A7Jfd
 {
