@@ -158,6 +158,9 @@
 				// encode post content to hexadecimal
 				this.encodePost = this.toHex(m)
 				console.log('hexed post: '+this.encodePost)
+				this.encrypt(m, s, 'AES-GCM', 256, 12).then(encrypted => {
+					console.log(encrypted)
+				})
 
 				// encode salt to hexadecimal
 				this.encodeSalt = this.toHex(s)
@@ -182,6 +185,34 @@
 				// decode this.xorReverse in byte pairs
 				this.decryptPost = this.fromHex(this.xorReverse)
 				console.log('decrypted: '+this.decryptPost)
+			},
+			async genKey(passwd, mode, len){
+				let algo = {
+					name: 'PBKDF2',
+					hash: 'SHA-256',
+					salt: new TextEncoder().encode(this.saltMine),
+					iterations: 1000
+				}
+				let derived = {
+					name: mode,
+					length: len
+				}
+				let encoded = new TextEncoder().encode(passwd)
+				let key = await crypto.subtle.importKey('raw', encoded, {name: 'PBKDF2'}, false, ['deriveKey'])
+				return crypto.subtle.deriveKey(algo, key, derived, false, ['encrypt', 'decrypt'])
+			},
+			async encrypt(text, passwd, mode, len, ivlen){
+				let algo = {
+					name: mode,
+					length: len,
+					iv: crypto.getRandomValues(new Uint8Array(ivlen))
+				}
+				let key = await this.genKey(passwd, mode, len)
+				let encoded = new TextEncoder().encode(text)
+				return {
+					cipherText: await crypto.subtle.encrypt(algo, key, encoded),
+					iv: algo.iv
+				}
 			}
 		},
 		computed: {

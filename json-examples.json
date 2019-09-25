@@ -10,6 +10,10 @@
 	"postcounter": 0,					// always 0, incrementing with each post
 }
 // Thread + Posts
+// Note: every post and file content is
+// stored encrypted; the hashes lead the
+// system to those encrypted containers
+// and the frontend has to decrypt those
 biz: [										// array holding all threads on biz
 	{										// object of each thread
 		"thread": "1234567890",				// thread ID
@@ -44,10 +48,10 @@ biz: [										// array holding all threads on biz
 	"file": {							// optional			
 		"originalName": "bar.png",		// original upload name
 		"size": "1280x760",				// dimensions of image
-		"src": "Qm~",					// IPFS hash to file
-		"thumb": "Qm~",					// IPFS hash to thumbnail
+		"src": "Qm~",					// IPFS hash to encrypted file
+		"iv": "generatedIV",			// IV to start decryption
 	},
-	"replyTo": [						// optional
+	"replyTo": [						// optional / parsed in frontend (?)
 		"1234567889", 
 		"1234567888",
 	],
