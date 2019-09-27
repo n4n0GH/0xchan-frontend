@@ -33,6 +33,19 @@
 								@click="switcheroo()">is: {{getGrab?'off':'on'}}</button>
 							</div>
 						</div>
+						<!-- <transition name="fade" mode="out-in">
+						<div class="row" v-if="getGrab">
+							<div class="col">
+								<p class="mb-0 lead">Eco Mode</p>
+								<p class="small font-chan-normal">Limit the filesize of files to be downloaded to n MB. Useful if you have a limited Dataplan.</p>
+							</div>
+							<div class="col-12 col-sm-2">
+								<button 
+								class="p-0 px-1 w-100 btn btn-outline-chan-red text-mono"
+								@click="ecotoggle()">is: {{getEco?'on':'off'}}</button>
+							</div>
+						</div>
+						</transition> -->
 						<div class="row">
 							<div class="col">
 								<p class="mb-0 lead">Force Anonymous</p>
@@ -118,6 +131,31 @@
 						<hr>
 						<div class="row">
 							<div class="col">
+								<p class="display-4 text-center">Misc</p>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col">
+								<p class="mb-0 lead">Preferred Currency</p>
+								<p class="small font-chan-normal">Select your preferred currency to be used when paying for actions.</p>
+								<p class="mb-0 form-group">
+									<select name="currencySelect" id="" class="form-control" v-model="currency" @change="updateCurrency()">
+										<option value="none">No Preference</option>
+										<option value="zch" disabled>Pay with ZCH</option>
+										<option value="eth" disabled>Pay with ETH</option>
+									</select>
+								</p>
+								<transition name="fade" mode="out-in">
+								<p class="small font-chan-normal" v-if="currency=='none'">You can decide which currency to use in the UI.</p>
+								<p class="small font-chan-normal" v-if="currency=='zch'">You will use and burn your ZCH. If your ZCH runs out, the system will use ETH instead.</p>
+								<p class="small font-chan-normal" v-if="currency=='eth'">You will use ETH for all transactions.</p>
+								</transition>
+							</div>
+						</div>
+
+						<hr>
+						<div class="row">
+							<div class="col">
 								<p class="display-4 text-center">States</p>
 							</div>
 						</div>
@@ -165,7 +203,9 @@
 			return{
 				themeSelect: '',
 				custom: '',
-				boardList: ''
+				boardList: '',
+				currency: '',
+				eco: null
 			}
 		},
 		components: {
@@ -177,7 +217,8 @@
 				'setTheme',
 				'setCss',
 				'setBoardList',
-				'setBoardListReset'
+				'setBoardListReset',
+				'setPayment'
 			]),
 			saveList(){
 				if(this.boardList){
@@ -224,6 +265,12 @@
 				this.setCss(this.custom)
 				this.$router.go()
 			},
+			updateCurrency(){
+				this.setPayment(this.currency)
+			},
+			ecotoggle(){
+				this.setBool('mutEco')
+			},
 			switcheroo(){
 				this.setBool('mutGrab')
 				if(this.getAutoSwitch){
@@ -259,7 +306,9 @@
 				'getCustomCss',
 				'getForceAnon',
 				'getUserBoards',
-				'getComfy'
+				'getComfy',
+				'getPayment',
+				'getEco'
 			]),
 			localSettings(){
 				return localStorage.getItem('vuex')
@@ -277,6 +326,7 @@
 			}
 			this.themeSelect = this.getTheme
 			this.custom = this.getCustomCss
+			this.currency = this.getPayment
 		}
 	}	
 </script>

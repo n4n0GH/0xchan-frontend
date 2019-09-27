@@ -9,17 +9,19 @@ export default new Vuex.Store({
     autosave()
   ],
   state: {
-    login: false,
-    hiddenThreads: [],
-    grabFiles: false,
-    autoSwitch: true,
-    theme: 'YotsubaB',
-    disclaimer: true,
-    customCSS: '',
-    forceAnon: false,
-    userBoards: [],
-    showAlert: true,
-    comfyMode: false,
+    login: false,                               // store if user logged in with MM
+    hiddenThreads: [],                          // array of threads hidden by user
+    grabFiles: false,                           // sfw on (false) or off (true)
+    autoSwitch: true,                           // switch theme if sfw mode toggles
+    theme: 'YotsubaB',                          // current theme selected
+    disclaimer: true,                           // show disclaimer on index page
+    customCSS: '',                              // store user's custom CSS
+    forceAnon: false,                           // replace user names with Anonymous
+    userBoards: [],                             // array of custom board list
+    showAlert: true,                            // show alert on voting page
+    comfyMode: false,                           // compact mode on/off (t/f)
+    userPayment: 'none',                        // preferred payment method
+    ecoMode: false,                             // limit autodownload to n MB
     // below data is for dev purpose only
     // when users create a board, the object
     // is written into the "boards" array on
@@ -81,6 +83,12 @@ export default new Vuex.Store({
     },
     getComfy: state => {
       return state.comfyMode
+    },
+    getPayment: state => {
+      return state.userPayment
+    },
+    getEco: state => {
+      return state.ecoMode
     }
   },
   mutations: {
@@ -130,11 +138,17 @@ export default new Vuex.Store({
     },
     mutComfy: state => {
       state.comfyMode = !state.comfyMode
+    },
+    mutPayment: (state, payload) => {
+      state.userPayment = payload
+    },
+    mutEco: state => {
+      state.ecoMode = !state.ecoMode
     }
   },
   actions: {
-    setBool: (context, payload) => {
-       context.commit(payload)
+    setBool: (context, payload) => {            // universal action for all boolean
+       context.commit(payload)                  // mutations, use mut name as payload
     },
     setLogin: context => {
       context.commit('mutLogin', true)
@@ -162,6 +176,9 @@ export default new Vuex.Store({
     },
     setReportsRemove: (context, payload) => {
       context.commit('mutReportsRemove', payload)
+    },
+    setPayment: (context, payload) => {
+      context.commit('mutPayment', payload)
     }
   }
 })

@@ -39,8 +39,8 @@
 				<div class="col-12 col-lg-6">
 					<button class="btn btn-outline-chan btn-block"><i class="fab fa-ethereum"></i> Post with 0.0001 ETH</button>
 				</div>
-				<button class="btn btn-outline-chan" @click="encryptData(saltMine, fileRaw)">encrypt</button>
-				<button class="btn btn-outline-chan" @click="decryptData(saltMine, shaResult)">decrypt</button>
+				<!-- <button class="btn btn-outline-chan" @click="encryptData(saltMine, fileRaw)">encrypt</button>
+				<button class="btn btn-outline-chan" @click="decryptData(saltMine, shaResult)">decrypt</button> -->
 			</div>
 		</div>
 	</div>
@@ -67,7 +67,8 @@
 				decryptPost: '',
 				shaResult: null,
 				shaDecrypt: null,
-				gasPrice: {}
+				gasPrice: {},
+				bufferImage: null
 			}
 		},
 		props: {
@@ -78,12 +79,13 @@
 		methods: {
 			fileSelect(e){
 				const file = e.target.files[0]
-				this.fileRaw = file
+				let vm = this
 				this.filePreview = URL.createObjectURL(file)
 				let fr = new FileReader()
 				fr.readAsArrayBuffer(file)
 				fr.onload = function(e){
 					console.log(fr.result)
+					vm.bufferImage = fr.result
 				}
 			},
 			fileClear(){
@@ -133,10 +135,10 @@
 				return new TextDecoder().decode(decrypted)
 			},
 			encryptData(s, m){
-				console.log(m)
+				console.log('clear: '+m)
 				this.encrypt(m, s, 'AES-GCM', 256, 12).then(encrypted => {
 					this.shaResult = encrypted
-					console.log(encrypted)
+					console.log(this.shaResult)
 				})
 			},
 			decryptData(s, m){

@@ -23,8 +23,9 @@
 				<textarea name="comment" class="form-control p-0 rounded-0 border-top-0 border-left-0 border-right-0 border-chan-red" id="quickReply" placeholder="Comment" v-model="replyTo"></textarea>
 				<input type="file">
 			</div>
-			<div class="card-footer bg-chan-light border-top-0 p-0">
-				<button class="btn btn-block btn-outline-chan rounded-0 border-left-0 border-left-0 border-bottom-0 border-right-0">Post</button>
+			<div class="card-footer bg-chan-light border-top-0 p-0 input-group">
+				<button class="form-control btn btn-outline-chan rounded-0 border-left-0 border-left-0 border-bottom-0 border-right-0"><i class="fab fa-creative-commons-zero"></i> Post with ZCH</button>
+				<button class="form-control btn btn-outline-chan rounded-0 border-left-0 border-left-0 border-bottom-0 border-right-0 px-auto"><i class="fab fa-ethereum"></i> Post with ETH</button>
 			</div>
 		</div>
 	</vue-draggable-resizable>
