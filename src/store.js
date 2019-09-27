@@ -89,6 +89,9 @@ export default new Vuex.Store({
     },
     getEco: state => {
       return state.ecoMode
+    },
+    getDemo: state => {
+      return state.demo
     }
   },
   mutations: {

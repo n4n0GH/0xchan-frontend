@@ -68,7 +68,24 @@
 				shaResult: null,
 				shaDecrypt: null,
 				gasPrice: {},
-				bufferImage: null
+				bufferImage: null,
+				postBody: {
+					eth: '0x7ac73ebb',	// address of sender
+					id: '',	// taken from boards postcounter in contract
+					stamp: '',	// unix time
+					file: {
+						originalName: '',
+						size: '',
+						src: '',
+						iv: ''	// iv generated from encryption algo
+					},
+					replyTo: [],
+					name: '',
+					subject: '',
+					options: '',
+					iv: '',
+					text: ''
+				}
 			}
 		},
 		props: {
