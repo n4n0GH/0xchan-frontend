@@ -36,14 +36,14 @@
 						</div>
 						<alert>
 							<template #content>
-								Before you submit please make sure you entered the details above correctly as a change of these inputs after you submit the transaction is not possible.
+								Before you submit please make sure you entered the details above correctly as a change of these inputs after you submit the transaction is not possible. The transaction will be rejected if the board ticker already exists.
 							</template>
 						</alert>
 						<div class="row">
-							<div class="col-12 col-lg-6 mb-2 mb-lg-0">
-								<button class="btn btn-outline-chan btn-block"><i class="fab fa-creative-commons-zero"></i> Create with 100 ZCH</button>
+							<div class="col-12 col-lg-6 mb-2 mb-lg-0" v-if="getPayment == 'none' || getPayment == 'zch'">
+								<button class="btn btn-outline-chan btn-block" @click="createBoard()"><i class="fab fa-creative-commons-zero"></i> Create with 100 ZCH</button>
 							</div>
-							<div class="col-12 col-lg-6">
+							<div class="col-12 col-lg-6" v-if="getPayment == 'none' || getPayment == 'eth'">
 								<button class="btn btn-outline-chan btn-block"><i class="fab fa-ethereum"></i> Create with 0.01 ETH</button>
 							</div>
 							
@@ -58,6 +58,7 @@
 <script>
 	import Axios from 'axios'
 	import Alert from '../components/helpers/Alert.vue'
+	import {mapGetters, mapActions} from 'vuex'
 
 	export default{
 		data(){
@@ -71,10 +72,21 @@
 			Alert
 		},
 		methods:{
+			...mapActions([
+				'setBoard'
+			]),
+			createBoard(){
+				this.setBoard({"board": this.boardTicker, "punchline": this.boardName})
+			},
 			getGas(){
 				Axios.get("https://ethgasstation.info/json/ethgasAPI.json")
 					.then(response => {this.gasPrice = response.data})
 			}
+		},
+		computed:{
+			...mapGetters([
+				'getPayment'
+			])
 		},
 		mounted(){
 			this.getGas()

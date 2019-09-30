@@ -11,33 +11,33 @@
 			</div>
 		</div>
 		<div class="row">
-			<p v-if="posts==''" class="text-center text-chan w-100 text-mono">no posts yet, do something about it!</p>
-			<div class="col-12 thread-preview" v-for="(post, index) in posts.slice((5*(page-1)),(5*(page-1))+5)" :key="'post.thread-'+index" :style="getHidden.includes(board+post.thread)?'height:2.2rem;':''" :id="'p'+post.thread">
+			<p v-if="threads==''" class="text-center text-chan w-100 text-mono">no posts yet, do something about it!</p>
+			<div class="col-12 thread-preview" v-for="(post, index) in threads.slice((5*(page-1)),(5*(page-1))+5)" :key="'post.id-'+index" :style="getHidden.includes(board+post.id)?'height:2.2rem;':''" :id="'p'+post.id">
 				<div class="row">
 					<div class="col-auto p-0">
-						<button style="line-height: 1rem;" class="d-none d-sm-inline mt-2 p-0 px-1 btn btn-outline-chan-red text-mono" @click="setHidden(board+post.thread)">{{getHidden.includes(board+post.thread)?'+':'-'}}</button>
+						<button style="line-height: 1rem;" class="d-none d-sm-inline mt-2 p-0 px-1 btn btn-outline-chan-red text-mono" @click="setHidden(board+post.id)">{{getHidden.includes(board+post.id)?'+':'-'}}</button>
 					</div>
-					<div class="col" v-if="!getHidden.includes(board+post.thread)" :id="'thread-'+post.thread">
+					<div class="col" v-if="!getHidden.includes(board+post.id)" :id="'thread-'+post.id">
 						
-						<post class="op-container col-12 pl-0" :id="'p'+post.thread" :post="post" />
+						<post class="op-container col-12 pl-0" :id="'p'+post.id" :post="post" />
 						<div class="row">
 							<p class="text-mono small mb-1 ml-4 d-none d-sm-block" v-if="post.replies.length - 5 > 0">&gt;&gt; {{post.replies.length-5+' posts'}} <span v-if="omittedImages(post)>0">and {{omittedImages(post)}} {{omittedImages(post)&gt;1?'images':'image'}}</span> omitted [
-							<router-link :to="{name: 'thread', params: {'number': post.thread}}">
+							<router-link :to="{name: 'thread', params: {'number': post.id}}">
 							view thread</router-link>
 							]</p>
 							<p class="text-mono small mb-1 ml-4 d-none d-sm-block" v-if="post.replies.length <= 0">&gt;&gt; No replies yet [
-							<router-link :to="{name: 'thread', params: {'number': post.thread}}">
+							<router-link :to="{name: 'thread', params: {'number': post.id}}">
 							view thread</router-link>
 							]</p>
 						</div>
 						<post v-for="reply in post.replies.slice(-5)" :key="reply.id" class="reply-container ml-5 col-auto d-none d-sm-block" :id="'p'+reply.id" :post="reply" />
 					</div>
-					<div class="col" v-if="getHidden.includes(board+post.thread)">
-						<p class="chan-disabled text-mono small font-chan-red pt-2">Thread #{{post.thread}} hidden</p>
+					<div class="col" v-if="getHidden.includes(board+post.id)">
+						<p class="chan-disabled text-mono small font-chan-red pt-2">Thread #{{post.id}} hidden</p>
 					</div>
 				</div>
 				
-				<hr v-if="!getHidden.includes(board+post.thread)" class=" d-none d-sm-block">
+				<hr v-if="!getHidden.includes(board+post.id)" class=" d-none d-sm-block">
 			</div>
 
 			<div class="row w-100">
@@ -57,12 +57,11 @@
 
 <script>
 	//import Axios from 'axios'
-	import Threads from './threads.json' //disable for axios testing
-	import Boards from '../navbar/boards.json'
+	// import Threads from './threads.json' //disable for axios testing
+	// import Boards from '../navbar/boards.json'
 	import Post from './Post.vue'
 	import {mapGetters, mapActions} from 'vuex'
 	import {eBus} from '../EventBus.js'
-	
 
 	export default{
 		components: {
@@ -70,7 +69,7 @@
 		},
 		data() {
 			return {
-				threads: [],
+				// threads: [],
 				hiddenThreads: [],
 				componentKey: 0,
 				openNew: false
@@ -96,7 +95,8 @@
 			...mapGetters([
 				'getHidden',
 				'getForceAnon',
-				'getLogin'
+				'getLogin',
+				'getDemo'
 			]),
 			board() {
 				return this.$route.params.ticker
@@ -110,15 +110,25 @@
 					return 1
 				}
 			},
-			posts() { //switch returns if using axios or nah
-				//return this.threads.filter(a => a.board == this.board)
-				return Threads.filter(a => a.board == this.board)
+			boards() {
+				return this.getDemo.boards
 			},
+			threads() {
+				return this.getDemo.threads[this.board].slice().reverse()
+			},
+			// posts() { //switch returns if using axios or nah
+			// 	//return this.threads.filter(a => a.board == this.board)
+			// 	return this.threads.filter(a => a == this.board)
+			// },
 			tag() {
-				return Boards.filter(a => a.ticker == this.board)
+				return this.boards.filter(a => a.ticker == this.board)
 			},
 			pages() {
-				return this.posts.length/5
+				if(this.threads.length>=5){
+					return this.threads.length/5
+				} else {
+					return 1
+				}
 			}
 		},
 		updated(){
@@ -127,7 +137,7 @@
 		mounted(){		//disable for dev
 			/*Axios.get("https://ipfs.globalupload.io/QmTBxkQmp5dEqSspHELZRqUrWt5Neb62MGxg7opAcedpvE")
 				.then(response => {this.threads = response.data})*/
-			
+			console.log(this.threads)
 		},
 		beforeRouteUpdate(to, from, next){
 			eBus.$emit('boardChange')

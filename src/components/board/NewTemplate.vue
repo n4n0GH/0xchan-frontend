@@ -3,9 +3,9 @@
 		<div class="card-header bg-chan p-0 border-0">
 			<div class="row">
 				<div class="col text-left input-group">
-					<input class="border-left-0 border-top-0 form-control" type="text" placeholder="Subject (optional)" v-if="!isReply">
-					<input class="border-top-0 form-control" type="text" placeholder="Name (optional)">
-					<input type="text" class="border-right-0 border-top-0 form-control" placeholder="Options (optional kek)">
+					<input class="border-left-0 border-top-0 form-control" type="text" placeholder="Subject (optional)" v-if="!isReply" v-model="postBody.subject">
+					<input class="border-top-0 form-control" type="text" placeholder="Name (optional)" v-model="postBody.name">
+					<input type="text" class="border-right-0 border-top-0 form-control" placeholder="Options (optional kek)" v-model="postBody.options">
 				</div>
 			</div>
 		</div>
@@ -21,7 +21,7 @@
 					<p class="small mb-0 text-mono" v-if="filePreview">[<a href="javascript:void(0);" @click="fileClear()">clear</a>]</p>
 				</div>
 				<div class="col pl-1 font-chan-normal">
-					<textarea class="form-control h-100" name="postContent" placeholder="&gt;implying you can encrypt unicode during testnet" style="line-height:1.1rem;" v-model="postContent"></textarea>
+					<textarea class="form-control h-100" name="postContent" placeholder="&gt;implying you can encrypt unicode during testnet" style="line-height:1.1rem;" v-model="postBody.text"></textarea>
 				</div>
 			</div>
 			<div class="row">
@@ -33,14 +33,12 @@
 		</div>
 		<div class="card-footer bg-chan-light border-0">
 			<div class="row">
-				<div class="col-12 col-lg-6 mb-2 mb-lg-0">
-					<button class="btn btn-outline-chan btn-block"><i class="fab fa-creative-commons-zero"></i> Post with 1 ZCH</button>
+				<div class="col-12 col-lg-6 mb-2 mb-lg-0" v-if="getPayment == 'none' || getPayment == 'zch'">
+					<button class="btn btn-outline-chan btn-block" @click="writePost()"><i class="fab fa-creative-commons-zero"></i> Post with 1 ZCH</button>
 				</div>
-				<div class="col-12 col-lg-6">
+				<div class="col-12 col-lg-6" v-if="getPayment == 'none' || getPayment == 'eth'">
 					<button class="btn btn-outline-chan btn-block"><i class="fab fa-ethereum"></i> Post with 0.0001 ETH</button>
 				</div>
-				<!-- <button class="btn btn-outline-chan" @click="encryptData(saltMine, fileRaw)">encrypt</button>
-				<button class="btn btn-outline-chan" @click="decryptData(saltMine, shaResult)">decrypt</button> -->
 			</div>
 		</div>
 	</div>
@@ -52,6 +50,8 @@
 	// process below, will be further detailed
 	// in documentation but for now this is it
 	import Axios from 'axios'
+	import Tripcode from 'tripcode'
+	import {mapGetters, mapActions} from 'vuex'
 
 	export default {
 		data(){
@@ -85,6 +85,12 @@
 					options: '',
 					iv: '',
 					text: ''
+				},
+				threadBody: {
+					id: '',
+					post: null,
+					replies: [],
+					hidden: []
 				}
 			}
 		},
@@ -94,6 +100,30 @@
 			}
 		},
 		methods: {
+			...mapActions([
+				'setThread',
+				'setReply'
+			]),
+			writePost(){
+				if(!this.$route.params.number){
+					this.threadBody.post = this.postBody
+					this.threadBody.id = this.postId(6)
+					this.setThread({board: this.board, body: this.threadBody})
+				} else {
+					this.setReply({board: this.board, body: this.postBody})
+				}
+			},
+			postId(len){
+				let maxlen = 8
+				let min = Math.pow(16, Math.min(len, maxlen)-1)
+				let max = Math.pow(16, Math.min(len, maxlen)) -1
+				let n = Math.floor(Math.random()*(max-min+1))+min
+				let r = n.toString(16)
+				while(r.length < len){
+					r = r+this.postId(len - maxlen)
+				}
+				return r
+			},
 			fileSelect(e){
 				const file = e.target.files[0]
 				let vm = this
@@ -171,6 +201,19 @@
 			}
 		},
 		computed: {
+			...mapGetters([
+				'getDemo',
+				'getPayment'
+			]),
+			counter(){
+				return this.getDemo.boards.filter(a => a.ticker == this.board)
+			},
+			board(){
+				return this.$route.params.ticker
+			},
+			thread() {
+				return this.$route.params.number
+			},
 			threadId(){
 				// since it's not possible to reliably 
 				// fetch the next possible ID from the

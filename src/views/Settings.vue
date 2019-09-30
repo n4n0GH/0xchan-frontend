@@ -141,8 +141,8 @@
 								<p class="mb-0 form-group">
 									<select name="currencySelect" id="" class="form-control" v-model="currency" @change="updateCurrency()">
 										<option value="none">No Preference</option>
-										<option value="zch" disabled>Pay with ZCH</option>
-										<option value="eth" disabled>Pay with ETH</option>
+										<option value="zch">Pay with ZCH</option>
+										<option value="eth">Pay with ETH</option>
 									</select>
 								</p>
 								<transition name="fade" mode="out-in">

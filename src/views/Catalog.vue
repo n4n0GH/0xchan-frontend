@@ -58,7 +58,7 @@
 <script>
 	import CatalogItem from '../components/board/CatalogItem.vue'
 	import Loading from '../assets/loading.gif'
-	import Threads from '../components/board/threads.json'
+	// import Threads from '../components/board/threads.json'
 
 	import {mapGetters, mapActions} from 'vuex'
 
@@ -86,18 +86,26 @@
 			...mapGetters([
 				'getHidden',
 				'getGrab',
-				'getLogin'
+				'getLogin',
+				'getDemo'
 			]),
 			board() {
 				return this.$route.params.ticker
 			},
+			threads() {
+				return this.getDemo.threads
+			},
 			posts() { //switch returns if using axios or nah
 				//return this.threads.filter(a => a.board == this.board)
-				return Threads.filter(a => a.board == this.board)
+				// return Threads.filter(a => a.board == this.board)
+				return this.threads[this.board]
 			},
 			loading() {
 				return Loading
 			}
+		},
+		mounted(){
+			console.log(this.posts)
 		}
 	}
 </script>

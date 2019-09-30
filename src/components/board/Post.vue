@@ -5,16 +5,16 @@
 				<div class="row">
 					<div class="col pl-4 pr-0 py-1">
 						<p class="mb-0 font-chan-red">
-							<router-link tag="button" :to="{name: 'thread', params: {'number': post.thread}}" style="line-height: 1rem;" class="mt-n1 mr-2 p-0 px-1 btn btn-outline-chan-red" v-if="!post.id && !threadCheck">
+							<router-link tag="button" :to="{name: 'thread', params: {'number': post.id}}" style="line-height: 1rem;" class="mt-n1 mr-2 p-0 px-1 btn btn-outline-chan-red" v-if="!post.id && !threadCheck">
 								<i class="fal fa-eye"></i>
 							</router-link>
 							<span class="post-subject font-weight-bold">
-								{{post.subject}}
+								{{post.post.subject}}
 							</span>
 							<span class="post-name font-chan-ok">
-								{{getForceAnon?'Anonymous':post.name}}
+								{{getForceAnon?'Anonymous':post.post.name}}
 							</span>
-							- {{post.timestamp}}
+							- {{post.post.stamp}}
 							| No. <a href="javascript:void(0);" @click="quickReply(postNumber, $event)" v-if="getLogin">{{postNumber}}</a><span v-if="!getLogin">{{postNumber}}</span>
 						</p>
 					</div>
@@ -38,29 +38,29 @@
 			<div class="card-body bg-chan-light p-1">
 				<div class="row">
 					<div class="col-12">
-						<div class="float-left mr-3 w-auto" :style="{maxWidth: [inlinePreview?bigPreview:smolPreview]+'%'}" v-if="!!post.file.originalName && getGrab">
+						<div class="float-left mr-3 w-auto" :style="{maxWidth: [inlinePreview?bigPreview:smolPreview]+'%'}" v-if="!!post.post.file.originalName && getGrab">
 							<p class="small mb-0 text-mono text-overflow">
-								[<a href="javascript:void(0);" @click="doResearch = !doResearch">?</a>]<span class="d-none d-sm-inline">&nbsp;File:&nbsp;<a :href="post.file.src" target="_blank">{{post.file.originalName}}</a></span></p>
+								[<a href="javascript:void(0);" @click="doResearch = !doResearch">?</a>]<span class="d-none d-sm-inline">&nbsp;File:&nbsp;<a :href="post.post.file.src" target="_blank">{{post.post.file.originalName}}</a></span></p>
 							<p class="small mb-0 text-mono" v-if="doResearch">
-								[<a :href="'https://www.google.com/searchbyimage?image_url='+post.file.src" target="_blank">Google</a>] [<a :href="'https://iqdb.org/?url='+post.file.src" target="_blank">IQDB</a>] [<a :href="'https://saucenao.com/search.php?url='+post.file.src" target="_blank">Sauce</a>]
+								[<a :href="'https://www.google.com/searchbyimage?image_url='+post.post.file.src" target="_blank">Google</a>] [<a :href="'https://iqdb.org/?url='+post.post.file.src" target="_blank">IQDB</a>] [<a :href="'https://saucenao.com/search.php?url='+post.post.file.src" target="_blank">Sauce</a>]
 							</p>
 							<p class="small mb-0 text-mono d-none d-sm-inline">
 								(11.11 MB, 1920&times;1080)
 							</p>
-							<a :href="post.file.src" v-lazy-container="{selector: 'img'}" @click.prevent="toggleSize()">
-								<img :data-src="post.file.src" :data-loading="loading" :class="[inlinePreview?'bigPreview':'smolPreview']" alt="">
+							<a :href="post.post.file.src" v-lazy-container="{selector: 'img'}" @click.prevent="toggleSize()">
+								<img :data-src="post.post.file.src" :data-loading="loading" :class="[inlinePreview?'bigPreview':'smolPreview']" alt="">
 							</a>
 						</div>
 						<div class="font-chan-normal">
-							<blockquote class="mb-0" v-html="post.text">
+							<blockquote class="mb-0" v-html="post.post.text">
 							</blockquote>
 						</div>
 					</div>
 				</div>
-				<div class="row mt-2" v-if="!!post.file.originalName && !getGrab">
+				<div class="row mt-2" v-if="!!post.post.file.originalName && !getGrab">
 					<div class="col">
 						<p class="small mb-0 text-mono">
-							File omitted: <slot name="fileMeta" /> (11.11 MB, 1920&times;1080) [<a :href="post.file.src" target="_blank">view</a>]
+							File omitted: <slot name="fileMeta" /> (11.11 MB, 1920&times;1080) [<a :href="post.post.file.src" target="_blank">view</a>]
 						</p>
 					</div>
 				</div>
@@ -181,7 +181,7 @@
 			}
 		},
 		mounted(){
-			this.postNumber = this.post.id?this.post.id:this.post.thread
+			this.postNumber = this.post.post.id?this.post.post.id:this.post.id
 			eBus.$on('boardChange', () => {
 				if(this.doResearch){
 					this.doResearch = false

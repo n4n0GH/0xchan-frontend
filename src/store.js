@@ -22,27 +22,33 @@ export default new Vuex.Store({
     comfyMode: false,                           // compact mode on/off (t/f)
     userPayment: 'none',                        // preferred payment method
     ecoMode: false,                             // limit autodownload to n MB
-    // below data is for dev purpose only
-    // when users create a board, the object
-    // is written into the "boards" array on
-    // the smartcontract. at the same time a
-    // new array is created in the "threads"
-    // object, where the object key equals
-    // the board ticker specified by the user
+    /**
+     * below data is for @dev purpose only
+     * when users create a board the object
+     * is written into the "boards" array on
+     * the smart contract. at the same time
+     * a new array is created in the "threads"
+     * object where the object key equals the
+     * board ticker specified by the user
+     */
     demo: {                                     // fake smart contract storage
       boards:[                                  // array to store boards with 1 board premined
-        {
-          "ticker": "b",
-          "punchline": "random",
-          "postcounter": 0
-        }
+        // {
+        //   "ticker": "biz",
+        //   "punchline": "shitcoins and stocks"
+        // },
+        // {
+        //   "ticker": "lol",
+        //   "punchline": "lolcow central"
+        // }
       ],
       threads: {                               // collection of objects each holding an array
-        b: [
-          // see json-examples.json
-          // for reference on how to
-          // structure this array
-        ]
+        // biz: [
+        //   // see json-examples.json
+        //   // for reference on how to
+        //   // structure this array
+        // ],
+        // lol: []
       }                                
     },
     reports: []
@@ -147,6 +153,16 @@ export default new Vuex.Store({
     },
     mutEco: state => {
       state.ecoMode = !state.ecoMode
+    },
+    mutThread: (state, payload) => {
+      state.demo.threads[payload.board].push(payload.body)
+    },
+    mutReply: (state, payload) => {
+      state.demo.threads[payload.board].replies.push(payload.body)
+    },
+    mutBoard: (state, payload) => {
+      state.demo.threads[payload.board] = []
+      state.demo.boards.push({"ticker": payload.board, "punchline": payload.punchline})
     }
   },
   actions: {
@@ -182,6 +198,15 @@ export default new Vuex.Store({
     },
     setPayment: (context, payload) => {
       context.commit('mutPayment', payload)
+    },
+    setThread: (context, payload) => {
+      context.commit('mutThread', payload)
+    },
+    setReply: (context, payload) => {
+      context.commit('mutReply', payload)
+    },
+    setBoard: (context, payload) => {
+      context.commit('mutBoard', payload)
     }
   }
 })

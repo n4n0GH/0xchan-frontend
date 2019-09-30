@@ -9,7 +9,7 @@
 				</li>
 				<li class="pl-1 pb-2 text-center">
 					<hr>
-					<span class="small">that's all :(</span>
+					<span class="small text-muted">that's all :(</span>
 					<router-link :to="{name: 'newBoard'}" v-if="getLogin" tag="button" class="btn btn-outline-chan btn-block mt-2" active-class="btn-chan">
 						<i class="far fa-plus"></i> <span class="d-none d-xl-inline"> New</span> Board
 					</router-link>
@@ -19,7 +19,7 @@
 </template>
 
 <script>
-	import Boards from './boards.json' // contract simulation of board list storage
+	//import Boards from './boards.json' // contract simulation of board list storage
 	import {mapGetters} from 'vuex'
 
 	export default {
@@ -33,10 +33,14 @@
 		computed: {
 			...mapGetters([
 				'getLogin',
-				'getUserBoards'
+				'getUserBoards',
+				'getDemo'
 			]),
+			boards(){
+				return this.getDemo.boards
+			},
 			boardList() {
-				return Boards.sort((a, b) => a.ticker.localeCompare(b.ticker))
+				return this.boards.slice().sort((a, b) => a.ticker.localeCompare(b.ticker))
 			}
 		}
 	}

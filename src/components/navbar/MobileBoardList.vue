@@ -10,7 +10,7 @@
 </template>
 
 <script>
-	import Boards from './boards.json'
+	// import Boards from './boards.json'
 	import {mapGetters} from 'vuex'
 
 	export default {
@@ -27,10 +27,11 @@
 		},
 		computed: {
 			...mapGetters([
-				'getUserBoards'
+				'getUserBoards',
+				'getDemo'
 			]),
 			boardList() {
-				return Boards.sort((a, b) => a.ticker.localeCompare(b.ticker))
+				return this.getDemo.boards.slice().sort((a, b) => a.ticker.localeCompare(b.ticker))
 			}
 		}
 	}

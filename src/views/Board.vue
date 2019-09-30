@@ -23,7 +23,7 @@
 
 <script>
 	import Banner from '../components/board/Banner.vue'
-	import Boards from '../components/navbar/boards.json'
+	// import Boards from '../components/navbar/boards.json'
 	import NewTemplate from '../components/board/NewTemplate.vue'
 	import {eBus} from '../components/EventBus.js'
 	import {mapGetters} from 'vuex'
@@ -41,7 +41,8 @@
 		},
 		computed: {
 			...mapGetters([
-				'getLogin'
+				'getLogin',
+				'getDemo'
 			]),
 			board(){
 				return this.$route.params.ticker
@@ -49,8 +50,11 @@
 			thread() {
 				return this.$route.params.number
 			},
+			boards(){
+				return this.getDemo.boards
+			},
 			tag(){
-				return Boards.filter(a => a.ticker == this.board)
+				return this.boards.slice().filter(a => a.ticker == this.board)
 			}
 		},
 		updated(){

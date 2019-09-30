@@ -19,9 +19,7 @@ biz: [										// array holding all threads on biz
 		"thread": "1234567890",				// thread ID
 		"post": "Qm~",						// IPFS hash for OP (single post)
 		"replies": [						// IPFS hash for each reply (single post)
-			"Qm~",
-			"Qm~",
-			"...",
+			["0x7ac7~", "Qm~"]				// each reply is formed as a sub-array
 		],
 		"hidden": [							// community voted to hide these
 			{
