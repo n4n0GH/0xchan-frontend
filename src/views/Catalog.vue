@@ -9,7 +9,7 @@
 			</div>
 		</div>
 		<div class="col-6 col-md-4 col-xl-2 mb-2" v-for="(post, index) in posts" :key="post.id+index">
-			<catalog-item v-if="!getHidden.includes(board+post.thread)">
+			<catalog-item v-if="!getHidden.includes(board+post.id)">
 				<template #threadReplies>
 					{{post.replies.length}}
 				</template>
@@ -17,21 +17,21 @@
 					{{imageCounter(post.replies)}}
 				</template>
 				<template #threadView>
-					[<router-link :to="{name: 'thread', params: {'number': post.thread}}">v</router-link>]
+					[<router-link :to="{name: 'thread', params: {'number': post.id}}">v</router-link>]
 				</template>
 				<template #threadHide>
-					[<a href="javascript:void(0);" @click="setHidden(board+post.thread)">-</a>]
+					[<a href="javascript:void(0);" @click="setHidden(board+post.id)">-</a>]
 				</template>
 				<template #opImage v-if="getGrab">
-					<router-link :to="{name: 'thread', params: {'number': post.thread}}" v-lazy-container="{selector: 'img'}">
-						<img :data-src="post.file.src" :data-loading="loading" style="width:100%; max-height:256px; object-fit: cover;" alt="">
+					<router-link :to="{name: 'thread', params: {'number': post.id}}" v-lazy-container="{selector: 'img'}">
+						<img :data-src="post.post.file.src" :data-loading="loading" style="width:100%; max-height:256px; object-fit: cover;" alt="">
 					</router-link>
 				</template>
 				<template #threadSubject>
-					{{post.subject?post.subject+':':''}}
+					{{post.post.subject?post.post.subject+':':''}}
 				</template>
 				<template #threadText>
-					{{post.text.length>150?post.text.slice(0,150)+'...':post.text}}
+					{{post.post.text.length>150?post.post.text.slice(0,150)+'...':post.post.text}}
 				</template>
 			</catalog-item>
 			<catalog-item v-else>
@@ -42,10 +42,10 @@
 					{{imageCounter(post.replies)}}
 				</template>
 				<template #threadView>
-					[<router-link :to="{name: 'thread', params: {'number': post.thread}}">v</router-link>]
+					[<router-link :to="{name: 'thread', params: {'number': post.id}}">v</router-link>]
 				</template>
 				<template #threadHide>
-					[<a href="javascript:void(0);" @click="setHidden(board+post.thread)">+</a>]
+					[<a href="javascript:void(0);" @click="setHidden(board+post.id)">+</a>]
 				</template>
 				<template #threadText>
 					<span class="text-mono">thread hidden</span>
