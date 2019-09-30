@@ -32,24 +32,8 @@ export default new Vuex.Store({
      * board ticker specified by the user
      */
     demo: {                                     // fake smart contract storage
-      boards:[                                  // array to store boards with 1 board premined
-        // {
-        //   "ticker": "biz",
-        //   "punchline": "shitcoins and stocks"
-        // },
-        // {
-        //   "ticker": "lol",
-        //   "punchline": "lolcow central"
-        // }
-      ],
-      threads: {                               // collection of objects each holding an array
-        // biz: [
-        //   // see json-examples.json
-        //   // for reference on how to
-        //   // structure this array
-        // ],
-        // lol: []
-      }                                
+      boards:[],
+      threads: {}                                
     },
     reports: []
   },
@@ -158,7 +142,7 @@ export default new Vuex.Store({
       state.demo.threads[payload.board].push(payload.body)
     },
     mutReply: (state, payload) => {
-      state.demo.threads[payload.board].replies.push(payload.body)
+      state.demo.threads[payload.board].find(a => a.id === payload.thread).replies.push(payload.body)
     },
     mutBoard: (state, payload) => {
       state.demo.threads[payload.board] = []

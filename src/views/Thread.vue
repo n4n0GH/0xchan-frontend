@@ -12,8 +12,8 @@
 				</div>
 			</div>
 				<div class="row mt-2">
-					<div class="col" :id="'thread-'+post.thread">
-						<post class="op-container col-12 pl-0" :id="'p'+post.thread" :post="post" />
+					<div class="col" :id="'thread-'+post.id">
+						<post class="op-container col-12 pl-0" :id="'p'+post.id" :post="post.post" />
 						<post v-for="reply in post.replies" :key="reply.id" class="d-inline d-sm-block reply-container ml-sm-5 col-auto" :id="'p'+reply.id" :post="reply" />
 					</div>
 				</div>
@@ -32,7 +32,7 @@
 
 <script>
 /* eslint-disable */
-	import Threads from '../components/board/threads.json'
+	// import Threads from '../components/board/threads.json'
 	import Post from '../components/board/Post.vue'
 	import {mapGetters} from 'vuex'
 	import {eBus} from '../components/EventBus.js'
@@ -55,6 +55,7 @@
 		computed: {
 			...mapGetters([
 				'getForceAnon',
+				'getDemo'
 			]),
 			thread() {
 				return this.$route.params.number
@@ -62,11 +63,8 @@
 			board() {
 				return this.$route.params.ticker
 			},
-			preSelect() {
-				return Threads.filter(a => a.board == this.board)
-			},
 			posts() {
-				return this.preSelect.filter(a => a.thread == this.thread)
+				return this.getDemo.threads[this.board].filter(a => a.id == this.thread)
 			}
 		},
 		beforeRouteUpdate(to, from, next){

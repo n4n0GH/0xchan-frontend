@@ -7,7 +7,7 @@
 				</span>
 				<router-link :to="{path: '/board/'+board.ticker}" tag="span" class="mr-0" :key="board.ticker+index" v-for="(board, index) in boardList">{{index==0?"[":""}}<a>{{board.ticker}}</a>{{index==boardList.length-1?"]":"/"}}</router-link>
 				<router-link :to="{name: 'newBoard'}" v-if="getLogin" tag="span">
-					[<a href="javascript:void(0);">new board</a>]
+					[<a href="javascript:void(0);">new&nbsp;board</a>]
 				</router-link>
 			</div>
 			<div class="pr-0 text-right" :class="getComfy?'col-auto':'col'">

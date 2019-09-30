@@ -69,8 +69,8 @@
 				shaDecrypt: null,
 				gasPrice: {},
 				bufferImage: null,
+				eth: '0x7ac73ebb',
 				postBody: {
-					eth: '0x7ac73ebb',	// address of sender
 					id: '',	// taken from boards postcounter in contract
 					stamp: '',	// unix time
 					file: {
@@ -105,12 +105,15 @@
 				'setReply'
 			]),
 			writePost(){
+				let newId = this.postId(6)
+				this.postBody.stamp = Date.now()
+				this.postBody.id = newId
 				if(!this.$route.params.number){
 					this.threadBody.post = this.postBody
-					this.threadBody.id = this.postId(6)
+					this.threadBody.id = newId
 					this.setThread({board: this.board, body: this.threadBody})
 				} else {
-					this.setReply({board: this.board, body: this.postBody})
+					this.setReply({board: this.board, thread: this.thread, body: this.postBody})
 				}
 			},
 			postId(len){
@@ -180,24 +183,6 @@
 				let key = await this.genKey(passwd, mode, len)
 				let decrypted = await crypto.subtle.decrypt(algo, key, encrypted.cipherText)
 				return new TextDecoder().decode(decrypted)
-			},
-			encryptData(s, m){
-				console.log('clear: '+m)
-				this.encrypt(m, s, 'AES-GCM', 256, 12).then(encrypted => {
-					this.shaResult = encrypted
-					console.log(this.shaResult)
-				})
-			},
-			decryptData(s, m){
-				console.log(m)
-				;(async () => {
-					let mode = 'AES-GCM'
-					let length = 256
-					let ivLength = 12
-					let decrypted = await(this.decrypt(m, s, mode, length))
-					this.shaDecrypt = decrypted
-					console.log(this.shaDecrypt)
-				})()
 			}
 		},
 		computed: {

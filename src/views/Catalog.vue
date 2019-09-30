@@ -8,7 +8,7 @@
 				</div>
 			</div>
 		</div>
-		<div class="col-6 col-md-4 col-xl-2 mb-2" v-for="post in posts" :key="post.number">
+		<div class="col-6 col-md-4 col-xl-2 mb-2" v-for="(post, index) in posts" :key="post.id+index">
 			<catalog-item v-if="!getHidden.includes(board+post.thread)">
 				<template #threadReplies>
 					{{post.replies.length}}
