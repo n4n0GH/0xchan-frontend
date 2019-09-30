@@ -103,9 +103,6 @@
 			loading() {
 				return Loading
 			}
-		},
-		mounted(){
-			console.log(this.posts)
 		}
 	}
 </script>

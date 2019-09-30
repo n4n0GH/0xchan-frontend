@@ -137,7 +137,6 @@
 		mounted(){		//disable for dev
 			/*Axios.get("https://ipfs.globalupload.io/QmTBxkQmp5dEqSspHELZRqUrWt5Neb62MGxg7opAcedpvE")
 				.then(response => {this.threads = response.data})*/
-			console.log(this.threads)
 		},
 		beforeRouteUpdate(to, from, next){
 			eBus.$emit('boardChange')
