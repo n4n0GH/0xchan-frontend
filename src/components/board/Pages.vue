@@ -125,7 +125,7 @@
 			},
 			pages() {
 				if(this.threads.length>=5){
-					return this.threads.length/5
+					return Math.ceil(this.threads.length/5)
 				} else {
 					return 1
 				}
@@ -137,6 +137,7 @@
 		mounted(){		//disable for dev
 			/*Axios.get("https://ipfs.globalupload.io/QmTBxkQmp5dEqSspHELZRqUrWt5Neb62MGxg7opAcedpvE")
 				.then(response => {this.threads = response.data})*/
+				console.log(this.threads.length)
 		},
 		beforeRouteUpdate(to, from, next){
 			eBus.$emit('boardChange')

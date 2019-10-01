@@ -17,15 +17,19 @@
 			</div>
 			<div class="card-body bg-chan-light p-0 text-overflow">
 				<div class="input-group">
-					<input type="text" class="form-control small p-0 rounded-0 border-left-0 border-chan-red" placeholder="Name (optional)">
-					<input type="text" class="form-control small p-0 rounded-0 border-right-0 border-chan-red" placeholder="Options (optional)">
+					<input type="text" class="form-control small p-0 rounded-0 border-left-0 border-chan-red" placeholder="Name (optional)" v-model="postContent.name">
+					<input type="text" class="form-control small p-0 rounded-0 border-right-0 border-chan-red" placeholder="Options (optional)" v-model="postContent.options">
 				</div>
-				<textarea name="comment" class="form-control p-0 rounded-0 border-top-0 border-left-0 border-right-0 border-chan-red" id="quickReply" placeholder="Comment" v-model="replyTo"></textarea>
+				<textarea name="comment" class="form-control p-0 rounded-0 border-top-0 border-left-0 border-right-0 border-chan-red" id="quickReply" rows="4" placeholder="Comment" v-model="postContent.text"></textarea>
 				<input type="file">
 			</div>
-			<div class="card-footer bg-chan-light border-top-0 p-0 input-group">
-				<button class="form-control btn btn-outline-chan rounded-0 border-left-0 border-left-0 border-bottom-0 border-right-0"><i class="fab fa-creative-commons-zero"></i> Post with ZCH</button>
-				<button class="form-control btn btn-outline-chan rounded-0 border-left-0 border-left-0 border-bottom-0 border-right-0 px-auto"><i class="fab fa-ethereum"></i> Post with ETH</button>
+			<div class="card-footer bg-chan-light border-top-0 p-0 input-group" v-if="getPayment == 'none'">
+				<button class="form-control btn btn-outline-chan rounded-0 border-left-0 border-bottom-0"><i class="fab fa-creative-commons-zero"></i> Post with ZCH</button>
+				<button class="form-control btn btn-outline-chan rounded-0 border-left-0 border-bottom-0 border-right-0 px-auto"><i class="fab fa-ethereum"></i> Post with ETH</button>
+			</div>
+			<div class="card-footer bg-chan-light border-top-0 p-0 input-group" v-else>
+				<button class="form-control btn btn-outline-chan rounded-0 border-left-0 border-bottom-0 border-right-0 px-auto" v-if="getPayment == 'zch'" @click="emitPost()"><i class="fab fa-creative-commons-zero"></i> Post</button>
+				<button class="form-control btn btn-outline-chan rounded-0 border-left-0 border-bottom-0 border-right-0 px-auto" v-if="getPayment == 'eth'"><i class="fab fa-ethereum"></i> Post</button>
 			</div>
 		</div>
 	</vue-draggable-resizable>
@@ -34,6 +38,7 @@
 <script>
 	import VueDraggableResizable from 'vue-draggable-resizable'
 	import {eBus} from '../EventBus.js'
+	import {mapGetters, mapActions} from 'vuex'
 
 	export default {
 		data(){
@@ -42,7 +47,13 @@
 				height: 10,
 				x: 0,
 				y: 0,
-				replyTo: ''
+				postContent: {
+					name: '',
+					options: '',
+					text: '',
+					file: null,
+					replyTo: []
+				}
 			}
 		},
 		components: {
@@ -66,14 +77,25 @@
 			},
 			close(){
 				eBus.$emit('closeReply')
+			},
+			emitPost(){
+				console.log(this.postContent)
+				eBus.$emit('writePost', this.postContent)
 			}
+		},
+		computed: {
+			...mapGetters([
+				'getPayment'
+			])
 		},
 		mounted(){
 			this.x = this.posx
 			this.y = this.posy
-			this.replyTo = ">>"+this.replyContent+"\n"
+			this.postContent.text = ">>"+this.replyContent+"\n"
+			this.postContent.replyTo.push(this.replyContent)
 			eBus.$on('addReply', p => {
-				this.replyTo += ">>"+p+"\n"
+				this.postContent.replyTo.push(p)
+				this.postContent.text += ">>"+p+"\n"
 			})
 		}
 	}

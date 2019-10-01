@@ -108,6 +108,9 @@
 				let newId = this.postId(6)
 				this.postBody.stamp = Date.now()
 				this.postBody.id = newId
+				if(this.postBody.name == ''){
+					this.postBody.name = 'Anonymous'
+				}
 				if(!this.$route.params.number){
 					this.threadBody.post = this.postBody
 					this.threadBody.id = newId

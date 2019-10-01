@@ -50,7 +50,11 @@
 				return this.$route.path
 			},
 			boardList() {
-				return this.getDemo.boards.slice().sort((a, b) => a.ticker.localeCompare(b.ticker))
+				if(this.getUserBoards != ''){
+					return this.getUserBoards.slice().sort((a, b) => a.ticker.localeCompare(b.ticker))
+				} else {
+					return this.getDemo.boards.slice().sort((a, b) => a.ticker.localeCompare(b.ticker))
+				}
 			}
 		}
 	}
