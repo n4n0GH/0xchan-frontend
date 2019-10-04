@@ -38,7 +38,7 @@
 <script>
 	import VueDraggableResizable from 'vue-draggable-resizable'
 	import {eBus} from '../EventBus.js'
-	import {mapGetters, mapActions} from 'vuex'
+	import {mapGetters} from 'vuex'
 
 	export default {
 		data(){
@@ -79,7 +79,6 @@
 				eBus.$emit('closeReply')
 			},
 			emitPost(){
-				console.log(this.postContent)
 				eBus.$emit('writePost', this.postContent)
 			}
 		},
