@@ -43,7 +43,7 @@
 			},
 			timestamp() {
 				return Threads.map((item) => {
-					return item.stamp
+					return item.timestamp
 				})
 			},
 			boardTicker() {

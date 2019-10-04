@@ -14,7 +14,7 @@
 							<span class="post-name font-chan-ok">
 								{{getForceAnon?'Anonymous':post.name}}
 							</span>
-							- {{post.stamp}}
+							- {{calcDateTime}}
 							| No. <a href="javascript:void(0);" @click="quickReply(postNumber, $event)" v-if="getLogin">{{postNumber}}</a><span v-if="!getLogin">{{postNumber}}</span>
 						</p>
 					</div>
@@ -52,8 +52,7 @@
 							</a>
 						</div>
 						<div class="font-chan-normal">
-							<blockquote class="mb-0" v-html="post.text">
-							</blockquote>
+							<blockquote class="mb-0" style="white-space:pre-line">{{post.text}}</blockquote>
 						</div>
 					</div>
 				</div>
@@ -117,6 +116,21 @@
 			]),
 			threadCheck(){
 				return this.$route.params.number
+			},
+			calcDateTime(){
+				let baseTime = new Date(this.post.stamp)
+				let baseMonth = baseTime.getMonth()+1
+				let year = baseTime.getFullYear()
+				let month = baseMonth<=9?'0'+baseMonth:baseMonth
+				let humanDays = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
+				let humanDayIndex = (Math.floor(baseTime/86400)+4)%7
+				let humanDay = humanDays[humanDayIndex-1]
+				let baseDay = baseTime.getDay()-1
+				let day = baseDay<=9?'0'+baseDay:baseDay
+				let hour = baseTime.getHours()<=9?'0'+baseTime.getHours():baseTime.getHours()
+				let minute = baseTime.getMinutes()<=9?'0'+baseTime.getMinutes():baseTime.getMinutes()
+				let second = baseTime.getSeconds()<=9?'0'+baseTime.getSeconds():baseTime.getSeconds()
+				return month+'/'+day+'/'+year+' ('+humanDay+') '+hour+':'+minute+':'+second
 			}
 		},
 		methods: {
