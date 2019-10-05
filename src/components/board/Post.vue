@@ -104,7 +104,9 @@
 			post: {
 				default: ''
 			},
-			isReply: false
+			isReply: {
+				default: false
+			}
 		},
 		computed: {
 			loading() {
