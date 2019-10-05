@@ -21,3 +21,5 @@ The interface is made with VueJS, so you should also check out their documentati
 
 ## Connect
 [![Discord](https://img.shields.io/discord/528334545683218441?color=7389D8&label=&logo=discord&logoColor=ffffff&labelColor=6A7EC2&style=for-the-badge)](https://discord.gg/v8cnd4w)
+
+[![Twitter Follow](https://img.shields.io/twitter/follow/0xchan?logo=twitter&logoColor=ffffff&style=for-the-badge)](https://twitter.com/0xchan)
