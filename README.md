@@ -18,3 +18,6 @@ npm run serve
 Afterwards use any browser you want (although a connected Ethereum wallet is needed for interaction) and visit the address given by the CLI (usually localhost:8080)
 
 The interface is made with VueJS, so you should also check out their documentation as well if you want to change things in this codebase.
+
+## Connect
+[![Discord](https://img.shields.io/discord/528334545683218441?color=7389D8&label=&logo=discord&logoColor=ffffff&labelColor=6A7EC2&style=for-the-badge)](https://discord.gg/v8cnd4w)
