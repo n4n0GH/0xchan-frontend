@@ -5,7 +5,7 @@
 				<div class="row">
 					<div class="col pl-4 pr-0 py-1">
 						<p class="mb-0 font-chan-red">
-							<router-link tag="button" :to="{name: 'thread', params: {'number': post.id}}" style="line-height: 1rem;" class="mt-n1 mr-2 p-0 px-1 btn btn-outline-chan-red" v-if="!threadCheck">
+							<router-link tag="button" :to="{name: 'thread', params: {'number': post.id}}" style="line-height: 1rem;" class="mt-n1 mr-2 p-0 px-1 btn btn-outline-chan-red" v-if="!threadCheck && !isReply">
 								<i class="fal fa-eye"></i>
 							</router-link>
 							<span class="post-subject font-weight-bold">
@@ -15,7 +15,7 @@
 								{{getForceAnon?'Anonymous':post.name}}
 							</span>
 							- {{calcDateTime}}
-							| No. <a href="javascript:void(0);" @click="quickReply(postNumber, $event)" v-if="getLogin">{{postNumber}}</a><span v-if="!getLogin">{{postNumber}}</span>
+							| <router-link :to="{path: `/board/${this.$route.params.ticker}/thread/${this.$route.params.number}#p${postNumber}`}">No.</router-link> <a href="javascript:void(0);" @click="quickReply(postNumber, $event)" v-if="getLogin">{{postNumber}}</a><span v-if="!getLogin">{{postNumber}}</span>
 						</p>
 					</div>
 					<div class="col-auto mr-2">
@@ -96,13 +96,15 @@
 				reportReason: '',
 				inlinePreview: false,
 				smolPreview: 30,
-				bigPreview: 100
+				bigPreview: 100,
+				nowTime: null
 			}
 		},
 		props: {
 			post: {
 				default: ''
-			}
+			},
+			isReply: false
 		},
 		computed: {
 			loading() {
@@ -195,6 +197,7 @@
 			}
 		},
 		mounted(){
+			this.nowTime = Date.now()
 			this.postNumber = this.post.id
 			eBus.$on('boardChange', () => {
 				if(this.doResearch){

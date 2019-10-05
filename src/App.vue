@@ -33,10 +33,9 @@
 	import NavBar from './views/NavBar.vue'
 	import MobileBoardList from './components/navbar/MobileBoardList.vue'
 	import ReplyDrag from './components/board/ReplyDrag.vue'
-	import Web3 from 'web3'
 	import {eBus} from './components/EventBus.js'
+	import web3 from './contract/Web3Connect.js'
 
-	let web3 = null
 
 	export default {
 		data(){
@@ -75,27 +74,14 @@
 				'setLogout'
 			]),
 			async login(){
-				if(window.ethereum){
-					console.log('awaiting resolve')
-					web3 = new Web3(ethereum)
-					try{
-						console.log('awaiting ethereum.enable')
-						await ethereum.enable();
-						// returns nothing atm because web3.eth.accounts craps the bed for some reason
-						console.log('logged in')
-						this.setLogin()
-					}
-					catch(error){
-						this.setLogout()
-						console.log('Eth Auth failed')
-						web3 = null
-					}
-				}
-				else if(window.web3){
-					alert('You are using an outdated version of Web3. Please update your dapp browser. 0xchan does not recommend using potential security risks.')
-				}
-				else {
-					alert('No Ethereum enabled browser detected. Please install something like Trustwallet, Metamask or similar and try again.')
+				const accounts = await web3.eth.getAccounts().catch(() => {
+					alert('ETH Authorization failed')
+					this.setLogout()
+				})
+				if(accounts){
+					this.setLogin()
+					const account = accounts[0]
+					this.setAccount = account
 				}
 			},
 			handleClick(item){

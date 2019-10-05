@@ -19,7 +19,7 @@
 					</div>
 					<div class="col" v-if="!getHidden.includes(board+post.id)" :id="'thread-'+post.id">
 						
-						<post class="op-container col-12 pl-0" :id="'p'+post.id" :post="post.post" />
+						<post class="op-container col-12 pl-0" :id="'p'+post.id" :post="post.post"/>
 						<div class="row">
 							<p class="text-mono small mb-1 ml-4 d-none d-sm-block" v-if="post.replies.length - 5 > 0">&gt;&gt; {{post.replies.length-5+' posts'}} <span v-if="omittedImages(post)>0">and {{omittedImages(post)}} {{omittedImages(post)&gt;1?'images':'image'}}</span> omitted [
 							<router-link :to="{name: 'thread', params: {'number': post.id}}">
@@ -30,7 +30,7 @@
 							view thread</router-link>
 							]</p>
 						</div>
-						<post v-for="reply in post.replies.slice(-5)" :key="reply.id" class="reply-container ml-5 col-auto d-none d-sm-block" :id="'p'+reply.id" :post="reply" />
+						<post v-for="reply in post.replies.slice(-5)" :key="reply.id" class="reply-container ml-5 col-auto d-none d-sm-block" :id="'p'+reply.id" :post="reply" :isReply="true" />
 					</div>
 					<div class="col" v-if="getHidden.includes(board+post.id)">
 						<p class="chan-disabled text-mono small font-chan-red pt-2">Thread #{{post.id}} hidden</p>
