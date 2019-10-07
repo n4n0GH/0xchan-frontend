@@ -152,7 +152,7 @@
 								</transition>
 							</div>
 						</div>
-						<div class="row">
+						<!-- <div class="row">
 							<div class="col">
 								<p class="mb-0 lead">Custom IPFS Gateway</p>
 								<p class="small font-chan-normal">Use your own IPFS Gateway instead of the 0xchan one.</p>
@@ -179,7 +179,7 @@
 							</div>
 							<input type="number" class="form-control" placeholder="5001" v-model="customPort">
 						</div>
-						</transition>
+						</transition> -->
  
 						<hr>
 						<div class="row">
