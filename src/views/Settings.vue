@@ -259,7 +259,6 @@
 						bObj['ticker'] = s.trim()
 						this.boardArray.push(bObj)
 					})
-					console.log(this.boardArray)
 					this.setBoardList(this.boardArray)
 				}
 			},
