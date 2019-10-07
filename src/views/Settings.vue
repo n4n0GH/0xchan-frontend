@@ -152,7 +152,35 @@
 								</transition>
 							</div>
 						</div>
+						<div class="row">
+							<div class="col">
+								<p class="mb-0 lead">Custom IPFS Gateway</p>
+								<p class="small font-chan-normal">Use your own IPFS Gateway instead of the 0xchan one.</p>
+							</div>
+							<div class="col-12 col-sm-2"><button class="btn btn-outline-chan-red text-mono p-0 w-100 px-1" @click="setBool('mutCustomGate')">is: {{getCustomGate?'on':'off'}}</button><button class="btn btn-outline-chan mt-2 text-mono p-0 w-100 px-1" @click="setCustomGate()" v-if="getCustomGate">save()</button></div>
+						</div>
+						<transition name="fade" mode="out-in">
+						<div class="input-group" v-if="getCustomGate">
+							<div class="input-group-prepend">
+								<span class="input-group-text border-chan-red bg-chan-light font-chan-red">Protocol</span>
+							</div>
+							<select name="currencySelect" id="" class="form-control" v-model="customProtocol">
+								<option value="https">HTTPS</option>
+								<option value="http">HTTP</option>
+							</select>
 
+							<div class="input-group-prepend">
+								<span class="input-group-text border-chan-red bg-chan-light font-chan-red">Address</span>
+							</div>
+							<input type="text" class="form-control" placeholder="ipfs.yourplace.io" v-model="customAddress">
+
+							<div class="input-group-prepend">
+								<span class="input-group-text border-chan-red bg-chan-light font-chan-red">Port</span>
+							</div>
+							<input type="number" class="form-control" placeholder="5001" v-model="customPort">
+						</div>
+						</transition>
+ 
 						<hr>
 						<div class="row">
 							<div class="col">
@@ -205,7 +233,10 @@
 				custom: '',
 				boardList: '',
 				currency: '',
-				eco: null
+				eco: null,
+				customAddress: '',
+				customPort: '',
+				customProtocol: 'https'
 			}
 		},
 		components: {
@@ -308,7 +339,8 @@
 				'getUserBoards',
 				'getComfy',
 				'getPayment',
-				'getEco'
+				'getEco',
+				'getCustomGate'
 			]),
 			localSettings(){
 				return localStorage.getItem('vuex')

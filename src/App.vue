@@ -36,7 +36,6 @@
 	import {eBus} from './components/EventBus.js'
 	import web3 from './contract/Web3Connect.js'
 
-
 	export default {
 		data(){
 			return{
@@ -62,7 +61,14 @@
 				'getCustomCss',
 				'getGrab',
 				'getLogin',
-				'getComfy'
+				'getComfy',
+				'getCustomGate',
+				'getCustomNode',
+				'getCustomPort',
+				'getCustomProto',
+				'getIpfsNode',
+				'getIpfsPort',
+				'getIpfsProto'
 			]),
 			theme(){
 				return this.getTheme+'.css'
@@ -152,6 +158,7 @@
 				this.login()
 			}
 
+			/* EventBus habbedigs below */
 			eBus.$on('closeReply', () => {
 				this.quickReply = false
 			})

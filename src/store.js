@@ -22,6 +22,13 @@ export default new Vuex.Store({
     comfyMode: false,                           // compact mode on/off (t/f)
     userPayment: 'none',                        // preferred payment method
     ecoMode: false,                             // limit autodownload to n MB
+    ipfsNode: 'ipfs.infura.io',                 // default IPFS gateway to use
+    ipfsPort: '5001',                           // IPFS gateway port
+    ipfsProto: 'https',                         // IPFS gateway protocol
+    customGate: false,                          // use custom gateway instead
+    customNode: '',                             // custom IPFS gateway address
+    customPort: '',                             // custom IPFS gateway port
+    customProto: '',                            // custom IPFS gateway protocol
     /**
      * below data is for @dev purpose only
      * when users create a board the object
@@ -82,6 +89,27 @@ export default new Vuex.Store({
     },
     getDemo: state => {
       return state.demo
+    },
+    getIpfsNode: state => {
+      return state.ipfsNode
+    },
+    getIpfsPort: state => {
+      return state.ipfsPort
+    },
+    getIpfsProto: state => {
+      return state.ipfsProto
+    },
+    getCustomGate: state => {
+      return state.customGate
+    },
+    getCustomNode: state => {
+      return state.customNode
+    },
+    getCustomPort: state => {
+      return state.customPort
+    },
+    getCustomProto: state => {
+      return state.customProto
     }
   },
   mutations: {
@@ -147,6 +175,9 @@ export default new Vuex.Store({
     mutBoard: (state, payload) => {
       state.demo.threads[payload.board] = []
       state.demo.boards.push({"ticker": payload.board, "punchline": payload.punchline})
+    },
+    mutCustomGate: state => {
+      state.customGate = !state.customGate
     }
   },
   actions: {
