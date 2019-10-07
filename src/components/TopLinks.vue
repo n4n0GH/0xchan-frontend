@@ -30,7 +30,6 @@
 
 <script>
 	import {mapGetters} from 'vuex'
-	// import Boards from '../components/navbar/boards.json'
 	import {eBus} from '../components/EventBus.js'
 
 	export default{

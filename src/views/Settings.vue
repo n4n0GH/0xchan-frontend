@@ -232,6 +232,7 @@
 				themeSelect: '',
 				custom: '',
 				boardList: '',
+				boardArray: [],
 				currency: '',
 				eco: null,
 				customAddress: '',
@@ -253,7 +254,13 @@
 			]),
 			saveList(){
 				if(this.boardList){
-					this.setBoardList(this.boardList.replace(/^,/, "").replace(/,\s*$/, "").split(',').map(s => s.trim()))
+					this.boardList.replace(/^,/, "").replace(/,\s*$/, "").split(',').map(s => {
+						let bObj = {}
+						bObj['ticker'] = s.trim()
+						this.boardArray.push(bObj)
+					})
+					console.log(this.boardArray)
+					this.setBoardList(this.boardArray)
 				}
 			},
 			resetList(){
@@ -354,7 +361,9 @@
 		},
 		mounted(){
 			if(this.getUserBoards){
-				this.boardList = this.getUserBoards
+				this.boardList = this.getUserBoards.map(b => {
+					return b.ticker
+				})
 			}
 			this.themeSelect = this.getTheme
 			this.custom = this.getCustomCss
