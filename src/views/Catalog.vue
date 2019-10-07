@@ -23,7 +23,7 @@
 					[<a href="javascript:void(0);" @click="setHidden(board+post.id)">-</a>]
 				</template>
 				<template #opImage v-if="getGrab">
-					<router-link :to="{name: 'thread', params: {'number': post.id}}" v-lazy-container="{selector: 'img'}">
+					<router-link :to="{name: 'thread', params: {'number': post.id}}" v-lazy-container="{selector: 'img'}" v-if="post.post.file.src">
 						<img :data-src="post.post.file.src" :data-loading="loading" style="width:100%; max-height:256px; object-fit: cover;" alt="">
 					</router-link>
 				</template>
