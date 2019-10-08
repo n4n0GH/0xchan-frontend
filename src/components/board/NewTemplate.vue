@@ -5,7 +5,10 @@
 				<div class="col text-left input-group">
 					<input class="border-left-0 border-top-0 form-control" type="text" placeholder="Subject (optional)" v-if="!isReply" v-model="postBody.subject">
 					<input class="border-top-0 form-control" type="text" placeholder="Name (optional)" v-model="postBody.name">
-					<input type="text" class="border-right-0 border-top-0 form-control" placeholder="Options (optional kek)" v-model="postBody.options">
+					<div class="input-group-text ml-3 border-0 bg-chan font-chan-red">
+						<input type="checkbox" v-model="postBody.options" id="sage">
+						<label class="pl-2 form-check-label" for="sage">sage</label>
+					</div>
 				</div>
 			</div>
 		</div>
@@ -82,7 +85,7 @@
 					replyTo: [],
 					name: '',
 					subject: '',
-					options: '',
+					options: false,
 					iv: '',
 					text: ''
 				},

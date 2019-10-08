@@ -17,8 +17,6 @@
 </template>
 
 <script>
-	// import Threads from '../board/threads.json' // contract simulation for thread storage
-	// import Boards from '../navbar/boards.json' // contract simulation for board lists with punchlines
 	import {mapGetters} from 'vuex'
 
 	export default {
