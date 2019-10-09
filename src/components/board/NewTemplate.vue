@@ -5,14 +5,7 @@
 				<div class="col text-left input-group">
 					<input class="border-left-0 border-top-0 form-control" type="text" placeholder="Subject (optional)" v-if="!isReply" v-model="postBody.subject">
 					<input class="border-top-0 form-control" type="text" placeholder="Name (optional)" v-model="postBody.name">
-					<div class="input-group-text ml-3 mr-1 border-0 bg-chan font-chan-red">
-						<input type="checkbox" v-model="postBody.options" id="sage">
-						<label class="pl-2 form-check-label" for="sage">sage</label>
-					</div>
-					<div class="input-group-text ml-1 mr-3 border-0 bg-chan font-chan-red">
-						<input type="checkbox" v-model="nonoko" id="nonoko">
-						<label class="pl-2 form-check-label" for="nonoko">nonoko</label>
-					</div>
+					<input type="text" class="border-right-0 border-top-0 form-control" placeholder="Options (optional kek)" v-model="options">
 				</div>
 			</div>
 		</div>
@@ -63,9 +56,9 @@
 	export default {
 		data(){
 			return{
-				nonoko: false,
 				filePreview: null,
 				fileRaw: null,
+				options: '',
 				postContent: '',
 				encodePost: '',
 				encodeSalt: '',
