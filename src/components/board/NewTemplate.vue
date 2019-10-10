@@ -117,6 +117,7 @@
 					this.threadBody.id = newId
 					this.setThread({board: this.board, body: this.threadBody})
 				} else {
+					this.postBody.replyTo.push(this.thread)
 					this.setReply({board: this.board, thread: this.thread, body: this.postBody})
 				}
 			},

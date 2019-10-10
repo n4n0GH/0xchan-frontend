@@ -15,7 +15,7 @@
 								{{getForceAnon?'Anonymous':post.name}}
 							</span>
 							- {{calcDateTime}}
-							| <router-link :to="{path: `/board/${this.$route.params.ticker}/thread/${this.$route.params.number}#p${postNumber}`}">No.</router-link> <a href="javascript:void(0);" @click="quickReply(postNumber, $event)" v-if="getLogin">{{postNumber}}</a><span v-if="!getLogin">{{postNumber}}</span>
+							| <router-link :to="{path: `/board/${this.$route.params.ticker}/thread/${permalink}#p${postNumber}`}">No.</router-link>&nbsp;<a href="javascript:void(0);" @click="quickReply(postNumber, $event)" v-if="getLogin">{{postNumber}}</a><span v-if="!getLogin">{{postNumber}}</span>
 						</p>
 					</div>
 					<div class="col-auto mr-2">
@@ -52,7 +52,7 @@
 							</a>
 						</div>
 						<div class="font-chan-normal">
-							<blockquote class="mb-0" style="white-space:pre-line" v-html="filteredPost()"></blockquote>
+							<blockquote class="mb-0" style="white-space:pre-line" v-html="filteredPost(post.text)"></blockquote>
 						</div>
 					</div>
 				</div>
@@ -135,6 +135,9 @@
 				let minute = baseTime.getMinutes()<=9?'0'+baseTime.getMinutes():baseTime.getMinutes()
 				let second = baseTime.getSeconds()<=9?'0'+baseTime.getSeconds():baseTime.getSeconds()
 				return month+'/'+day+'/'+year+' ('+humanDay+') '+hour+':'+minute+':'+second
+			},
+			permalink(){
+				return this.post.replyTo[0]?this.post.replyTo[0]:this.postNumber
 			}
 		},
 		methods: {
@@ -197,16 +200,18 @@
 				eBus.$emit('openReply', {posx: n.clientX, posy: n.clientY, id: p})
 				eBus.$emit('addReply', p)
 			},
-			filteredPost(){
-				let sanitized = this.$sanitize(this.post.text, {
-					allowedTags: ['b', 'i', 'em', 'strong', 'code', 'pre']
+			filteredPost(t){
+				let clean = this.$sanitize(t, {
+					allowedTags: ['b', 'i', 'em', 'strong', 'code', 'pre'],
+					
 				})
-				return sanitized
+				return clean
 			}
 		},
 		mounted(){
 			this.nowTime = Date.now()
 			this.postNumber = this.post.id
+			// @dev: needs to be switched to use router guards instead
 			eBus.$on('boardChange', () => {
 				if(this.doResearch){
 					this.doResearch = false
