@@ -52,7 +52,7 @@
 							</a>
 						</div>
 						<div class="font-chan-normal">
-							<blockquote class="mb-0" style="white-space:pre-line">{{post.text}}</blockquote>
+							<blockquote class="mb-0" style="white-space:pre-line" v-html="filteredPost()"></blockquote>
 						</div>
 					</div>
 				</div>
@@ -196,6 +196,12 @@
 			quickReply(p, n){
 				eBus.$emit('openReply', {posx: n.clientX, posy: n.clientY, id: p})
 				eBus.$emit('addReply', p)
+			},
+			filteredPost(){
+				let sanitized = this.$sanitize(this.post.text, {
+					allowedTags: ['b', 'i', 'em', 'strong', 'code', 'pre']
+				})
+				return sanitized
 			}
 		},
 		mounted(){

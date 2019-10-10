@@ -14,6 +14,7 @@
     "core-js": "^2.6.5",
     "ethereumjs-testrpc": "^6.0.3",
     "ipfs-http-client": "^38.1.0",
+    "sanitize-html": "^1.20.1",
     "tripcode": "^1.3.4",
     "vue": "^2.6.10",
     "vue-draggable-resizable": "^2.0.1",

@@ -5,6 +5,7 @@ import store from './store'
 // import NProgress from 'vue-nprogress'
 import VueLazyload from 'vue-lazyload'
 import VueHead from 'vue-head'
+import sanitizeHTML from 'sanitize-html'
 
 import '@fortawesome/fontawesome-pro/css/all.min.css'
 import '@fortawesome/fontawesome-pro/js/all.min.js'
@@ -14,6 +15,7 @@ Vue.use(VueLazyload, {
 	attempt: 3
 })
 Vue.use(VueHead)
+Vue.prototype.$sanitize = sanitizeHTML
 
 Vue.config.productionTip = false
 
