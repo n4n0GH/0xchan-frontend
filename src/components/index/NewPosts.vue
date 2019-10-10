@@ -38,37 +38,37 @@
 				return this.getDemo.boards.map((item) => {
 					return item.punchline
 				})
-			},
-			timestamp() {
-				return Threads.map((item) => {
-					return item.timestamp
-				})
-			},
-			boardTicker() {
-				return Threads.map((item) => {
-					return item.board
-				})
-			},
-			replies() {
-				return Threads.map((item) => {
-					return item.replies.length
-				})
-			},
-			opContent() {
-				return Threads.map((item) => {
-					if(item.subject == ""){
-						return item.text.slice(0,100)
-					}
-					else {
-						return item.subject
-					}
-				})
-			},
-			threadID() {
-				return Threads.map((item) => {
-					return item.thread
-				})
-			},
+			}
+			// timestamp() {
+			// 	return Threads.map((item) => {
+			// 		return item.timestamp
+			// 	})
+			// },
+			// boardTicker() {
+			// 	return Threads.map((item) => {
+			// 		return item.board
+			// 	})
+			// },
+			// replies() {
+			// 	return Threads.map((item) => {
+			// 		return item.replies.length
+			// 	})
+			// },
+			// opContent() {
+			// 	return Threads.map((item) => {
+			// 		if(item.subject == ""){
+			// 			return item.text.slice(0,100)
+			// 		}
+			// 		else {
+			// 			return item.subject
+			// 		}
+			// 	})
+			// },
+			// threadID() {
+			// 	return Threads.map((item) => {
+			// 		return item.thread
+			// 	})
+			// },
 		},
 		mounted(){
 			// retarded parsing neccessary because of my JSON file for demo purposes
