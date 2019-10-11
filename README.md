@@ -17,6 +17,11 @@ npm run serve
 ```
 Afterwards use any browser you want (although a connected Ethereum wallet is needed for interaction) and visit the address given by the CLI (usually localhost:8080)
 
+For daily use it is recommended to use a precompiled build:
+```
+npm run build
+```
+
 The interface is made with VueJS, so you should also check out their documentation as well if you want to change things in this codebase.
 
 ## Connect

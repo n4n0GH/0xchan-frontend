@@ -201,9 +201,16 @@
 				eBus.$emit('addReply', p)
 			},
 			filteredPost(t){
+				let vm = this
 				let clean = this.$sanitize(t, {
 					allowedTags: ['b', 'i', 'em', 'strong', 'code', 'pre'],
-					
+					textFilter: function(text){
+						let refPost = text.match(/&gt;&gt;\w+/gm)	//find >>link
+						if(refPost!=null){
+							let cutPost = text.replace(/&gt;&gt;\w+/gm, '<a href="'+vm.$route.params.ticker+'/thread/'+vm.permalink+'#'+refPost[0].slice(8)+'">'+refPost[0]+'</a>')
+							return cutPost
+						} else { return text }
+					}
 				})
 				return clean
 			}
