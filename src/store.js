@@ -16,7 +16,7 @@ export default new Vuex.Store({
     theme: 'YotsubaB',                          // current theme selected
     disclaimer: true,                           // show disclaimer on index page
     customCSS: '',                              // store user's custom CSS
-    forceAnon: false,                           // replace user names with Anonymous
+    forceAnon: true,                           // replace user names with Anonymous
     userBoards: [],                             // array of custom board list
     showAlert: true,                            // show alert on voting page
     comfyMode: false,                           // compact mode on/off (t/f)
