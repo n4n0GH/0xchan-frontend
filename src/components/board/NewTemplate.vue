@@ -108,15 +108,18 @@
 			writePost(){
 				// outsource to an always mounted component
 				// use via event bus
+				// generate post ID
 				let newId = this.postId(6)
-				let mutateName = this.postBody.name.slice()
-				this.postBody.stamp = Date.now()
 				this.postBody.id = newId
+				// fetch current date as UNIX timestamp
+				this.postBody.stamp = Date.now()
+				// check the name input for name and trip
 				if(this.postBody.name == ''){
 					this.postBody.name = 'Anonymous'
 				} else if(this.postBody.name.includes('#')) {
-					this.postBody.name = mutateName.split('#')[0]+'!'+Tripcode(mutateName.split('#')[1].slice(0,8))
+					this.postBody.name = this.postBody.name.split('#')[0]+'!'+Tripcode(this.postBody.name.split('#')[1].slice(0,8))
 				}
+				// create proper data depending on reply or OP
 				if(!this.$route.params.number){
 					this.threadBody.post = this.postBody
 					this.threadBody.id = newId
