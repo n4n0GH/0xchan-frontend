@@ -254,12 +254,17 @@
 			]),
 			saveList(){
 				if(this.boardList){
-					this.boardList.replace(/^,/, "").replace(/,\s*$/, "").split(',').map(s => {
-						let bObj = {}
-						bObj['ticker'] = s.trim()
-						this.boardArray.push(bObj)
-					})
-					this.setBoardList(this.boardArray)
+					if(this.boardList.startsWith('!')){
+						console.log('exclusive mode')
+					} else {
+						console.log('inclusive mode')
+						this.boardList.replace(/^,/, "").replace(/,\s*$/, "").split(',').map(s => {
+							let bObj = {}
+							bObj['ticker'] = s.trim()
+							this.boardArray.push(bObj)
+						})
+						this.setBoardList(this.boardArray)
+					}
 				}
 			},
 			resetList(){
