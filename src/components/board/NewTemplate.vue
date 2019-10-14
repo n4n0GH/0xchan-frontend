@@ -106,11 +106,16 @@
 				'setReply'
 			]),
 			writePost(){
+				// outsource to an always mounted component
+				// use via event bus
 				let newId = this.postId(6)
+				let mutateName = this.postBody.name.slice()
 				this.postBody.stamp = Date.now()
 				this.postBody.id = newId
 				if(this.postBody.name == ''){
 					this.postBody.name = 'Anonymous'
+				} else if(this.postBody.name.includes('#')) {
+					this.postBody.name = mutateName.split('#')[0]+'!'+Tripcode(mutateName.split('#')[1].slice(0,8))
 				}
 				if(!this.$route.params.number){
 					this.threadBody.post = this.postBody
