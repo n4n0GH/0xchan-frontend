@@ -3,7 +3,7 @@
 			<ul class="list-unstyled list-chan">
 				<hr>
 				<li v-for="(board, index) in boardList" :key="board.ticker+index" class="text-center">
-					<router-link :to="{path: '/board/'+board.ticker}" class="p-1 pb-2" :class="getUserBoards.length>0?(!getUserBoards.includes(board.ticker)?'d-none':''):''">
+					<router-link :to="{path: '/board/'+board.ticker}" class="p-1 pb-2">
 						/{{board.ticker}}/<span class="d-none d-xl-inline"> - {{board.punchline}}</span>
 					</router-link>
 				</li>
@@ -40,8 +40,16 @@
 				return this.getDemo.boards
 			},
 			boardList() {
-				return this.boards.slice().sort((a, b) => a.ticker.localeCompare(b.ticker))
+				if(this.getUserBoards != ''){
+					return this.getUserBoards.slice().sort((a, b) => a.ticker.localeCompare(b.ticker))
+				} else {
+					return this.getDemo.boards.slice().sort((a, b) => a.ticker.localeCompare(b.ticker))
+				}			
 			}
+		},
+		mounted(){
+			console.log(this.boardList)
+			console.log(this.getUserBoards)
 		}
 	}
 </script>
