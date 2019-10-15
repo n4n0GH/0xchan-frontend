@@ -233,6 +233,7 @@
 				custom: '',
 				boardList: '',
 				boardArray: [],
+				tempArray: [],
 				currency: '',
 				eco: null,
 				customAddress: '',
@@ -256,6 +257,19 @@
 				if(this.boardList){
 					if(this.boardList.startsWith('!')){
 						console.log('exclusive mode')
+						this.boardList.replace(/!/, "").replace(/^,/, "").replace(/,\s*$/, "").split(',').map(s => {
+							this.tempArray.push(s.trim())
+						})
+						let vm = this
+						let negateList = this.allBoards.filter(function(word){
+							return !vm.tempArray.includes(word)
+						})
+						negateList.map(b => {
+							let bObj = {}
+							bObj['ticker'] = b.trim()
+							this.boardArray.push(bObj)
+						})
+						this.setBoardList(negateList)
 					} else {
 						console.log('inclusive mode')
 						this.boardList.replace(/^,/, "").replace(/,\s*$/, "").split(',').map(s => {
@@ -263,8 +277,8 @@
 							bObj['ticker'] = s.trim()
 							this.boardArray.push(bObj)
 						})
-						this.setBoardList(this.boardArray)
 					}
+					this.setBoardList(this.boardArray)
 				}
 			},
 			resetList(){
@@ -351,7 +365,8 @@
 				'getComfy',
 				'getPayment',
 				'getEco',
-				'getCustomGate'
+				'getCustomGate',
+				'getDemo'
 			]),
 			localSettings(){
 				return localStorage.getItem('vuex')
@@ -361,6 +376,9 @@
 			},
 			currentTheme(){
 				return this.getTheme+'.css'
+			},
+			allBoards(){
+				return this.getDemo.boards.map(b => b.ticker)
 			}
 		},
 		mounted(){
