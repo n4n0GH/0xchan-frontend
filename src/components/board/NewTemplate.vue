@@ -129,6 +129,8 @@
 				} else {
 					this.postBody.replyTo.push(this.thread)
 					this.setReply({board: this.board, thread: this.thread, body: this.postBody})
+					// send user to new reply
+					this.$router.push({path: '#p'+this.postBody.id})
 				}
 			},
 			postId(len){
