@@ -58,8 +58,8 @@
 						<div class="row">
 							<div class="col">
 								<p class="mb-0 lead">Custom Board List</p>
-								<p class="small mb-0 font-chan-normal">Define your own set of boards you wish to see in the navigation. Shortcode seperated by comma.</p>
-								<p><input type="text" v-model.trim="boardList" placeholder="i.e. a, g, v, biz" class="pl-1 w-100 form-control text-mono"></p>
+								<p class="small mb-0 font-chan-normal">Define your own set of boards you wish to see in the navigation. Shortcode seperated by comma. Use an exclamation mark at the beginning of your list to exclude the boards from the list.</p>
+								<p><input type="text" v-model.trim="boardList" placeholder="a, b OR !a, b" class="pl-1 w-100 form-control text-mono"></p>
 							</div>
 							<div class="col-12 col-sm-2">
 								<button class="btn btn-outline-chan p-0 w-100 px-1 text-mono" @click="saveList()">save()</button>
