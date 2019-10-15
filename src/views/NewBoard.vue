@@ -77,6 +77,7 @@
 			]),
 			createBoard(){
 				this.setBoard({"board": this.boardTicker, "punchline": this.boardName})
+				this.$router.push({name: 'ticker', params: {ticker: this.boardTicker}})
 			},
 			getGas(){
 				Axios.get("https://ethgasstation.info/json/ethgasAPI.json")

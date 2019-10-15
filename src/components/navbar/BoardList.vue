@@ -46,10 +46,6 @@
 					return this.getDemo.boards.slice().sort((a, b) => a.ticker.localeCompare(b.ticker))
 				}			
 			}
-		},
-		mounted(){
-			console.log(this.boardList)
-			console.log(this.getUserBoards)
 		}
 	}
 </script>
