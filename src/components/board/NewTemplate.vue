@@ -124,6 +124,8 @@
 					this.threadBody.post = this.postBody
 					this.threadBody.id = newId
 					this.setThread({board: this.board, body: this.threadBody})
+					// send user to new thread
+					this.$router.push({name: 'thread', params: {number: this.threadBody.id}})
 				} else {
 					this.postBody.replyTo.push(this.thread)
 					this.setReply({board: this.board, thread: this.thread, body: this.postBody})
