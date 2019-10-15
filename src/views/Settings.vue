@@ -256,7 +256,6 @@
 			saveList(){
 				if(this.boardList){
 					if(this.boardList.startsWith('!')){
-						console.log('exclusive mode')
 						this.boardList.replace(/!/, "").replace(/^,/, "").replace(/,\s*$/, "").split(',').map(s => {
 							this.tempArray.push(s.trim())
 						})
@@ -271,7 +270,6 @@
 						})
 						this.setBoardList(negateList)
 					} else {
-						console.log('inclusive mode')
 						this.boardList.replace(/^,/, "").replace(/,\s*$/, "").split(',').map(s => {
 							let bObj = {}
 							bObj['ticker'] = s.trim()
