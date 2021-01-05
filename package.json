@@ -9,7 +9,7 @@
   },
   "dependencies": {
     "@fortawesome/vue-fontawesome": "^0.1.6",
-    "axios": "^0.19.0",
+    "axios": "^0.21.1",
     "connect-history-api-fallback": "^1.6.0",
     "core-js": "^2.6.5",
     "ethereumjs-testrpc": "^6.0.3",
